@@ -6,6 +6,19 @@
       {
         "id": "20e10fe86bc70e20",
         "type": "leaf",
+        "dimension": 15.517241379310343,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Gameplay sub/Highlander mode.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "33300e8f84ce6685",
+        "type": "leaf",
+        "dimension": 84.48275862068965,
         "state": {
           "type": "graph",
           "state": {}
@@ -82,9 +95,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "20e10fe86bc70e20",
+  "active": "33300e8f84ce6685",
   "lastOpenFiles": [
-    "Untitled.md",
-    "GDD.md"
+    "Project pitch.md",
+    "Story and narrative.md",
+    "Game mechanics sub/Characters.md",
+    "Gameplay sub/Game modes.md",
+    "Gameplay sub/Harvester mode.md",
+    "Interface sub/Help system.md",
+    "Interface sub/Game art.md",
+    "Interface sub/Audio, music, sound effects.md",
+    "Interface sub/Screen flow.md",
+    "Interface sub/Control system.md"
   ]
 }
