@@ -1,13 +1,17 @@
 # CM3070 Final project
 # Computer Science - Game design degree at University of London
 
+# Fightship Arena
+
 ## **Space invaders** meets **Quake**
 
 What's that?
 
 A duel in a Quake arena where two little green aliens fight for their life? 
 
-Or two powerful gladiators fighting to the death in a two dimensional world like Space invaders? No, nothing like that.
+Or two powerful gladiators fighting to the death in a two dimensional world like Space invaders? 
+
+No, nothing like that.
 
 But...
 
