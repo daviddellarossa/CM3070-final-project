@@ -1,6 +1,6 @@
 {
     "name": "EditMode",
-    "rootNamespace": "",
+    "rootNamespace": "FightshipArena",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

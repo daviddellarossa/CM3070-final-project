@@ -1,6 +1,6 @@
 {
     "name": "FightShipArena",
-    "rootNamespace": "",
+    "rootNamespace": "FightShipArena",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
