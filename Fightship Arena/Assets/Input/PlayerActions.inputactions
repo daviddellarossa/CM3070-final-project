@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControls",
+    "name": "PlayerActions",
     "maps": [
         {
             "name": "Arena",
@@ -10,7 +10,7 @@
                     "type": "Button",
                     "id": "c8b67a6c-a20e-4dd8-be3b-bb55d19275e9",
                     "expectedControlType": "Button",
-                    "processors": "",
+                    "processors": "InputScaler(ScaleFactor=0.1)",
                     "interactions": ""
                 },
                 {
@@ -75,7 +75,7 @@
                 {
                     "name": "WASD",
                     "id": "6c9705d5-9dca-4bf4-aee4-48d267df0204",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
