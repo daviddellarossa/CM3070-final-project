@@ -2,7 +2,7 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "Arena",
+            "name": "Player",
             "id": "44f90167-0916-4871-be60-6edbac0b6845",
             "actions": [
                 {
