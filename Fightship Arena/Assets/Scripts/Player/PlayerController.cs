@@ -5,12 +5,18 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerController : MyMonoBehaviour
     {
-        public IPlayerControllerCore Core { get; private set; }
+        public IPlayerControllerCore Core { get; set; }
 
         void Awake()
         {
             Core = new PlayerControllerCore(this);
         }
+
+        //private void Start()
+        //{
+        //    var playerInput = GameObject.GetComponent<PlayerInput>();
+        //    playerInput.onActionTriggered += OnMove;
+        //}
 
         /// <summary>
         ///  
@@ -97,4 +103,6 @@ namespace FightShipArena.Assets.Scripts.Player
             Core.Move();
         }
     }
+
+
 }

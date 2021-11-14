@@ -14,6 +14,17 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
     [TestFixture]
     public class InputUnitTests
     {
+
+        private Keyboard ResetAndReturnKeyboard()
+        {
+            var keyboard = InputSystem.GetDevice<Keyboard>();
+
+            InputSystem.RemoveDevice(keyboard);
+
+            return InputSystem.AddDevice<Keyboard>();
+        }
+
+
         [Test]
         [TestCase("a", "Keyboard", "Move", "left")]
         [TestCase("w", "Keyboard", "Move", "up")]
@@ -23,7 +34,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
         {
             InputTestFixture input = new InputTestFixture();
             //arrange
-            var keyboard = InputSystem.GetDevice<Keyboard>();
+            var keyboard = ResetAndReturnKeyboard();
 
             var playerActions = new PlayerActionAsset();
 
@@ -49,7 +60,6 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
             Assert.That(binding.id, Is.Not.EqualTo(Guid.Empty));
         }
 
-        [Test]
         [TestCase("j", "Keyboard", "Fire", null)]
         [TestCase("k", "Keyboard", "Fire Alt", null)]
         [TestCase("l", "Keyboard", "Open Selection Menu", null)]
@@ -57,7 +67,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
         {
             InputTestFixture input = new InputTestFixture();
             //arrange
-            var keyboard = InputSystem.GetDevice<Keyboard>();
+            var keyboard = ResetAndReturnKeyboard();
 
             var playerActions = new PlayerActionAsset();
 

@@ -18,7 +18,10 @@ namespace FightshipArena.Assets.Tests.EditMode
             var mb = new MonoBehaviour();
             var allTypes = assembly.GetTypes();
             var allTypesInNamespace =
-                allTypes.Where(x => x.Namespace.StartsWith("FightShipArena.Assets.Scripts")).ToArray();
+                allTypes.Where(x => 
+                !String.IsNullOrEmpty(x.Namespace) 
+                && x.Namespace.StartsWith("FightShipArena.Assets.Scripts")
+                ).ToArray();
             var monoBehaviourTypes = allTypesInNamespace.Where(x => x.IsSubclassOf(typeof(MonoBehaviour))).ToArray();
 
             foreach (var type in monoBehaviourTypes)
