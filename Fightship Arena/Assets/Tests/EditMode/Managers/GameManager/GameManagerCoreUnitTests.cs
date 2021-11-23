@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts;
-using FightShipArena.Assets.Scripts.Managers.GameManager;
+using FightShipArena.Assets.Scripts.Managers.GameManagement;
 using FightShipArena.Assets.Scripts.Player;
 using Moq;
 using NUnit.Framework;

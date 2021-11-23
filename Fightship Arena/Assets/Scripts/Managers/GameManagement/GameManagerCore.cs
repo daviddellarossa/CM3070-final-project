@@ -1,4 +1,4 @@
-namespace FightShipArena.Assets.Scripts.Managers.GameManager
+namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
     public class GameManagerCore : IGameManagerCore
     {

@@ -141,6 +141,33 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""GameManager"",
+            ""id"": ""fb0ae8bf-2de8-4b52-ba27-b123c94c1587"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2ed8da1-6c65-4bfc-b56a-2b866f64a6b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6590e0c5-b9c3-4e05-90fa-d3895c8fc6aa"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -151,6 +178,9 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_FireAlt = m_Player.FindAction("Fire Alt", throwIfNotFound: true);
         m_Player_OpenSelectionMenu = m_Player.FindAction("Open Selection Menu", throwIfNotFound: true);
+        // GameManager
+        m_GameManager = asset.FindActionMap("GameManager", throwIfNotFound: true);
+        m_GameManager_Pause = m_GameManager.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -253,11 +283,48 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // GameManager
+    private readonly InputActionMap m_GameManager;
+    private IGameManagerActions m_GameManagerActionsCallbackInterface;
+    private readonly InputAction m_GameManager_Pause;
+    public struct GameManagerActions
+    {
+        private @PlayerActionAsset m_Wrapper;
+        public GameManagerActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_GameManager_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_GameManager; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameManagerActions set) { return set.Get(); }
+        public void SetCallbacks(IGameManagerActions instance)
+        {
+            if (m_Wrapper.m_GameManagerActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_GameManagerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public GameManagerActions @GameManager => new GameManagerActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnFireAlt(InputAction.CallbackContext context);
         void OnOpenSelectionMenu(InputAction.CallbackContext context);
+    }
+    public interface IGameManagerActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

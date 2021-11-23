@@ -1,6 +1,6 @@
-using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace FightShipArena.Assets.Scripts.Managers.GameManager
+namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
     public class GameManager : MyMonoBehaviour
     {
@@ -20,6 +20,11 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManager
         void Update()
         {
         
+        }
+
+        public void PauseGame(InputAction.CallbackContext context)
+        {
+
         }
     }
 }
