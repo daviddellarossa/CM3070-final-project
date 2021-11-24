@@ -36,5 +36,14 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             }
         }
 
+        public void DisablePlayerInput()
+        {
+            playerInput.enabled = false;
+        }
+
+        public void EnablePlayerInput()
+        {
+            playerInput.enabled = true;
+        }
     }
 }
