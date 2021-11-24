@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
 using FightShipArena.Assets.Scripts.Managers.Levels;
 using FightShipArena.Assets.Scripts.Managers.Menus;
 using UnityEngine;
@@ -10,6 +12,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
     public class GameManager : MyMonoBehaviour
     {
         public IGameManagerCore Core { get; private set; }
+
+        private StateStack _stateStack = new StateStack();
 
         private Scene CurrentScene;
         private Scene MenuScene;
@@ -24,8 +28,27 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         // Start is called before the first frame update
         void Start()
         {
-            SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
+            State_PushStateRequestEvent(this, new Init(this));
         }
+
+        private void State_ReplaceStateRequestEvent(object sender, State state)
+        {
+            var prevState = _stateStack.Pop();
+
+            prevState.PushStateRequestEvent -= State_PushStateRequestEvent;
+            prevState.ReplaceStateRequestEvent -= State_ReplaceStateRequestEvent;
+
+            State_PushStateRequestEvent(sender, state);
+        }
+
+        private void State_PushStateRequestEvent(object sender, State state)
+        {
+            _stateStack.Push(state);
+
+            state.PushStateRequestEvent += State_PushStateRequestEvent;
+            state.ReplaceStateRequestEvent += State_ReplaceStateRequestEvent;
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -90,6 +113,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
+            _stateStack.Peek().SceneLoaded(scene, loadSceneMode);
+            return;
             switch (scene.name)
             {
                 case "MainMenu":
@@ -104,6 +129,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         private void SceneManager_sceneUnloaded(Scene scene)
         {
+            _stateStack.Peek().SceneUnloaded(scene);
+            return;
             switch (scene.name)
             {
                 case "MainMenu":
