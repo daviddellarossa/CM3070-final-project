@@ -30,9 +30,12 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
     /// </summary>
     public abstract class State
     {
-        public abstract event EventHandler<State> ReplaceStateRequestEvent;
-        public abstract event EventHandler<State> PushStateRequestEvent;
 
+        public abstract event EventHandler PauseGameEvent;
+        public abstract event EventHandler ResumeGameEvent;
+        public abstract event EventHandler PlayGameEvent;
+        public abstract event EventHandler QuitCurrentGameEvent;
+        public abstract event EventHandler QuitGameEvent;
 
         protected GameManager _gameManager;
 
@@ -49,6 +52,10 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             Debug.Log($"State {this.GetType().Name}: OnEnter");
             StateState = StateStateEnum.InStack;
+
+            SceneManager.sceneLoaded += SceneLoaded;
+            SceneManager.sceneUnloaded += SceneUnloaded;
+
         }
 
         /// <summary>
@@ -58,6 +65,9 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             Debug.Log($"State {this.GetType().Name}: OnExit");
             StateState = StateStateEnum.NotInStack;
+
+            SceneManager.sceneLoaded -= SceneLoaded;
+            SceneManager.sceneUnloaded -= SceneUnloaded;
         }
 
         /// <summary>
@@ -87,6 +97,11 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public virtual void SceneUnloaded(Scene scene)
         {
             Debug.Log($"State {this.GetType().Name}: SceneUnloaded: {scene.name}");
+        }
+
+        public virtual void PauseResumeGame()
+        {
+            Debug.Log($"State {this.GetType().Name}: Pause/Resume game");
         }
     }
 

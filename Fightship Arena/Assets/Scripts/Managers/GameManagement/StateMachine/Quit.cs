@@ -12,12 +12,16 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
     {
         public Quit(GameManager gameManager) : base(gameManager) { }
 
-        public override event EventHandler<State> ReplaceStateRequestEvent;
-        public override event EventHandler<State> PushStateRequestEvent;
+        public override event EventHandler PauseGameEvent;
+        public override event EventHandler ResumeGameEvent;
+        public override event EventHandler PlayGameEvent;
+        public override event EventHandler QuitCurrentGameEvent;
+        public override event EventHandler QuitGameEvent;
 
         public override void OnActivate()
         {
             base.OnActivate();
+
             Application.Quit();
         }
 

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
 using FightShipArena.Assets.Scripts.Managers.Levels;
 using FightShipArena.Assets.Scripts.Managers.Menus;
@@ -13,172 +15,117 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
     {
         public IGameManagerCore Core { get; private set; }
 
-        private StateStack _stateStack = new StateStack();
+        private readonly StateStack _stateStack = new StateStack();
 
-        private Scene CurrentScene;
-        private Scene MenuScene;
+        #region MonoBehaviour methods
 
         void Awake()
         {
-            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-            SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
-
             Core = new GameManagerCore(this);
+
+            _stateStack.PoppingStateEvent += StateStack_PoppingStateEvent;
+            _stateStack.PushingStateEvent += StateStack_PushingStateEvent;
         }
-        // Start is called before the first frame update
+
         void Start()
         {
-            State_PushStateRequestEvent(this, new Init(this));
+            State_PushStateRequestEvent(new Init(this));
         }
 
-        private void State_ReplaceStateRequestEvent(object sender, State state)
+        #endregion
+
+        #region Event Handlers for StateStack events
+
+        private void StateStack_PushingStateEvent(object sender, State state)
         {
-            var prevState = _stateStack.Pop();
-
-            prevState.PushStateRequestEvent -= State_PushStateRequestEvent;
-            prevState.ReplaceStateRequestEvent -= State_ReplaceStateRequestEvent;
-
-            State_PushStateRequestEvent(sender, state);
+            state.PauseGameEvent += State_PauseGameEvent;
+            state.PlayGameEvent += State_PlayGameEvent;
+            state.ResumeGameEvent += State_ResumeGameEvent;
+            state.QuitCurrentGameEvent += State_QuitCurrentGameEvent;
+            state.QuitGameEvent += State_QuitGameEvent;
         }
 
-        private void State_PushStateRequestEvent(object sender, State state)
+        private void StateStack_PoppingStateEvent(object sender, State state)
+        {
+            state.PauseGameEvent -= State_PauseGameEvent;
+            state.PlayGameEvent -= State_PlayGameEvent;
+            state.ResumeGameEvent -= State_ResumeGameEvent;
+            state.QuitCurrentGameEvent -= State_QuitCurrentGameEvent;
+            state.QuitGameEvent -= State_QuitGameEvent;
+        }
+
+        #endregion
+
+        #region Handler methods for StateStack
+
+        private void State_ReplaceStateRequestEvent(State state)
+        {
+            State_PopStateRequestEvent();
+
+            State_PushStateRequestEvent(state);
+        }
+
+        private void State_PushStateRequestEvent(State state)
         {
             _stateStack.Push(state);
-
-            state.PushStateRequestEvent += State_PushStateRequestEvent;
-            state.ReplaceStateRequestEvent += State_ReplaceStateRequestEvent;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void State_PopStateRequestEvent()
         {
-        
+            var state = _stateStack.Pop();
         }
 
+        #endregion
 
+        #region Event Handlers for State events
+
+        private void State_PauseGameEvent(object sender, EventArgs e)
+        {
+            State_PushStateRequestEvent(new Pause(this));
+        }
+
+        private void State_ResumeGameEvent(object sender, EventArgs e)
+        {
+            State_PopStateRequestEvent();
+        }
+
+        private void State_PlayGameEvent(object sender, EventArgs e)
+        {
+            State_ReplaceStateRequestEvent(new Play(this));
+        }
+
+        private void State_QuitCurrentGameEvent(object sender, EventArgs e)
+        {
+            _stateStack.Clear();
+            State_PushStateRequestEvent(new Init(this));
+        }
+
+        private void State_QuitGameEvent(object sender, EventArgs e)
+        {
+            State_PushStateRequestEvent(new Quit(this));
+        }
+        #endregion
+
+        #region Input Event Handlers
+
+        /// <summary>
+        /// Event Handler for PauseResume actions
+        /// Invokes PauseResume on the current state
+        /// </summary>
+        /// <param name="context"></param>
         public void PauseResumeGame(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
                     Debug.Log($"{context.action} Performed");
-                    if (MenuScene != default)
-                    {
-                        ResumeGame(context);
-                    }
-                    else
-                    {
-                        PauseGame(context);
-                    }
-                    break;
-            }
-        }
-        public void PauseGame(InputAction.CallbackContext context)
-        {
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    Debug.Log($"{context.action} Performed");
 
-                    if (CurrentScene != default)
-                    {
-                        var sceneManagerGo = CurrentScene.GetRootGameObjects().Single(x => x.tag == "SceneManager");
-                        var sceneManager = sceneManagerGo.GetComponent<LevelMockManager>();
-                        sceneManager.DisablePlayerInput();
-                    }
-                    SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
-
+                    _stateStack.Peek()?.PauseResumeGame();
                     break;
             }
         }
 
-        public void ResumeGame(InputAction.CallbackContext context)
-        {
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    Debug.Log($"{context.action} Performed");
-
-                    if (CurrentScene != default)
-                    {
-                        var sceneManagerGo = CurrentScene.GetRootGameObjects().Single(x => x.tag == "SceneManager");
-                        var sceneManager = sceneManagerGo.GetComponent<LevelMockManager>();
-                        sceneManager.EnablePlayerInput();
-                    }
-
-                    SceneManager.UnloadSceneAsync("MainMenu");
-                    break;
-            }
-        }
-
-        private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            _stateStack.Peek().SceneLoaded(scene, loadSceneMode);
-            return;
-            switch (scene.name)
-            {
-                case "MainMenu":
-                    MainMenu_SceneLoaded(scene, loadSceneMode);
-                    break;
-                case "LevelMock":
-                    //CurrentScene = scene;
-                    LevelMock_SceneLoaded(scene, loadSceneMode);
-                    break;
-            }
-        }
-
-        private void SceneManager_sceneUnloaded(Scene scene)
-        {
-            _stateStack.Peek().SceneUnloaded(scene);
-            return;
-            switch (scene.name)
-            {
-                case "MainMenu":
-                    MainMenu_SceneUnloaded(scene);
-                    break;
-            }
-        }
-
-        private void MainMenu_SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            MenuScene = scene;
-
-            var rootGameObjects = scene.GetRootGameObjects();
-            var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
-            var mainMenuManager = sceneManagerGo.GetComponent<MainMenuManager>();
-            mainMenuManager.StartGameEvent += MainMenuManager_StartGameEvent;
-            mainMenuManager.QuitGameEvent += MainMenuManager_QuitGameEvent;
-        }
-
-
-        private void MainMenu_SceneUnloaded(Scene scene)
-        {
-            MenuScene = default;
-        }
-
-        private void MainMenuManager_StartGameEvent(object sender, System.EventArgs e)
-        {
-            Debug.Log("Let's play!");
-
-            SceneManager.UnloadSceneAsync("MainMenu");
-            SceneManager.LoadSceneAsync("LevelMock", LoadSceneMode.Additive);
-        }
-
-        private void MainMenuManager_QuitGameEvent(object sender, System.EventArgs e)
-        {
-            Application.Quit();
-        }
-
-        private void LevelMock_SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            CurrentScene = scene;
-            Debug.Log("LevelMock loaded");
-        }
-
-        private void LevelMock_SceneUnloaded(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            CurrentScene = default;
-        }
+        #endregion
 
     }
 }

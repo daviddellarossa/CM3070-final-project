@@ -8,6 +8,9 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class StateStack
     {
+        public event EventHandler<State> PoppingStateEvent;
+        public event EventHandler<State> PushingStateEvent;
+
         private Stack<State> _stack = new Stack<State>();
 
         public State Peek() => _stack.Peek();
@@ -17,6 +20,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             var state = _stack.Pop(); //throws InvalidOperationException if stack is empty
             state.OnDeactivate();
             state.OnExit();
+
+            PoppingStateEvent?.Invoke(this, state);
 
             if (_stack.Count > 0)
             {
@@ -34,11 +39,20 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             }
 
             _stack.Push(state);
+
+            PushingStateEvent?.Invoke(this, state);
             
             state.OnEnter();
             state.OnActivate();
         }
 
+        public void Clear()
+        {
+            while (_stack.Count > 0)
+            {
+                var state = Pop();
+            }
+        }
         public bool Contains(State state) => _stack.Contains(state);
     }
 }

@@ -147,7 +147,7 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
             ""id"": ""fb0ae8bf-2de8-4b52-ba27-b123c94c1587"",
             ""actions"": [
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""PauseResume"",
                     ""type"": ""Button"",
                     ""id"": ""d2ed8da1-6c65-4bfc-b56a-2b866f64a6b3"",
                     ""expectedControlType"": ""Button"",
@@ -163,7 +163,7 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
+                    ""action"": ""PauseResume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -180,7 +180,7 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         m_Player_OpenSelectionMenu = m_Player.FindAction("Open Selection Menu", throwIfNotFound: true);
         // GameManager
         m_GameManager = asset.FindActionMap("GameManager", throwIfNotFound: true);
-        m_GameManager_Pause = m_GameManager.FindAction("Pause", throwIfNotFound: true);
+        m_GameManager_PauseResume = m_GameManager.FindAction("PauseResume", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -287,12 +287,12 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     // GameManager
     private readonly InputActionMap m_GameManager;
     private IGameManagerActions m_GameManagerActionsCallbackInterface;
-    private readonly InputAction m_GameManager_Pause;
+    private readonly InputAction m_GameManager_PauseResume;
     public struct GameManagerActions
     {
         private @PlayerActionAsset m_Wrapper;
         public GameManagerActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pause => m_Wrapper.m_GameManager_Pause;
+        public InputAction @PauseResume => m_Wrapper.m_GameManager_PauseResume;
         public InputActionMap Get() { return m_Wrapper.m_GameManager; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,16 +302,16 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GameManagerActionsCallbackInterface != null)
             {
-                @Pause.started -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPause;
+                @PauseResume.started -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPauseResume;
+                @PauseResume.performed -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPauseResume;
+                @PauseResume.canceled -= m_Wrapper.m_GameManagerActionsCallbackInterface.OnPauseResume;
             }
             m_Wrapper.m_GameManagerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
+                @PauseResume.started += instance.OnPauseResume;
+                @PauseResume.performed += instance.OnPauseResume;
+                @PauseResume.canceled += instance.OnPauseResume;
             }
         }
     }
@@ -325,6 +325,6 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     }
     public interface IGameManagerActions
     {
-        void OnPause(InputAction.CallbackContext context);
+        void OnPauseResume(InputAction.CallbackContext context);
     }
 }

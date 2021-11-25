@@ -5,21 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public class LevelMockManager : SceneManagement.SceneManager
+    public class LevelMockManager : LevelManager
     {
-        private PlayerInput playerInput;
+        private PlayerInput _playerInput;
         void Start()
         {
-            Debug.Log("Level started");
+            Debug.Log($"Level started");
 
-            playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<PlayerInput>();
         }
 
 
-        public void Move(InputAction.CallbackContext context)
+        public override void Move(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
@@ -36,14 +37,14 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             }
         }
 
-        public void DisablePlayerInput()
+        public override void DisablePlayerInput()
         {
-            playerInput.enabled = false;
+            _playerInput.enabled = false;
         }
 
-        public void EnablePlayerInput()
+        public override void EnablePlayerInput()
         {
-            playerInput.enabled = true;
+            _playerInput.enabled = true;
         }
     }
 }
