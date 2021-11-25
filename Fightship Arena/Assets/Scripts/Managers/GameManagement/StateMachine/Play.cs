@@ -13,7 +13,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         private readonly string _levelMockSceneName = "LevelMock";
         private LevelManager _levelManager;
 
-        public Play(GameManager gameManager) : base(gameManager) { }
+        public Play(GameManagerCore gameManager) : base(gameManager) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;

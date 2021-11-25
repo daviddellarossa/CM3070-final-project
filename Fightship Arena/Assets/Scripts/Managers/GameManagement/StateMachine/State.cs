@@ -37,13 +37,13 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public abstract event EventHandler QuitCurrentGameEvent;
         public abstract event EventHandler QuitGameEvent;
 
-        protected GameManager _gameManager;
+        protected GameManagerCore GameManager;
 
         public StateStateEnum StateState { get; protected set; } = StateStateEnum.NotInStack;
 
-        public State(GameManager gameManager)
+        public State(GameManagerCore gameManager)
         {
-            _gameManager = gameManager;
+            GameManager = gameManager;
         }
         /// <summary>
         /// Fires when the State is added to the State Stack
