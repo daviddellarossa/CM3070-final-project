@@ -21,7 +21,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             state.OnDeactivate();
             state.OnExit();
 
-            PoppingStateEvent?.Invoke(this, state);
+            RaisePoppingStateEvent(state);
 
             if (_stack.Count > 0)
             {
@@ -40,8 +40,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             _stack.Push(state);
 
-            PushingStateEvent?.Invoke(this, state);
-            
+            RaisePushingStateEvent(state);
+
             state.OnEnter();
             state.OnActivate();
         }
@@ -53,6 +53,9 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
                 var state = Pop();
             }
         }
+
+        protected void RaisePoppingStateEvent(State state) => PoppingStateEvent?.Invoke(this, state);
+        protected void RaisePushingStateEvent(State state) => PushingStateEvent?.Invoke(this, state);
     }
 
     public class TestableStack<T> : IStack<T>

@@ -9,7 +9,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
     {
         public readonly IMyMonoBehaviour Parent;
 
-        private readonly StateStack _stateStack = new StateStack();
+        protected StateStack _stateStack = new StateStack();
 
         public GameManagerCore(IMyMonoBehaviour parent)
         {
@@ -34,7 +34,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         #region Event Handlers for StateStack events
 
-        private void StateStack_PushingStateEvent(object sender, State state)
+        protected virtual void StateStack_PushingStateEvent(object sender, State state)
         {
             state.PauseGameEvent += State_PauseGameEvent;
             state.PlayGameEvent += State_PlayGameEvent;
@@ -43,7 +43,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
             state.QuitGameEvent += State_QuitGameEvent;
         }
 
-        private void StateStack_PoppingStateEvent(object sender, State state)
+        protected virtual void StateStack_PoppingStateEvent(object sender, State state)
         {
             state.PauseGameEvent -= State_PauseGameEvent;
             state.PlayGameEvent -= State_PlayGameEvent;
@@ -63,12 +63,12 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
             PushState(state);
         }
 
-        private void PushState(State state)
+        protected virtual void PushState(State state)
         {
             _stateStack.Push(state);
         }
 
-        private void PopState()
+        protected virtual void PopState()
         {
             var state = _stateStack.Pop();
         }
