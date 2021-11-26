@@ -84,5 +84,4 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         void Push(T item);
         T[] ToArray();
     }
-
 }
