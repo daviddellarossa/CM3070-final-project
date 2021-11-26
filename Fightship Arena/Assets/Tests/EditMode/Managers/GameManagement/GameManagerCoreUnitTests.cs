@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FightShipArena.Assets.Scripts;
+﻿using FightShipArena.Assets.Scripts;
 using FightShipArena.Assets.Scripts.Managers.GameManagement;
-using FightShipArena.Assets.Scripts.Player;
 using Moq;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManager
+namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
 {
     public class GameManagerCoreUnitTests
     {

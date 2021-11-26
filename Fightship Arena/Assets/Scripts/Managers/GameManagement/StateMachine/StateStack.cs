@@ -11,11 +11,11 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public event EventHandler<State> PoppingStateEvent;
         public event EventHandler<State> PushingStateEvent;
 
-        private Stack<State> _stack = new Stack<State>();
+        protected IStack<State> _stack = new TestableStack<State>();
 
-        public State Peek() => _stack.Peek();
+        public virtual State Peek() => _stack.Peek();
 
-        public State Pop()
+        public virtual State Pop()
         {
             var state = _stack.Pop(); //throws InvalidOperationException if stack is empty
             state.OnDeactivate();
@@ -31,7 +31,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             return state;
         }
 
-        public void Push(State state)
+        public virtual void Push(State state)
         {
             if (_stack.Count > 0)
             {
@@ -46,13 +46,43 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             state.OnActivate();
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             while (_stack.Count > 0)
             {
                 var state = Pop();
             }
         }
-        public bool Contains(State state) => _stack.Contains(state);
     }
+
+    public class TestableStack<T> : IStack<T>
+    {
+        protected Stack<T> _stack = new Stack<T>();
+
+        public int Count { get; }
+        public void Clear() => _stack.Clear();
+
+        public bool Contains(T item) => _stack.Contains(item);
+
+        public T Peek() => _stack.Peek();
+
+        public T Pop() => _stack.Pop();
+
+        public void Push(T item) => _stack.Push(item);
+
+        public T[] ToArray() => _stack.ToArray();
+    }
+
+
+    public interface IStack<T>
+    {
+        int Count { get; }
+        void Clear();
+        bool Contains(T item);
+        T Peek();
+        T Pop();
+        void Push(T item);
+        T[] ToArray();
+    }
+
 }

@@ -10,7 +10,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Quit : State
     {
-        public Quit(GameManagerCore gameManager) : base(gameManager) { }
+        public Quit(IGameManagerCore gameManager) : base(gameManager) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;

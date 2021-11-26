@@ -13,7 +13,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         private readonly string _pauseMenuSceneName = "PauseMenu";
         private PauseMenuManager _menuManager;
 
-        public Pause(GameManagerCore gameManager) : base(gameManager) { }
+        public Pause(IGameManagerCore gameManager) : base(gameManager) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;

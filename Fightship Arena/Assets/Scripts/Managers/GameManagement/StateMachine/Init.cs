@@ -14,7 +14,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         private readonly string _mainMenuSceneName = "MainMenu";
         private MainMenuManager _menuManager;
 
-        public Init(GameManagerCore gameManager) : base(gameManager) { }
+        public Init(IGameManagerCore gameManager) : base(gameManager) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;

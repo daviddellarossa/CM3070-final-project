@@ -102,6 +102,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         {
             PushState(new Quit(this));
         }
+        
         #endregion
 
         #region Input Event Handlers
