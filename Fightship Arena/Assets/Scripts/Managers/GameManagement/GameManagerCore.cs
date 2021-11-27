@@ -56,7 +56,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         #region Handler methods for StateStack
 
-        private void ReplaceState(State state)
+        protected virtual void ReplaceState(State state)
         {
             PopState();
 
@@ -77,28 +77,24 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         #region Event Handlers for State events
 
-        private void State_PauseGameEvent(object sender, EventArgs e)
+        protected virtual void State_PauseGameEvent(object sender, EventArgs e)
         {
             PushState(new Pause(this));
         }
-
-        private void State_ResumeGameEvent(object sender, EventArgs e)
+        protected virtual void State_ResumeGameEvent(object sender, EventArgs e)
         {
             PopState();
         }
-
-        private void State_PlayGameEvent(object sender, EventArgs e)
+        protected virtual void State_PlayGameEvent(object sender, EventArgs e)
         {
             ReplaceState(new Play(this));
         }
-
-        private void State_QuitCurrentGameEvent(object sender, EventArgs e)
+        protected virtual void State_QuitCurrentGameEvent(object sender, EventArgs e)
         {
             _stateStack.Clear();
             PushState(new Init(this));
         }
-
-        private void State_QuitGameEvent(object sender, EventArgs e)
+        protected virtual void State_QuitGameEvent(object sender, EventArgs e)
         {
             PushState(new Quit(this));
         }
@@ -110,6 +106,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         /// <summary>
         /// Event Handler for PauseResume actions
         /// Invokes PauseResume on the current state
+        /// <remarks>This method is not testable, as the input parameter cannot be mocked</remarks>
         /// </summary>
         /// <param name="context"></param>
         public void OnPauseResumeGame(InputAction.CallbackContext context)
