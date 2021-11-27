@@ -8,8 +8,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class StateStack
     {
-        public event EventHandler<State> PoppingStateEvent;
-        public event EventHandler<State> PushingStateEvent;
+        public virtual event EventHandler<State> PoppingStateEvent;
+        public virtual event EventHandler<State> PushingStateEvent;
 
         protected IStack<State> _stack = new TestableStack<State>();
 

@@ -13,7 +13,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
     public class GameManager : MyMonoBehaviour
     {
-        public IGameManagerCore Core { get; private set; }
+        public IGameManagerCore Core { get; protected set; }
 
         #region MonoBehaviour methods
 

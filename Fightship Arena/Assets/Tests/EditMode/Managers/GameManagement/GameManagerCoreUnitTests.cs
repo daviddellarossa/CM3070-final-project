@@ -1,4 +1,5 @@
-﻿using FightShipArena.Assets.Scripts;
+﻿using System;
+using FightShipArena.Assets.Scripts;
 using FightShipArena.Assets.Scripts.Managers.GameManagement;
 using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
 using Moq;
@@ -79,6 +80,31 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
 
             //assert
             coreMock.Protected().Verify("PushState", Times.Once(), ItExpr.IsAny<Init>());
+        }
+
+        [Test]
+        public void OnAwake_subscribes_events_on_StackState()
+        {
+            //arrange
+            var stateStackMock = new Mock<StateStack>();
+            stateStackMock.SetupAdd(m => m.PoppingStateEvent += (sender, args) => { });
+            stateStackMock.SetupAdd(m => m.PushingStateEvent += (sender, args) => { });
+
+            var stateStack = stateStackMock.Object;
+
+            var gameManagerMock = new Mock<IMyMonoBehaviour>();
+            var gameManager = gameManagerMock.Object;
+
+            var core = new GameManagerCoreMock(gameManager);
+
+            core.StateStack = stateStack;
+
+            //act
+            core.OnAwake();
+            //assert
+
+            stateStackMock.VerifyAdd(m => m.PoppingStateEvent += It.IsAny<EventHandler<State>>(), Times.Once);
+            stateStackMock.VerifyAdd(m => m.PushingStateEvent += It.IsAny<EventHandler<State>>(), Times.Once);
         }
 
 

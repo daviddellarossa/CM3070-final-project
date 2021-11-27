@@ -8,7 +8,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Managers.GameManager
     public class GameManagerUnitTests
     {
         [UnityTest]
-        public IEnumerator GameManager_instantiate_core_on_Start()
+        public IEnumerator Awake_instantiate_core_on_Start()
         {
             //arrange
             //act
