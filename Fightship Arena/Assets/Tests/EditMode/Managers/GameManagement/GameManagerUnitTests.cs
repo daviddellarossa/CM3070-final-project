@@ -13,7 +13,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
         public IEnumerator PauseResumeGame_calls_PauseResumeGame_on_Core()
         {
             //arrange
-            var coreMock = new Mock<IGameManagerCore>();
+            var coreMock = new Mock<IGameManager>();
             var core = coreMock.Object;
             
             var gameObject = new GameObject("Player");
@@ -33,7 +33,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
 
     public class GameManagerMock : GameManager
     {
-        public void SetCore(IGameManagerCore core)
+        public void SetCore(IGameManager core)
         {
             Core = core;
         }

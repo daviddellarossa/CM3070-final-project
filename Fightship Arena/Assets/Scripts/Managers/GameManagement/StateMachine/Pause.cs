@@ -13,7 +13,10 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         private readonly string _pauseMenuSceneName = "PauseMenu";
         private PauseMenuManager _menuManager;
 
-        public Pause(IGameManagerCore gameManager) : base(gameManager) { }
+        public Pause(
+            IGameManager gameManager,
+            IUnitySceneManagerWrapper sceneManagerWrapper
+        ) : base(gameManager, sceneManagerWrapper) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;
@@ -25,14 +28,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             base.OnEnter();
 
-            SceneManager.LoadSceneAsync(_pauseMenuSceneName, LoadSceneMode.Additive);
+            SceneManagerWrapper.LoadSceneAsync(_pauseMenuSceneName, LoadSceneMode.Additive);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            SceneManager.UnloadSceneAsync(_pauseMenuSceneName);
+            SceneManagerWrapper.UnloadSceneAsync(_pauseMenuSceneName);
         }
 
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)

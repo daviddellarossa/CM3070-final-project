@@ -44,7 +44,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Pop_calls_Pop_on_internal_stack()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var state = new Mock<State>(gameManagerCore).Object;
@@ -69,7 +69,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Pop_calls_OnDeactivate_and_OnExit_on_state_popped_out()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -95,7 +95,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Pop_invokes_PoppingStateEvent_event()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -132,7 +132,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Pop_calls_OnActivate_on_new_top_of_stack_state()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateFromPopMock = new Mock<State>(gameManagerCore);
@@ -169,7 +169,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Push_calls_OnDeactivate_on_top_of_stack_state()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateToPushMock = new Mock<State>(gameManagerCore);
@@ -205,7 +205,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Push_calls_Push_on_internal_stack()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateToPushMock = new Mock<State>(gameManagerCore);
@@ -227,7 +227,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Push_invokes_OnEnter_and_OnActivate_on_state_pushed_in()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateToPushMock = new Mock<State>(gameManagerCore);
@@ -250,7 +250,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Push_invokes_PushingStateEvent_event()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateToPushMock = new Mock<State>(gameManagerCore);

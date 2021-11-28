@@ -13,7 +13,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void Constructor_assign_gameManager_input_parameter_to_GameManager_property()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -30,7 +30,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnConstruction_StateState_is_initialised_to_NotInStack()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -47,7 +47,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnEnter_set_stateState_to_InStack()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -66,7 +66,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnExit_set_stateState_to_NotInStack()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -85,7 +85,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnActivate_set_stateState_to_Activated()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);
@@ -104,7 +104,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnDectivate_set_stateState_to_InStack()
         {
             //arrange
-            var gameManagerCoreMock = new Mock<IGameManagerCore>();
+            var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var stateMock = new Mock<State>(gameManagerCore);

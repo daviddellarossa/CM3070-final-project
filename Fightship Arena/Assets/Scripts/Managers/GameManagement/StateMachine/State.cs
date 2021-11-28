@@ -30,20 +30,21 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
     /// </summary>
     public abstract class State
     {
-
         public abstract event EventHandler PauseGameEvent;
         public abstract event EventHandler ResumeGameEvent;
         public abstract event EventHandler PlayGameEvent;
         public abstract event EventHandler QuitCurrentGameEvent;
         public abstract event EventHandler QuitGameEvent;
 
-        public IGameManagerCore GameManager { get; private set; }
+        public IGameManager GameManager { get; private set; }
+        public IUnitySceneManagerWrapper SceneManagerWrapper { get; private set; }
 
         public StateStateEnum StateState { get; protected set; } = StateStateEnum.NotInStack;
 
-        public State(IGameManagerCore gameManager)
+        public State(IGameManager gameManager, IUnitySceneManagerWrapper sceneManagerWrapper)
         {
             GameManager = gameManager;
+            SceneManagerWrapper = sceneManagerWrapper;
         }
         /// <summary>
         /// Fires when the State is added to the State Stack
@@ -53,9 +54,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             Debug.Log($"State {this.GetType().Name}: OnEnter");
             StateState = StateStateEnum.InStack;
 
-            SceneManager.sceneLoaded += SceneLoaded;
-            SceneManager.sceneUnloaded += SceneUnloaded;
-
+            SceneManagerWrapper.SceneLoaded += SceneLoaded;
+            SceneManagerWrapper.SceneUnloaded += SceneUnloaded;
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             Debug.Log($"State {this.GetType().Name}: OnExit");
             StateState = StateStateEnum.NotInStack;
 
-            SceneManager.sceneLoaded -= SceneLoaded;
-            SceneManager.sceneUnloaded -= SceneUnloaded;
+            SceneManagerWrapper.SceneLoaded -= SceneLoaded;
+            SceneManagerWrapper.SceneUnloaded -= SceneUnloaded;
         }
 
         /// <summary>

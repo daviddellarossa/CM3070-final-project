@@ -5,16 +5,17 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
-    public class GameManagerCore : IGameManagerCore
+    public class GameManagerCore : IGameManager
     {
         public readonly IMyMonoBehaviour Parent;
+        private IUnitySceneManagerWrapper _sceneManagerWrapper;
 
         protected StateStack _stateStack = new StateStack();
 
         public GameManagerCore(IMyMonoBehaviour parent)
         {
             Parent = parent;
-
+            _sceneManagerWrapper = UnitySceneManagerWrapper.Instance;
         }
 
         #region MonoBehaviour methods
@@ -27,7 +28,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         public void OnStart()
         {
-            PushState(new Init(this));
+            PushState(new Init(this, _sceneManagerWrapper));
         }
 
         #endregion
@@ -79,7 +80,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         protected virtual void State_PauseGameEvent(object sender, EventArgs e)
         {
-            PushState(new Pause(this));
+            PushState(new Pause(this, _sceneManagerWrapper));
         }
         protected virtual void State_ResumeGameEvent(object sender, EventArgs e)
         {
@@ -87,16 +88,16 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         }
         protected virtual void State_PlayGameEvent(object sender, EventArgs e)
         {
-            ReplaceState(new Play(this));
+            ReplaceState(new Play(this, _sceneManagerWrapper));
         }
         protected virtual void State_QuitCurrentGameEvent(object sender, EventArgs e)
         {
             _stateStack.Clear();
-            PushState(new Init(this));
+            PushState(new Init(this, _sceneManagerWrapper));
         }
         protected virtual void State_QuitGameEvent(object sender, EventArgs e)
         {
-            PushState(new Quit(this));
+            PushState(new Quit(this, _sceneManagerWrapper));
         }
         
         #endregion

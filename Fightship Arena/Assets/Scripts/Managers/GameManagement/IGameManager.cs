@@ -2,7 +2,7 @@
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
-    public interface IGameManagerCore
+    public interface IGameManager
     {
         void OnAwake();
         void OnStart();

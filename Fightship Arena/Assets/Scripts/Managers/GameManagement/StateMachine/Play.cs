@@ -13,7 +13,10 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         private readonly string _levelMockSceneName = "LevelMock";
         private LevelManager _levelManager;
 
-        public Play(IGameManagerCore gameManager) : base(gameManager) { }
+        public Play(
+            IGameManager gameManager,
+            IUnitySceneManagerWrapper sceneManagerWrapper
+        ) : base(gameManager, sceneManagerWrapper) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;
@@ -25,14 +28,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             base.OnEnter();
 
-            SceneManager.LoadSceneAsync(_levelMockSceneName, LoadSceneMode.Additive);
+            SceneManagerWrapper.LoadSceneAsync(_levelMockSceneName, LoadSceneMode.Additive);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            SceneManager.UnloadSceneAsync(_levelMockSceneName);
+            SceneManagerWrapper.UnloadSceneAsync(_levelMockSceneName);
         }
 
         public override void OnActivate()

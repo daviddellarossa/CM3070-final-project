@@ -11,21 +11,20 @@ using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
-    public class GameManager : MyMonoBehaviour
+    public class GameManager : MyMonoBehaviour, IGameManager
     {
-        public IGameManagerCore Core { get; protected set; }
+        public IGameManager Core { get; protected set; }
 
         #region MonoBehaviour methods
 
         void Awake()
         {
-            Core = new GameManagerCore(this);
-            Core.OnAwake();
+            OnAwake();
         }
 
         void Start()
         {
-            Core.OnStart();
+            OnStart();
         }
 
         #endregion
@@ -40,10 +39,25 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         /// <param name="context"></param>
         public void PauseResumeGame(InputAction.CallbackContext context)
         {
-            Core.OnPauseResumeGame(context);
+            OnPauseResumeGame(context);
         }
 
         #endregion
 
+        public void OnAwake()
+        {
+            Core = new GameManagerCore(this);
+            Core.OnAwake();
+        }
+
+        public void OnStart()
+        {
+            Core.OnStart();
+        }
+
+        public void OnPauseResumeGame(InputAction.CallbackContext context)
+        {
+            Core.OnPauseResumeGame(context);
+        }
     }
 }

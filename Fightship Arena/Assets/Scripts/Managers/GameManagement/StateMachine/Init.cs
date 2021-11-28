@@ -14,7 +14,10 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         private readonly string _mainMenuSceneName = "MainMenu";
         private MainMenuManager _menuManager;
 
-        public Init(IGameManagerCore gameManager) : base(gameManager) { }
+        public Init(
+            IGameManager gameManager, 
+            IUnitySceneManagerWrapper sceneManagerWrapper
+            ) : base(gameManager, sceneManagerWrapper) { }
 
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;
@@ -26,14 +29,16 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             base.OnEnter();
 
-            SceneManager.LoadSceneAsync(_mainMenuSceneName, LoadSceneMode.Additive);
+            SceneManagerWrapper.LoadSceneAsync(_mainMenuSceneName, LoadSceneMode.Additive);
+            //SceneManager.LoadSceneAsync(_mainMenuSceneName, LoadSceneMode.Additive);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            SceneManager.UnloadSceneAsync(_mainMenuSceneName);
+            SceneManagerWrapper.UnloadSceneAsync(_mainMenuSceneName);
+            //SceneManager.UnloadSceneAsync(_mainMenuSceneName);
         }
 
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
