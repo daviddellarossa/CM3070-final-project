@@ -94,8 +94,8 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
         {
             //arrange
             var stateStackMock = new Mock<StateStack>();
-            stateStackMock.SetupAdd(m => m.PoppingStateEvent += (sender, args) => { });
-            stateStackMock.SetupAdd(m => m.PushingStateEvent += (sender, args) => { });
+            stateStackMock.SetupAdd(m => m.PoppingStateEvent += It.IsAny<EventHandler<State>>());
+            stateStackMock.SetupAdd(m => m.PushingStateEvent += It.IsAny<EventHandler<State>>());
 
             var stateStack = stateStackMock.Object;
 
@@ -161,11 +161,11 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
             var sceneManagerWrapper = sceneManagerWrapperMock.Object;
 
             var stateMock = new Mock<State>(core, sceneManagerWrapper);
-            stateMock.SetupRemove(m => m.PauseGameEvent -= (sender, args) => { });
-            stateMock.SetupRemove(m => m.PlayGameEvent -= (sender, args) => { });
-            stateMock.SetupRemove(m => m.ResumeGameEvent -= (sender, args) => { });
-            stateMock.SetupRemove(m => m.QuitCurrentGameEvent -= (sender, args) => { });
-            stateMock.SetupRemove(m => m.QuitGameEvent -= (sender, args) => { });
+            stateMock.SetupRemove(m => m.PauseGameEvent -= It.IsAny<EventHandler>());
+            stateMock.SetupRemove(m => m.PlayGameEvent -= It.IsAny<EventHandler>());
+            stateMock.SetupRemove(m => m.ResumeGameEvent -= It.IsAny<EventHandler>());
+            stateMock.SetupRemove(m => m.QuitCurrentGameEvent -= It.IsAny<EventHandler>());
+            stateMock.SetupRemove(m => m.QuitGameEvent -= It.IsAny<EventHandler>());
 
             var state = stateMock.Object;
 

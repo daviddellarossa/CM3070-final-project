@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
+    //This class is non-testable because SceneManager is not mockable
     public sealed class UnitySceneManagerWrapper : IUnitySceneManagerWrapper
     {
         public event SceneLoadedEventArgs SceneLoaded;

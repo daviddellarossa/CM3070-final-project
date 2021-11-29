@@ -98,8 +98,10 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         protected virtual void State_QuitGameEvent(object sender, EventArgs e)
         {
             PushState(new Quit(this, _sceneManagerWrapper));
+
+            Application.Quit();
         }
-        
+
         #endregion
 
         #region Input Event Handlers

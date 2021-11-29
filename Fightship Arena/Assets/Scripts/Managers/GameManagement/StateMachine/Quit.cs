@@ -25,7 +25,6 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             base.OnActivate();
 
-            Application.Quit();
         }
 
     }

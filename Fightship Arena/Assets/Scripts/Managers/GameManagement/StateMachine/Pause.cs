@@ -10,8 +10,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Pause : State
     {
-        private readonly string _pauseMenuSceneName = "PauseMenu";
-        private PauseMenuManager _menuManager;
+        public readonly string _sceneName = "PauseMenu";
+        protected IPauseMenuManager _menuManager;
 
         public Pause(
             IGameManager gameManager,
@@ -28,37 +28,48 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             base.OnEnter();
 
-            SceneManagerWrapper.LoadSceneAsync(_pauseMenuSceneName, LoadSceneMode.Additive);
+            SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            SceneManagerWrapper.UnloadSceneAsync(_pauseMenuSceneName);
+            SceneManagerWrapper.UnloadSceneAsync(_sceneName);
         }
 
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (scene.name != _pauseMenuSceneName)
+            _menuManager = GetMenuManagerFromScene(scene);
+
+            if (_menuManager == null)
                 return;
 
             base.SceneLoaded(scene, loadSceneMode);
-
-            var rootGameObjects = scene.GetRootGameObjects();
-            var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
-            _menuManager = sceneManagerGo.GetComponent<PauseMenuManager>();
 
             _menuManager.ResumeGameEvent += ResumeGameEventHandler;
             _menuManager.QuitCurrentGameEvent += QuitCurrentGameEventHandler;
         }
 
-        private void ResumeGameEventHandler(object sender, EventArgs state)
+        //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.
+        protected virtual IPauseMenuManager GetMenuManagerFromScene(Scene scene)
+        {
+            if (scene.name != _sceneName)
+                return null;
+
+            var rootGameObjects = scene.GetRootGameObjects();
+            var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
+            var menuManager = sceneManagerGo.GetComponent<PauseMenuManager>();
+            return menuManager;
+        }
+
+
+        protected void ResumeGameEventHandler(object sender, EventArgs state)
         {
             ResumeGameEvent?.Invoke(this, new EventArgs());
         }
 
-        private void QuitCurrentGameEventHandler(object sender, EventArgs state)
+        protected void QuitCurrentGameEventHandler(object sender, EventArgs state)
         {
             QuitCurrentGameEvent?.Invoke(this, new EventArgs());
         }

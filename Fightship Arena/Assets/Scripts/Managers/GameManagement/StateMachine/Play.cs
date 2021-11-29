@@ -10,8 +10,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Play : State
     {
-        private readonly string _levelMockSceneName = "LevelMock";
-        private LevelManager _levelManager;
+        public readonly string _sceneName = "LevelMock";
+        protected ILevelMockManager _levelManager;
 
         public Play(
             IGameManager gameManager,
@@ -28,14 +28,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             base.OnEnter();
 
-            SceneManagerWrapper.LoadSceneAsync(_levelMockSceneName, LoadSceneMode.Additive);
+            SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            SceneManagerWrapper.UnloadSceneAsync(_levelMockSceneName);
+            SceneManagerWrapper.UnloadSceneAsync(_sceneName);
         }
 
         public override void OnActivate()
@@ -54,17 +54,29 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (scene.name != _levelMockSceneName)
+            _levelManager = GetSceneManagerFromScene(scene);
+
+            if (_levelManager == null)
                 return;
 
             base.SceneLoaded(scene, loadSceneMode);
 
-            var rootGameObjects = scene.GetRootGameObjects();
-            var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
-            _levelManager = sceneManagerGo.GetComponent<LevelManager>();
-
             //Bind event handlers here
         }
+
+        //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.
+        protected virtual ILevelMockManager GetSceneManagerFromScene(Scene scene)
+        {
+            if (scene.name != _sceneName)
+                return null;
+
+            var rootGameObjects = scene.GetRootGameObjects();
+            var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
+            var levelManager = sceneManagerGo.GetComponent<LevelMockManager>();
+
+            return levelManager;
+        }
+
 
         public override void PauseResumeGame()
         {

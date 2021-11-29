@@ -10,7 +10,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
     public class StateUnitTests
     {
         [Test]
-        public void Constructor_assign_gameManager_input_parameter_to_GameManager_property()
+        public void Constructor_assigns_input_parameters_to_properties()
         {
             //arrange
             var gameManagerCoreMock = new Mock<IGameManager>();
@@ -27,6 +27,8 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             
             //assert
             Assert.That(state.GameManager, Is.SameAs(gameManagerCore));
+            Assert.That(state.SceneManagerWrapper, Is.SameAs(sceneManagerWrapper));
+
         }
 
         [Test]
@@ -48,6 +50,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             //assert
             Assert.That(state.StateState, Is.EqualTo(StateStateEnum.NotInStack));
         }
+
 
         [Test]
         public void OnEnter_set_stateState_to_InStack()
@@ -72,6 +75,32 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         }
 
         [Test]
+        public void OnEnter_attaches_event_listeners_to_sceneManagerWrapper()
+        {
+            //arrange
+            var gameManagerCoreMock = new Mock<IGameManager>();
+            var gameManagerCore = gameManagerCoreMock.Object;
+
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
+            stateMock.CallBase = true;
+
+            var state = stateMock.Object;
+
+            sceneManagerWrapperMock.SetupAdd(x => x.SceneLoaded += state.SceneLoaded);
+            sceneManagerWrapperMock.SetupAdd(x => x.SceneUnloaded += state.SceneUnloaded);
+
+            //act
+            state.OnEnter();
+
+            //assert
+            sceneManagerWrapperMock.VerifyAdd(x=>x.SceneLoaded += state.SceneLoaded, Times.Once);
+            sceneManagerWrapperMock.VerifyAdd(x => x.SceneUnloaded += state.SceneUnloaded, Times.Once);
+        }
+        [Test]
         public void OnExit_set_stateState_to_NotInStack()
         {
             //arrange
@@ -91,6 +120,33 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
 
             //assert
             Assert.That(state.StateState, Is.EqualTo(StateStateEnum.NotInStack));
+        }
+
+        [Test]
+        public void OnExit_removes_event_listeners_from_sceneManagerWrapper()
+        {
+            //arrange
+            var gameManagerCoreMock = new Mock<IGameManager>();
+            var gameManagerCore = gameManagerCoreMock.Object;
+
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
+            stateMock.CallBase = true;
+
+            var state = stateMock.Object;
+
+            sceneManagerWrapperMock.SetupRemove(x => x.SceneLoaded -= state.SceneLoaded);
+            sceneManagerWrapperMock.SetupRemove(x => x.SceneUnloaded -= state.SceneUnloaded);
+
+            //act
+            state.OnExit();
+
+            //assert
+            sceneManagerWrapperMock.VerifyRemove(x => x.SceneLoaded -= state.SceneLoaded, Times.Once);
+            sceneManagerWrapperMock.VerifyRemove(x => x.SceneUnloaded -= state.SceneUnloaded, Times.Once);
         }
 
         [Test]
