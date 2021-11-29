@@ -45,7 +45,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
             var core = coreMock.Object;
             core.StateStack = stateStackMock;
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             var state = stateMock.Object;
 
             //act
@@ -73,7 +76,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
             var core = coreMock.Object;
             core.StateStack = stateStackMock;
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             var state = stateMock.Object;
 
             //act
@@ -118,7 +124,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
 
             var core = new GameManagerCoreMock(gameManager);
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             stateMock.SetupAdd(m => m.PauseGameEvent += (sender, args) => { });
             stateMock.SetupAdd(m => m.PlayGameEvent += (sender, args) => { });
             stateMock.SetupAdd(m => m.ResumeGameEvent += (sender, args) => { });
@@ -148,7 +157,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
 
             var core = new GameManagerCoreMock(gameManager);
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             stateMock.SetupRemove(m => m.PauseGameEvent -= (sender, args) => { });
             stateMock.SetupRemove(m => m.PlayGameEvent -= (sender, args) => { });
             stateMock.SetupRemove(m => m.ResumeGameEvent -= (sender, args) => { });
@@ -187,7 +199,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
 
             var core = coreMock.Object;
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             var state = stateMock.Object;
 
             //act
@@ -213,7 +228,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
             var core = new GameManagerCoreMock(gameManager);
             core.StateStack = stateStack;
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             var state = stateMock.Object;
 
             //act
@@ -237,7 +255,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement
             var core = new GameManagerCoreMock(gameManager);
             core.StateStack = stateStack;
 
-            var stateMock = new Mock<State>(core);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(core, sceneManagerWrapper);
             var state = stateMock.Object;
 
             //act

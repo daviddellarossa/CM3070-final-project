@@ -56,16 +56,4 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         protected void RaisePoppingStateEvent(State state) => PoppingStateEvent?.Invoke(this, state);
         protected void RaisePushingStateEvent(State state) => PushingStateEvent?.Invoke(this, state);
     }
-
-
-    public interface IStack<T>
-    {
-        int Count { get; }
-        void Clear();
-        bool Contains(T item);
-        T Peek();
-        T Pop();
-        void Push(T item);
-        T[] ToArray();
-    }
 }

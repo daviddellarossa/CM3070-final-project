@@ -16,7 +16,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
-            var stateMock = new Mock<State>(gameManagerCore);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
             stateMock.CallBase = true;
 
             //act
@@ -33,7 +36,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
-            var stateMock = new Mock<State>(gameManagerCore);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
             stateMock.CallBase = true;
 
             //act
@@ -50,7 +56,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
-            var stateMock = new Mock<State>(gameManagerCore);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
             stateMock.CallBase = true;
 
             var state = stateMock.Object;
@@ -69,7 +78,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
-            var stateMock = new Mock<State>(gameManagerCore);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
             stateMock.CallBase = true;
 
             var state = stateMock.Object;
@@ -88,7 +100,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
-            var stateMock = new Mock<State>(gameManagerCore);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
             stateMock.CallBase = true;
 
             var state = stateMock.Object;
@@ -107,7 +122,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var gameManagerCoreMock = new Mock<IGameManager>();
             var gameManagerCore = gameManagerCoreMock.Object;
 
-            var stateMock = new Mock<State>(gameManagerCore);
+            var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
+            var sceneManagerWrapper = sceneManagerWrapperMock.Object;
+
+            var stateMock = new Mock<State>(gameManagerCore, sceneManagerWrapper);
             stateMock.CallBase = true;
 
             var state = stateMock.Object;
