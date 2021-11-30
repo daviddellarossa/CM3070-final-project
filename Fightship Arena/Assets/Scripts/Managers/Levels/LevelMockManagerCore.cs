@@ -12,7 +12,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     {
         public readonly IMyMonoBehaviour Parent;
 
-        private PlayerInput _playerInput;
+        protected PlayerInput _playerInput;
 
         public LevelMockManagerCore(IMyMonoBehaviour parent)
         {
@@ -23,10 +23,12 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         {
             Debug.Log($"Level started");
 
-            _playerInput = Parent.GameObject.GetComponent<PlayerInput>();
         }
 
-        public void OnAwake() { }
+        public void OnAwake() 
+        {
+            _playerInput = Parent.GameObject.GetComponent<PlayerInput>();
+        }
 
         public void Move(InputAction.CallbackContext context)
         {
@@ -54,5 +56,11 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         {
             _playerInput.enabled = true;
         }
+    }
+
+    public class LevelMockManagerCoreMock : LevelMockManagerCore
+    {
+        public LevelMockManagerCoreMock(IMyMonoBehaviour parent) : base(parent) { }
+
     }
 }

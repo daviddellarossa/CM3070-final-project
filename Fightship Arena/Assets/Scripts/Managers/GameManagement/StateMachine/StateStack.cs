@@ -10,7 +10,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public virtual event EventHandler<State> PoppingStateEvent;
         public virtual event EventHandler<State> PushingStateEvent;
 
-        protected IStack<State> _stack = new TestableStack<State>();
+        protected IStack<State> _stack = new Stack<State>();
 
         public virtual State Peek() => _stack.Peek();
 

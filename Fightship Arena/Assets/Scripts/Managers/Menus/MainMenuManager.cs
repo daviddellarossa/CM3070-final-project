@@ -17,8 +17,9 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 
         void Awake()
         {
-            OnAwake();
+            Core = new MainMenuManagerCore(this);
 
+            OnAwake();
         }
         void Start()
         {
@@ -32,7 +33,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 
         public void OnAwake()
         {
-            Core = new MainMenuManagerCore(this);
             Core.OnAwake();
 
             Core.QuitGameEvent += (sender, args) => QuitGameEvent?.Invoke(sender, args);

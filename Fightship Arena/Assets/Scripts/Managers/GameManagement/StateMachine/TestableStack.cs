@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     /// <summary>
@@ -8,9 +7,9 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
     /// This class, on the contrary, is not testable as the Stack class is not mockable.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class TestableStack<T> : IStack<T>
+    public class Stack<T> : IStack<T>
     {
-        protected Stack<T> _stack = new Stack<T>();
+        protected System.Collections.Generic.Stack<T> _stack = new System.Collections.Generic.Stack<T>();
 
         public int Count => _stack.Count;
         public void Clear() => _stack.Clear();

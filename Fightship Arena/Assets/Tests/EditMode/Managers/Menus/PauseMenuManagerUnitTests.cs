@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace FightshipArena.Assets.Tests.EditMode.Managers.Menus
 {
-    public class MainMenuManagerUnitTests
+    public class PauseMenuManagerUnitTests
     {
         [Test]
         public void OnStart_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<IMainMenuManager>();
+            var coreMock = new Mock<IPauseMenuManager>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
             levelManager.SetCore(core);
 
             //act
@@ -30,11 +30,11 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Menus
         public void OnAwake_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<IMainMenuManager>();
+            var coreMock = new Mock<IPauseMenuManager>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
             levelManager.SetCore(core);
 
             //act
@@ -48,126 +48,126 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Menus
         public void OnAwake_sets_eventHandlers_for_Core_events()
         {
             //arrange
-            var coreMock = new Mock<IMainMenuManager>();
-            coreMock.SetupAdd(x=>x.QuitGameEvent += It.IsAny<EventHandler>());
-            coreMock.SetupAdd(x => x.StartGameEvent += It.IsAny<EventHandler>());
+            var coreMock = new Mock<IPauseMenuManager>();
+            coreMock.SetupAdd(x => x.ResumeGameEvent += It.IsAny<EventHandler>());
+            coreMock.SetupAdd(x => x.QuitCurrentGameEvent += It.IsAny<EventHandler>());
 
             var core = coreMock.Object;
 
             var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
             levelManager.SetCore(core);
 
             //act
             levelManager.OnAwake();
 
             //assert
-            coreMock.VerifyAdd(x => x.StartGameEvent += It.IsAny<EventHandler>());
-            coreMock.VerifyAdd(x => x.QuitGameEvent += It.IsAny<EventHandler>());
+            coreMock.VerifyAdd(x => x.ResumeGameEvent += It.IsAny<EventHandler>());
+            coreMock.VerifyAdd(x => x.QuitCurrentGameEvent += It.IsAny<EventHandler>());
 
         }
 
         [Test]
-        public void Raise_StartGameEvent_if_core_does()
+        public void Raise_ResumeGameEvent_if_core_does()
         {
             //arrange
-            var coreMock = new Mock<IMainMenuManager>();
-            coreMock.SetupAdd(x => x.QuitGameEvent += It.IsAny<EventHandler>());
-            coreMock.SetupAdd(x => x.StartGameEvent += It.IsAny<EventHandler>());
+            var coreMock = new Mock<IPauseMenuManager>();
+            coreMock.SetupAdd(x => x.QuitCurrentGameEvent += It.IsAny<EventHandler>());
+            coreMock.SetupAdd(x => x.ResumeGameEvent += It.IsAny<EventHandler>());
 
             var core = coreMock.Object;
 
             var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
             levelManager.SetCore(core);
 
             levelManager.OnAwake();
 
             var eventRaised = false;
 
-            levelManager.StartGameEvent += (sender, args) => 
-            { 
-                eventRaised = true; 
-            };
-
-            //act
-            coreMock.Raise(x => x.StartGameEvent += null, new EventArgs());
-
-            //assert
-            Assert.That(eventRaised, Is.True);
-        }
-
-        [Test]
-        public void Raise_QuitGameEvent_if_core_does()
-        {
-            //arrange
-            var coreMock = new Mock<IMainMenuManager>();
-            coreMock.SetupAdd(x => x.QuitGameEvent += It.IsAny<EventHandler>());
-            coreMock.SetupAdd(x => x.StartGameEvent += It.IsAny<EventHandler>());
-
-            var core = coreMock.Object;
-
-            var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
-            levelManager.SetCore(core);
-
-            levelManager.OnAwake();
-
-            var eventRaised = false;
-
-            levelManager.QuitGameEvent += (sender, args) =>
+            levelManager.ResumeGameEvent += (sender, args) =>
             {
                 eventRaised = true;
             };
 
             //act
-            coreMock.Raise(x => x.QuitGameEvent += null, new EventArgs());
+            coreMock.Raise(x => x.ResumeGameEvent += null, new EventArgs());
 
             //assert
             Assert.That(eventRaised, Is.True);
         }
 
         [Test]
-        public void StartGame_pass_through_to_Core()
+        public void Raise_QuitCurrentGameEvent_if_core_does()
         {
             //arrange
-            var coreMock = new Mock<IMainMenuManager>();
+            var coreMock = new Mock<IPauseMenuManager>();
+            coreMock.SetupAdd(x => x.QuitCurrentGameEvent += It.IsAny<EventHandler>());
+            coreMock.SetupAdd(x => x.ResumeGameEvent += It.IsAny<EventHandler>());
+
             var core = coreMock.Object;
 
             var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
             levelManager.SetCore(core);
 
+            levelManager.OnAwake();
+
+            var eventRaised = false;
+
+            levelManager.QuitCurrentGameEvent += (sender, args) =>
+            {
+                eventRaised = true;
+            };
+
             //act
-            levelManager.StartGame();
+            coreMock.Raise(x => x.QuitCurrentGameEvent += null, new EventArgs());
 
             //assert
-            coreMock.Verify(x => x.StartGame(), Times.Once);
+            Assert.That(eventRaised, Is.True);
         }
 
         [Test]
-        public void QuitGame_pass_through_to_Core()
+        public void ResumeGame_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<IMainMenuManager>();
+            var coreMock = new Mock<IPauseMenuManager>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("MenuManager");
-            var levelManager = gameObject.AddComponent<MainMenuManagerMock>();
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
             levelManager.SetCore(core);
 
             //act
-            levelManager.QuitGame();
+            levelManager.ResumeGame();
 
             //assert
-            coreMock.Verify(x => x.QuitGame(), Times.Once);
+            coreMock.Verify(x => x.ResumeGame(), Times.Once);
+        }
+
+        [Test]
+        public void QuitCurrentGame_pass_through_to_Core()
+        {
+            //arrange
+            var coreMock = new Mock<IPauseMenuManager>();
+            var core = coreMock.Object;
+
+            var gameObject = new GameObject("MenuManager");
+            var levelManager = gameObject.AddComponent<PauseMenuManagerMock>();
+            levelManager.SetCore(core);
+
+            //act
+            levelManager.QuitCurrentGame();
+
+            //assert
+            coreMock.Verify(x => x.QuitCurrentGame(), Times.Once);
         }
 
     }
 
-    public class MainMenuManagerMock : MainMenuManager
+    public class PauseMenuManagerMock : PauseMenuManager
     {
-        public void SetCore(IMainMenuManager core)
+        public void SetCore(IPauseMenuManager core)
         {
             this.Core = core;
         }

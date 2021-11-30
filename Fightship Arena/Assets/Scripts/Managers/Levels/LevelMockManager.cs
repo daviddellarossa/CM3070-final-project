@@ -17,6 +17,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         void Awake()
         {
+            Core = new LevelMockManagerCore(this);
             OnAwake();
         }
 
@@ -33,7 +34,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         public void OnAwake()
         {
-            Core = new LevelMockManagerCore(this);
             Core.OnAwake();
         }
 
@@ -52,4 +52,5 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             Core.EnablePlayerInput();
         }
     }
+
 }
