@@ -8,12 +8,12 @@ namespace FightshipArena.Assets.Tests.PlayMode.Managers.GameManager
     public class GameManagerUnitTests
     {
         [UnityTest]
-        public IEnumerator GameManager_instantiate_core_on_Start()
+        public IEnumerator Awake_instantiate_core_on_Start()
         {
             //arrange
             //act
             var gameObject = new GameObject("Player");
-            var gameManager = gameObject.AddComponent<FightShipArena.Assets.Scripts.Managers.GameManager.GameManager>();
+            var gameManager = gameObject.AddComponent<FightShipArena.Assets.Scripts.Managers.GameManagement.GameManager>();
 
             yield return null;
 

@@ -1,5 +1,5 @@
 {
-    "name": "PlayerActions",
+    "name": "PlayerActionAsset",
     "maps": [
         {
             "name": "Player",
@@ -126,6 +126,33 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "GameManager",
+            "id": "fb0ae8bf-2de8-4b52-ba27-b123c94c1587",
+            "actions": [
+                {
+                    "name": "PauseResume",
+                    "type": "Button",
+                    "id": "d2ed8da1-6c65-4bfc-b56a-2b866f64a6b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6590e0c5-b9c3-4e05-90fa-d3895c8fc6aa",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseResume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
