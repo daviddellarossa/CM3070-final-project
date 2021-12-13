@@ -54,7 +54,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
 
             InputTestFixture input = new InputTestFixture();
 
-            var keyboard  = ResetAndReturnKeyboard();
+            var keyboard = ResetAndReturnKeyboard();
 
             var player = GameObject.FindGameObjectWithTag("Player");
 
@@ -103,7 +103,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
 
             InputTestFixture input = new InputTestFixture();
 
-            var keyboard  = ResetAndReturnKeyboard();
+            var keyboard = ResetAndReturnKeyboard();
 
             var player = GameObject.FindGameObjectWithTag("Player");
 
@@ -244,5 +244,108 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
             playerControllerCoreMock.VerifyAll();
         }
 
+        [UnityTest]
+        public IEnumerator Key_J_assigns_movement_to_Core()
+        {
+            //arrange
+            yield return new WaitWhile(() => sceneLoaded == false);
+
+            InputTestFixture input = new InputTestFixture();
+
+            var keyboard = ResetAndReturnKeyboard();
+
+            var player = GameObject.FindGameObjectWithTag("Player");
+
+            var playerController = player.GetComponent<PlayerController>();
+
+            var playerInput = player.GetComponent<PlayerInput>();
+
+            var playerActionAsset = new PlayerActionAsset();
+
+            var processor = playerActionAsset.Player.Fire.processors;
+
+            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+
+            var playerControllerCore = playerControllerCoreMock.Object;
+            playerController.Core = playerControllerCore;
+
+            //act
+            input.Press((ButtonControl)keyboard["j"]);
+
+            yield return null;
+
+            //assert
+            playerControllerCoreMock.Verify(x => x.Fire(), Times.Once);
+        }
+
+        [UnityTest]
+        public IEnumerator Key_K_assigns_movement_to_Core()
+        {
+            //arrange
+            yield return new WaitWhile(() => sceneLoaded == false);
+
+            InputTestFixture input = new InputTestFixture();
+
+            var keyboard = ResetAndReturnKeyboard();
+
+            var player = GameObject.FindGameObjectWithTag("Player");
+
+            var playerController = player.GetComponent<PlayerController>();
+
+            var playerInput = player.GetComponent<PlayerInput>();
+
+            var playerActionAsset = new PlayerActionAsset();
+
+            var processor = playerActionAsset.Player.FireAlt.processors;
+
+            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+
+            var playerControllerCore = playerControllerCoreMock.Object;
+            playerController.Core = playerControllerCore;
+
+            //act
+            input.Press((ButtonControl)keyboard["k"]);
+
+            yield return null;
+
+            //assert
+            playerControllerCoreMock.Verify(x => x.FireAlt(), Times.Once);
+
+        }
+
+        [UnityTest]
+        public IEnumerator Key_L_assigns_movement_to_Core()
+        {
+            //arrange
+            yield return new WaitWhile(() => sceneLoaded == false);
+
+            InputTestFixture input = new InputTestFixture();
+
+            var keyboard = ResetAndReturnKeyboard();
+
+            var player = GameObject.FindGameObjectWithTag("Player");
+
+            var playerController = player.GetComponent<PlayerController>();
+
+            var playerInput = player.GetComponent<PlayerInput>();
+
+            var playerActionAsset = new PlayerActionAsset();
+
+            var processor = playerActionAsset.Player.OpenSelectionMenu.processors;
+
+            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+
+            var playerControllerCore = playerControllerCoreMock.Object;
+            playerController.Core = playerControllerCore;
+
+            //act
+            input.Press((ButtonControl)keyboard["l"]);
+
+            yield return null;
+
+            //assert
+            playerControllerCoreMock.Verify(x => x.OpenSelectionMenu(), Times.Once);
+
+        }
     }
 }
