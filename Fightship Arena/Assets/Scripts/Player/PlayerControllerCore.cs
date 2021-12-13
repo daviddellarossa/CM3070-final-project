@@ -13,7 +13,6 @@ namespace FightShipArena.Assets.Scripts.Player
         public readonly Transform Transform;
         public Vector3 Movement { get; set; }
 
-
         public PlayerControllerCore(IMyMonoBehaviour parent)
         {
             Parent = parent;
@@ -21,8 +20,22 @@ namespace FightShipArena.Assets.Scripts.Player
         }
         public void Move()
         {
-            //Debug.Log($"Moving by {Movement}");
             Transform.position += Movement;
+        }
+
+        public void Fire()
+        {
+           
+        }
+
+        public void FireAlt()
+        {
+
+        }
+
+        public void OpenSelectionMenu()
+        {
+
         }
     }
 }

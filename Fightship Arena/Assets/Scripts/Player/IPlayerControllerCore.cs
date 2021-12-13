@@ -11,5 +11,8 @@ namespace FightShipArena.Assets.Scripts.Player
     {
         Vector3 Movement { get; set; }
         void Move();
+        void Fire();
+        void FireAlt();
+        void OpenSelectionMenu();
     }
 }
