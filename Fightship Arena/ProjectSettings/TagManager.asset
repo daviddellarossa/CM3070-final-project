@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - SceneManager
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Enemies
+  - Player
   - 
   - 
   - 
@@ -42,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 957884037
+    locked: 0
+  - name: Player
+    uniqueID: 2209764363
     locked: 0
