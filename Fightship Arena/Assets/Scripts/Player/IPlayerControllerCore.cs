@@ -14,5 +14,8 @@ namespace FightShipArena.Assets.Scripts.Player
         Transform Transform { get; }
 
         void Move();
+        void Fire();
+        void FireAlt();
+        void OpenSelectionMenu();
     }
 }

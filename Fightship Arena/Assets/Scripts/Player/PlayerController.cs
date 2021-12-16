@@ -48,11 +48,13 @@ namespace FightShipArena.Assets.Scripts.Player
         /// <param name="context"></param>
         public void OnFire(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.performed)
             {
                 Debug.Log("OnFire started");
                 //Do an action
-            } else if (context.canceled)
+                Core.Fire();
+            }
+            else if (context.canceled)
             {
                 Debug.Log("OnFire canceled");
 
@@ -70,11 +72,11 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 Debug.Log("OnFireAlt started");
                 //Do an action
+                Core.FireAlt();
             }
             else if (context.canceled)
             {
                 Debug.Log("OnFireAlt canceled");
-
             }
         }
 
@@ -89,13 +91,12 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 Debug.Log("OnOpenSelectionMenu started");
                 //Do an action
+                Core.OpenSelectionMenu();
             }
             else if (context.canceled)
             {
                 Debug.Log("OnOpenSelectionMenu canceled");
-
             }
-
         }
 
         void FixedUpdate()
@@ -103,6 +104,4 @@ namespace FightShipArena.Assets.Scripts.Player
             Core.Move();
         }
     }
-
-
 }

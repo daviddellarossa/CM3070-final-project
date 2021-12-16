@@ -22,8 +22,22 @@ namespace FightShipArena.Assets.Scripts.Player
         }
         public void Move()
         {
-            //Debug.Log($"Moving by {Movement}");
             Transform.position += Movement;
+        }
+
+        public void Fire()
+        {
+           
+        }
+
+        public void FireAlt()
+        {
+
+        }
+
+        public void OpenSelectionMenu()
+        {
+
         }
     }
 }
