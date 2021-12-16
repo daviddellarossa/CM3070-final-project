@@ -29,9 +29,9 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         public void FixedUpdate()
         {
-            var distance = PlayerControllerCore.Transform.position - this.Transform.position;
+            if(PlayerControllerCore == null) return;
 
-            if(distance == Vector3.zero) return;
+            var distance = PlayerControllerCore.Transform.position - this.Transform.position;
 
             var direction = (distance).normalized;
 
