@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
+    [RequireComponent(typeof(EnemyManagement.EnemyManager))]
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
         public ILevelMockManager Core { get; protected set; }

@@ -140,11 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420153996349222507, guid: 6d2ebf83af878014f91c5f20df03c4fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 420153996349222507, guid: 6d2ebf83af878014f91c5f20df03c4fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 420153996349222507, guid: 6d2ebf83af878014f91c5f20df03c4fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 356691078}
   - component: {fileID: 356691077}
   - component: {fileID: 356691076}
+  - component: {fileID: 356691079}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -263,6 +264,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &356691079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356691075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1455586401
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +308,7 @@ GameObject:
   - component: {fileID: 1455586402}
   - component: {fileID: 1455586404}
   - component: {fileID: 1455586403}
+  - component: {fileID: 1455586405}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: SceneManager
@@ -350,7 +385,20 @@ MonoBehaviour:
     m_ActionId: c8b67a6c-a20e-4dd8-be3b-bb55d19275e9
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1455586405}
+        m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.EnemyManagement.EnemyManager,
+          FightShipArena
+        m_MethodName: SpawnPawnAtRandomLocation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e445d392-53b8-4722-98e9-c281156f1111
     m_ActionName: Player/Fire[/Keyboard/j]
   - m_PersistentCalls:
@@ -365,8 +413,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d2ed8da1-6c65-4bfc-b56a-2b866f64a6b3
     m_ActionName: GameManager/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1455586405}
+        m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.EnemyManagement.EnemyManager,
+          FightShipArena
+        m_MethodName: SpawnPawnAtRandomLocation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6968d789-3b4d-42d4-b790-912e82f372f9
+    m_ActionName: Test/SpawnPawn[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1455586405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455586401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a5fc9232f128f44ab1524e9a5d5070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PawnGO: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}

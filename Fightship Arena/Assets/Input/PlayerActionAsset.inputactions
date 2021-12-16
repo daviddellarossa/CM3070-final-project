@@ -155,6 +155,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Test",
+            "id": "4ed0035d-3ec2-4b82-8280-c8a804875ae1",
+            "actions": [
+                {
+                    "name": "SpawnPawn",
+                    "type": "Button",
+                    "id": "6968d789-3b4d-42d4-b790-912e82f372f9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "df0123cc-30ea-4619-8fae-f491439b9497",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnPawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

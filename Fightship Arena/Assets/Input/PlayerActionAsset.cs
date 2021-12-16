@@ -168,6 +168,33 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Test"",
+            ""id"": ""4ed0035d-3ec2-4b82-8280-c8a804875ae1"",
+            ""actions"": [
+                {
+                    ""name"": ""SpawnPawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""6968d789-3b4d-42d4-b790-912e82f372f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""df0123cc-30ea-4619-8fae-f491439b9497"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnPawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -181,6 +208,9 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         // GameManager
         m_GameManager = asset.FindActionMap("GameManager", throwIfNotFound: true);
         m_GameManager_PauseResume = m_GameManager.FindAction("PauseResume", throwIfNotFound: true);
+        // Test
+        m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
+        m_Test_SpawnPawn = m_Test.FindAction("SpawnPawn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,6 +346,39 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         }
     }
     public GameManagerActions @GameManager => new GameManagerActions(this);
+
+    // Test
+    private readonly InputActionMap m_Test;
+    private ITestActions m_TestActionsCallbackInterface;
+    private readonly InputAction m_Test_SpawnPawn;
+    public struct TestActions
+    {
+        private @PlayerActionAsset m_Wrapper;
+        public TestActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SpawnPawn => m_Wrapper.m_Test_SpawnPawn;
+        public InputActionMap Get() { return m_Wrapper.m_Test; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestActions set) { return set.Get(); }
+        public void SetCallbacks(ITestActions instance)
+        {
+            if (m_Wrapper.m_TestActionsCallbackInterface != null)
+            {
+                @SpawnPawn.started -= m_Wrapper.m_TestActionsCallbackInterface.OnSpawnPawn;
+                @SpawnPawn.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnSpawnPawn;
+                @SpawnPawn.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnSpawnPawn;
+            }
+            m_Wrapper.m_TestActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SpawnPawn.started += instance.OnSpawnPawn;
+                @SpawnPawn.performed += instance.OnSpawnPawn;
+                @SpawnPawn.canceled += instance.OnSpawnPawn;
+            }
+        }
+    }
+    public TestActions @Test => new TestActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -326,5 +389,9 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     public interface IGameManagerActions
     {
         void OnPauseResume(InputAction.CallbackContext context);
+    }
+    public interface ITestActions
+    {
+        void OnSpawnPawn(InputAction.CallbackContext context);
     }
 }
