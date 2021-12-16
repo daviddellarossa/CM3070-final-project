@@ -9,10 +9,11 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerControllerCore : IPlayerControllerCore
     {
-        public readonly IMyMonoBehaviour Parent;
-        public readonly Transform Transform;
         public Vector3 Movement { get; set; }
 
+        public IMyMonoBehaviour Parent { get; protected set; }
+
+        public Transform Transform { get; protected set; }
 
         public PlayerControllerCore(IMyMonoBehaviour parent)
         {

@@ -1,14 +1,22 @@
-﻿using System;
+﻿using FightShipArena.Assets.Scripts.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
     public interface IEnemyControllerCore
     {
-        public int Strenght { get; set; }
-        public int Health { get; set; }
+        IPlayerControllerCore PlayerControllerCore { get; set; }
+
+        IMyMonoBehaviour Parent { get; }
+        Transform Transform { get; }
+
+        EnemyType EnemyType { get; set; }
+
+        void FixedUpdate();
     }
 }

@@ -10,6 +10,9 @@ namespace FightShipArena.Assets.Scripts.Player
     public interface IPlayerControllerCore
     {
         Vector3 Movement { get; set; }
+        IMyMonoBehaviour Parent { get; }
+        Transform Transform { get; }
+
         void Move();
     }
 }
