@@ -9,9 +9,11 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerControllerCore : IPlayerControllerCore
     {
+        public event Action HasDied;
+
         public int Health { get; set; }
 
-        public PlayerSettings PlayerSettings { get; set; }
+        public PlayerSettings InitSettings { get; set; }
 
         public Vector3 Movement { get; set; }
 
@@ -27,8 +29,8 @@ namespace FightShipArena.Assets.Scripts.Player
 
         public void Start(PlayerSettings settings)
         {
-            PlayerSettings = settings;
-            Health = PlayerSettings.InitHealth;
+            InitSettings = settings;
+            Health = InitSettings.InitHealth;
         }
 
         public void Move()
@@ -49,6 +51,15 @@ namespace FightShipArena.Assets.Scripts.Player
         public void OpenSelectionMenu()
         {
 
+        }
+
+        public void InflictDamage(int damage)
+        {
+            Health -= damage;
+            if (Health <= 0)
+            {
+                HasDied?.Invoke();
+            }
         }
     }
 }

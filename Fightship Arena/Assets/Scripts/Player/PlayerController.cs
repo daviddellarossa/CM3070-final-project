@@ -5,24 +5,15 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
-    public class PlayerController : MyMonoBehaviour
+    public class PlayerController : MyMonoBehaviour, IPlayerController
     {
+        public event Action HasDied;
+
         public IPlayerControllerCore Core { get; set; }
-        public PlayerSettings PlayerSettings;
 
-        void Awake()
-        {
-            Core = new PlayerControllerCore(this);
-        }
+        [SerializeField]
+        private PlayerSettings InitSettings;
 
-        private void Start()
-        {
-            if (PlayerSettings == null)
-            {
-                throw new NullReferenceException("PlayerSettings");
-            }
-            Core.Start(PlayerSettings);
-        }
 
         /// <summary>
         ///  
@@ -105,17 +96,46 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        protected void Core_PlayerDiesEvent()
+        {
+            Debug.Log("Player dies");
+            HasDied?.Invoke();
+            Destroy(gameObject);
+        }
+
+
+        void Awake()
+        {
+            Core = new PlayerControllerCore(this);
+            Core.HasDied += Core_PlayerDiesEvent;
+        }
+
+
+        void Start()
+        {
+            if (InitSettings == null)
+            {
+                throw new NullReferenceException("InitSettings");
+            }
+            Core.Start(InitSettings);
+        }
+
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log($"Collision detected with {col.gameObject.name}");
-            var enemyController = col.gameObject.GetComponent<PawnController>();
-            var damage = enemyController.EnemySettings.DamageAppliedOnCollision;
-            Core.Health -= damage;
+            if (col.gameObject.tag == "Enemy")
+            {
+                var enemyController = col.gameObject.GetComponent<EnemyController>();
+                var damage = enemyController.InitSettings.DamageAppliedOnCollision;
+                Core.InflictDamage(damage);
+
+            }
         }
 
         void FixedUpdate()
         {
             Core.Move();
         }
+
     }
 }

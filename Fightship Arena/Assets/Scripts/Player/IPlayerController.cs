@@ -7,12 +7,19 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
-    public interface IPlayerControllerCore
+
+    public interface IPlayerController
     {
+        event Action HasDied;
+    }
+
+    public interface IPlayerControllerCore : IPlayerController
+    {
+
+
         Vector3 Movement { get; set; }
         IMyMonoBehaviour Parent { get; }
         Transform Transform { get; }
-        PlayerSettings PlayerSettings { get; set; }
         int Health { get; set; }
 
         void Start(PlayerSettings settings);
@@ -20,5 +27,7 @@ namespace FightShipArena.Assets.Scripts.Player
         void Fire();
         void FireAlt();
         void OpenSelectionMenu();
+
+        void InflictDamage(int damage);
     }
 }

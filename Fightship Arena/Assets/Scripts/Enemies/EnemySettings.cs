@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
-    [CreateAssetMenu(fileName = "New Enemy Settings", menuName = "Enemy/Enemy Settings")]
+    [CreateAssetMenu(fileName = "New Enemy InitSettings", menuName = "Enemy/Enemy InitSettings")]
     public class EnemySettings : ScriptableObject
     {
         public EnemyType EnemyType;
@@ -16,8 +16,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public float MaxAttractiveForceMagnitude;
         public float MinMovementMagnitude;
         public float MaxMovementMagnitude;
-        public float InitHealth;
+        public int InitHealth;
         public int DamageAppliedOnCollision;
+        public bool InvulnerableAtStart;
+        public float InvulnerableAtStartUpForSeconds;
     }
 
     public enum EnemyType

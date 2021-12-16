@@ -18,5 +18,7 @@ MonoBehaviour:
   MaxAttractiveForceMagnitude: 10
   MinMovementMagnitude: 0.01
   MaxMovementMagnitude: 0.05
-  InitHealth: 0
+  InitHealth: 50
   DamageAppliedOnCollision: 50
+  InvulnerableAtStart: 0
+  InvulnerableAtStartUpForSeconds: 0
