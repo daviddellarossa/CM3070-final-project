@@ -11,10 +11,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
     public interface IEnemyControllerCore
     {
         IPlayerControllerCore PlayerControllerCore { get; set; }
-
         IMyMonoBehaviour Parent { get; }
-        Transform Transform { get; }
-
+        Transform Transform { get; } 
         EnemyType EnemyType { get; set; }
 
         void FixedUpdate();
