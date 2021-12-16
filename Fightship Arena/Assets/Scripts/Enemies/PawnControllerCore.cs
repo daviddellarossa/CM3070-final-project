@@ -14,8 +14,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public IMyMonoBehaviour Parent { get; protected set; }
         public Transform Transform { get; protected set; }
         public Rigidbody2D Rigidbody { get; protected set; }
-        public EnemyType EnemyType { get; set; }
-
+        public EnemySettings EnemySettings { get; protected set; }
 
         public PawnControllerCore(IMyMonoBehaviour parent)
         {
@@ -24,8 +23,12 @@ namespace FightShipArena.Assets.Scripts.Enemies
             Rigidbody = parent.GameObject.GetComponent<Rigidbody2D>();
          }
 
-        public int Strenght { get; set; }
         public int Health { get; set; }
+
+        public void Start(EnemySettings settings)
+        {
+            EnemySettings = settings;
+        }
 
         public void FixedUpdate()
         {
@@ -36,17 +39,17 @@ namespace FightShipArena.Assets.Scripts.Enemies
             var direction = (distance).normalized;
 
             //add impulse - Impulse increases (clamped) with the distance from the player
-            var forceMagnitude = UnityEngine.Mathf.Clamp(distance.magnitude, EnemyType.MinAttractiveForceMagnitude, EnemyType.MaxAttractiveForceMagnitude);
+            var forceMagnitude = UnityEngine.Mathf.Clamp(distance.magnitude, EnemySettings.MinAttractiveForceMagnitude, EnemySettings.MaxAttractiveForceMagnitude);
             var force = direction * forceMagnitude;
             Rigidbody.AddForce(force, ForceMode2D.Impulse);
 
             //force movement - This effect increases when the distance lowers
-            var movementMagnitude = UnityEngine.Mathf.Clamp(0.1f / distance.magnitude, EnemyType.MinMovementMagnitude, EnemyType.MaxMovementMagnitude);
+            var movementMagnitude = UnityEngine.Mathf.Clamp(0.1f / distance.magnitude, EnemySettings.MinMovementMagnitude, EnemySettings.MaxMovementMagnitude);
             var movement = direction * movementMagnitude;
             Rigidbody.position += new Vector2(movement.x, movement.y);
 
             //Clamp maximum velocity
-            Rigidbody.velocity = Vector2.ClampMagnitude(Rigidbody.velocity, EnemyType.MaxSpeed);
+            Rigidbody.velocity = Vector2.ClampMagnitude(Rigidbody.velocity, EnemySettings.MaxSpeed);
 
         }
 

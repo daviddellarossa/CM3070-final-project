@@ -7,19 +7,20 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
-    [CreateAssetMenu(fileName = "New Enemy Type", menuName = "Enemy/Enemy Type")]
-    public class EnemyType : ScriptableObject
+    [CreateAssetMenu(fileName = "New Enemy Settings", menuName = "Enemy/Enemy Settings")]
+    public class EnemySettings : ScriptableObject
     {
-        public TypeEnum Type;
+        public EnemyType EnemyType;
         public float MaxSpeed;
         public float MinAttractiveForceMagnitude;
         public float MaxAttractiveForceMagnitude;
         public float MinMovementMagnitude;
         public float MaxMovementMagnitude;
-        public float MaxHealth;
+        public float InitHealth;
+        public int DamageAppliedOnCollision;
     }
 
-    public enum TypeEnum
+    public enum EnemyType
     {
         Pawn
     }

@@ -12,7 +12,10 @@ namespace FightShipArena.Assets.Scripts.Player
         Vector3 Movement { get; set; }
         IMyMonoBehaviour Parent { get; }
         Transform Transform { get; }
+        PlayerSettings PlayerSettings { get; set; }
+        int Health { get; set; }
 
+        void Start(PlayerSettings settings);
         void Move();
         void Fire();
         void FireAlt();

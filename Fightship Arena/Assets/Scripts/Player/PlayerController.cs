@@ -1,3 +1,5 @@
+using System;
+using FightShipArena.Assets.Scripts.Enemies;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,17 +8,21 @@ namespace FightShipArena.Assets.Scripts.Player
     public class PlayerController : MyMonoBehaviour
     {
         public IPlayerControllerCore Core { get; set; }
+        public PlayerSettings PlayerSettings;
 
         void Awake()
         {
             Core = new PlayerControllerCore(this);
         }
 
-        //private void Start()
-        //{
-        //    var playerInput = GameObject.GetComponent<PlayerInput>();
-        //    playerInput.onActionTriggered += OnMove;
-        //}
+        private void Start()
+        {
+            if (PlayerSettings == null)
+            {
+                throw new NullReferenceException("PlayerSettings");
+            }
+            Core.Start(PlayerSettings);
+        }
 
         /// <summary>
         ///  
@@ -97,6 +103,14 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 Debug.Log("OnOpenSelectionMenu canceled");
             }
+        }
+
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            Debug.Log($"Collision detected with {col.gameObject.name}");
+            var enemyController = col.gameObject.GetComponent<PawnController>();
+            var damage = enemyController.EnemySettings.DamageAppliedOnCollision;
+            Core.Health -= damage;
         }
 
         void FixedUpdate()

@@ -12,7 +12,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
     {
         public IEnemyControllerCore Core { get; set; }
         
-        public EnemyType EnemyType;
+        public EnemySettings EnemySettings;
 
         void Awake()
         {
@@ -22,8 +22,25 @@ namespace FightShipArena.Assets.Scripts.Enemies
         void Start()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null)
+            {
+                throw new NullReferenceException("Player");
+            }
+
             Core.PlayerControllerCore = player.GetComponent<PlayerController>().Core;
-            Core.EnemyType = EnemyType;
+
+            if (EnemySettings == null)
+            {
+                throw new NullReferenceException("EnemySettings");
+            }
+            Core.Start(EnemySettings);
+        }
+
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            Debug.Log($"Collision detected with {col.gameObject.name}");
+            Destroy(gameObject);
         }
 
         private void FixedUpdate()

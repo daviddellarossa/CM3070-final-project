@@ -9,6 +9,10 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerControllerCore : IPlayerControllerCore
     {
+        public int Health { get; set; }
+
+        public PlayerSettings PlayerSettings { get; set; }
+
         public Vector3 Movement { get; set; }
 
         public IMyMonoBehaviour Parent { get; protected set; }
@@ -20,6 +24,13 @@ namespace FightShipArena.Assets.Scripts.Player
             Parent = parent;
             Transform = parent.GameObject.transform;
         }
+
+        public void Start(PlayerSettings settings)
+        {
+            PlayerSettings = settings;
+            Health = PlayerSettings.InitHealth;
+        }
+
         public void Move()
         {
             Transform.position += Movement;

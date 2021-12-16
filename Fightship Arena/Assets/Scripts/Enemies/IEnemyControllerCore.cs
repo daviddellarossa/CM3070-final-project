@@ -13,8 +13,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
         IPlayerControllerCore PlayerControllerCore { get; set; }
         IMyMonoBehaviour Parent { get; }
         Transform Transform { get; } 
-        EnemyType EnemyType { get; set; }
+        EnemySettings EnemySettings { get; }
+        int Health { get; set; }
 
+        void Start(EnemySettings settings);
         void FixedUpdate();
     }
 }
