@@ -11,5 +11,7 @@ namespace FightShipArena.Assets.Scripts.Player
     public class PlayerSettings : ScriptableObject
     {
         public int InitHealth;
+        public int DamageAppliedOnCollision;
+
     }
 }

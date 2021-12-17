@@ -11,20 +11,23 @@ namespace FightShipArena.Assets.Scripts.Enemies
 {
     public class PawnController : EnemyController
     {
-        public IEnemyControllerCore Core { get; protected set; }
 
-        public IHealthManager HealthManager { get; protected set; }
+        private void HealthManager_HealthLevelChanged(int obj)
+        {
+        }
+
+        private void HealthManager_HasDied()
+        {
+            Debug.Log($"Destroying object {this.gameObject.name}");
+            GameObject.Destroy(this.gameObject);
+        }
 
         void Awake()
         {
             HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
             HealthManager.HasDied += HealthManager_HasDied;
+            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
             Core = new PawnControllerCore(this, HealthManager, InitSettings);
-        }
-
-        private void HealthManager_HasDied()
-        {
-            GameObject.Destroy(this.gameObject);
         }
 
         void Start()
@@ -49,13 +52,13 @@ namespace FightShipArena.Assets.Scripts.Enemies
             Debug.Log($"Collision detected with {col.gameObject.name}");
             if (col.gameObject.tag == "Player")
             {
-                Core.CollisionWithPlayer();
+                Core.HandleCollisionWithPlayer();
             }
         }
 
         private void FixedUpdate()
         {
-            Core.FixedUpdate();
+            Core.Move();
         }
     }
 }

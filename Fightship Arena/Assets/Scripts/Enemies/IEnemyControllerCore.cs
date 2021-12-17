@@ -17,8 +17,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
         EnemySettings InitSettings { get; }
         public IHealthManager HealthManager { get; }
 
-        void FixedUpdate();
-        void CollisionWithPlayer();
+        void Move();
+        void HandleCollisionWithPlayer();
 
     }
 }

@@ -1,15 +1,16 @@
 using System;
 using FightShipArena.Assets.Scripts.Enemies;
+using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
-    public class PlayerController : MyMonoBehaviour, IPlayerController
+    public class PlayerController : MyMonoBehaviour
     {
-        public event Action HasDied;
 
         public IPlayerControllerCore Core { get; set; }
+        public IHealthManager HealthManager { get; protected set; }
 
         [SerializeField]
         private PlayerSettings InitSettings;
@@ -96,18 +97,13 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
-        protected void Core_PlayerDiesEvent()
-        {
-            Debug.Log("Player dies");
-            HasDied?.Invoke();
-            Destroy(gameObject);
-        }
-
-
         void Awake()
         {
-            Core = new PlayerControllerCore(this);
-            Core.HasDied += Core_PlayerDiesEvent;
+            HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
+            HealthManager.HasDied += HealthManager_HasDied;
+            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged; 
+
+            Core = new PlayerControllerCore(this, HealthManager, InitSettings);
         }
 
 
@@ -117,7 +113,6 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 throw new NullReferenceException("InitSettings");
             }
-            Core.Start(InitSettings);
         }
 
         void OnCollisionEnter2D(Collision2D col)
@@ -126,15 +121,22 @@ namespace FightShipArena.Assets.Scripts.Player
             if (col.gameObject.tag == "Enemy")
             {
                 var enemyController = col.gameObject.GetComponent<EnemyController>();
-                var damage = enemyController.InitSettings.DamageAppliedOnCollision;
-                Core.InflictDamage(damage);
-
+                Core.HandleCollisionWithEnemy(enemyController.Core);
             }
         }
 
         void FixedUpdate()
         {
             Core.Move();
+        }
+        private void HealthManager_HealthLevelChanged(int obj)
+        {
+        }
+
+        private void HealthManager_HasDied()
+        {
+            Debug.Log($"Destroying object {this.gameObject.name}");
+            Destroy(this.gameObject);
         }
 
     }

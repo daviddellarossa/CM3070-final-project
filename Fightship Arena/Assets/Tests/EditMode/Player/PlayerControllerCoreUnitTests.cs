@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts;
+using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Player;
 using Moq;
 using NUnit.Framework;
@@ -25,8 +26,11 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
 
             var monoBehaviour = monoBehaviourMock.Object;
 
+            var healthManagerMock = new Mock<IHealthManager>();
+            var healthManager = healthManagerMock.Object;
+
             //act
-            var core = new PlayerControllerCore(monoBehaviour);
+            var core = new PlayerControllerCore(monoBehaviour, healthManager, null);
 
             //assert
             Assert.That(core.Parent, Is.SameAs(monoBehaviour));
@@ -47,7 +51,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
 
             var monoBehaviour = monoBehaviourMock.Object;
 
-            var core = new PlayerControllerCore(monoBehaviour);
+            var healthManagerMock = new Mock<IHealthManager>();
+            var healthManager = healthManagerMock.Object;
+
+            var core = new PlayerControllerCore(monoBehaviour, healthManager, null);
 
             core.Movement = Vector3.one;
 

@@ -19,7 +19,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public int InitHealth;
         public int DamageAppliedOnCollision;
         public bool InvulnerableAtStart;
-        public float InvulnerableAtStartUpForSeconds;
+        public float InvulnerableAtStartForSeconds;
     }
 
     public enum EnemyType

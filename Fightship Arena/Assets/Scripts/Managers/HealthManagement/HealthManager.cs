@@ -57,29 +57,5 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
             this.IsInvulnerable = isInvulnerable;
         }
 
-        //public void Start(int maxHealth, int health, bool isInvulnerable)
-        //{
-        //    this.MaxHealth = maxHealth;
-        //    this.Health = health;
-        //    this.IsInvulnerable = isInvulnerable;
-        //}
-
-
-    }
-
-
-    public interface IHealthManager
-    {
-        event Action<int> HealthLevelChanged;
-        event Action HasDied;
-
-        int MaxHealth { get; set; }
-        int Health { get; set; }
-        bool IsInvulnerable { get; set; }
-        void Heal(int byValue);
-        void Heal();
-        void Damage(int byValue);
-        void Kill();
-        //void Start(int maxHealth, int health, bool isInvulnerable);
     }
 }

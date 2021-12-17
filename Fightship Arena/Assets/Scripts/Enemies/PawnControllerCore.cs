@@ -25,16 +25,14 @@ namespace FightShipArena.Assets.Scripts.Enemies
             Rigidbody = parent.GameObject.GetComponent<Rigidbody2D>();
             HealthManager = healthManager;
             HealthManager.HasDied += HealthManager_HasDied;
+            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
             InitSettings = settings;
         }
 
-        private void HealthManager_HasDied()
-        {
-        }
+        private void HealthManager_HealthLevelChanged(int obj) { }
+        private void HealthManager_HasDied() { }
 
-        public int Health { get; set; }
-
-        public void FixedUpdate()
+        public void Move()
         {
             if(PlayerControllerCore == null) return;
 
@@ -56,7 +54,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
             Rigidbody.velocity = Vector2.ClampMagnitude(Rigidbody.velocity, InitSettings.MaxSpeed);
         }
 
-        public void CollisionWithPlayer()
+        public void HandleCollisionWithPlayer()
         {
             HealthManager.Kill();
         }
