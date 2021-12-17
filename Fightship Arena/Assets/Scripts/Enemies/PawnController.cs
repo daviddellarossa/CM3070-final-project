@@ -4,31 +4,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
-    public class PawnController : MyMonoBehaviour
+    public class PawnController : EnemyController
     {
-        public IEnemyControllerCore Core { get; set; }
-        
-        public EnemyType EnemyType;
+
+        private void HealthManager_HealthLevelChanged(int obj)
+        {
+        }
+
+        private void HealthManager_HasDied()
+        {
+            Debug.Log($"Destroying object {this.gameObject.name}");
+            GameObject.Destroy(this.gameObject);
+        }
 
         void Awake()
         {
-            Core = new PawnControllerCore(this);
+            HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
+            HealthManager.HasDied += HealthManager_HasDied;
+            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
+            Core = new PawnControllerCore(this, HealthManager, InitSettings);
         }
 
         void Start()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null)
+            {
+                throw new NullReferenceException("Player");
+            }
+
             Core.PlayerControllerCore = player.GetComponent<PlayerController>().Core;
-            Core.EnemyType = EnemyType;
+
+            if (InitSettings == null)
+            {
+                throw new NullReferenceException("InitSettings");
+            }
+        }
+
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            Debug.Log($"Collision detected with {col.gameObject.name}");
+            if (col.gameObject.tag == "Player")
+            {
+                Core.HandleCollisionWithPlayer();
+            }
         }
 
         private void FixedUpdate()
         {
-            Core.FixedUpdate();
+            Core.Move();
         }
     }
 }

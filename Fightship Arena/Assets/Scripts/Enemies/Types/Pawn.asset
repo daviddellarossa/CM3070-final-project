@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875aba086b8a74f43af025656af2c84d, type: 3}
   m_Name: Pawn
   m_EditorClassIdentifier: 
-  Type: 0
+  EnemyType: 0
   MaxSpeed: 3
   MinAttractiveForceMagnitude: 0.5
   MaxAttractiveForceMagnitude: 10
   MinMovementMagnitude: 0.01
   MaxMovementMagnitude: 0.05
-  MaxHealth: 10
+  InitHealth: 50
+  DamageAppliedOnCollision: 50
+  InvulnerableAtStart: 0
+  InvulnerableAtStartUpForSeconds: 0

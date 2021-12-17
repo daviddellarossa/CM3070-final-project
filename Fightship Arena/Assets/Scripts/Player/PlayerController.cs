@@ -1,3 +1,6 @@
+using System;
+using FightShipArena.Assets.Scripts.Enemies;
+using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,18 +8,13 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerController : MyMonoBehaviour
     {
+
         public IPlayerControllerCore Core { get; set; }
+        public IHealthManager HealthManager { get; protected set; }
 
-        void Awake()
-        {
-            Core = new PlayerControllerCore(this);
-        }
+        [SerializeField]
+        private PlayerSettings InitSettings;
 
-        //private void Start()
-        //{
-        //    var playerInput = GameObject.GetComponent<PlayerInput>();
-        //    playerInput.onActionTriggered += OnMove;
-        //}
 
         /// <summary>
         ///  
@@ -99,9 +97,47 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        void Awake()
+        {
+            HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
+            HealthManager.HasDied += HealthManager_HasDied;
+            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged; 
+
+            Core = new PlayerControllerCore(this, HealthManager, InitSettings);
+        }
+
+
+        void Start()
+        {
+            if (InitSettings == null)
+            {
+                throw new NullReferenceException("InitSettings");
+            }
+        }
+
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            Debug.Log($"Collision detected with {col.gameObject.name}");
+            if (col.gameObject.tag == "Enemy")
+            {
+                var enemyController = col.gameObject.GetComponent<EnemyController>();
+                Core.HandleCollisionWithEnemy(enemyController.Core);
+            }
+        }
+
         void FixedUpdate()
         {
             Core.Move();
         }
+        private void HealthManager_HealthLevelChanged(int obj)
+        {
+        }
+
+        private void HealthManager_HasDied()
+        {
+            Debug.Log($"Destroying object {this.gameObject.name}");
+            Destroy(this.gameObject);
+        }
+
     }
 }
