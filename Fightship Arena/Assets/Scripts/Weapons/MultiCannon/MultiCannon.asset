@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponType: 0
   MagazineCapacity: 100
-  Ammo: 20
+  Ammo: 100
   RateOfFire: 5
