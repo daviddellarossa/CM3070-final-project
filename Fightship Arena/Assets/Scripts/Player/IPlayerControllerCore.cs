@@ -15,7 +15,6 @@ namespace FightShipArena.Assets.Scripts.Player
 
         void SetMovement(Vector2 movement);
         void Move();
-        void Fire();
         void StartFiring();
         void StopFiring();
         void FireAlt();

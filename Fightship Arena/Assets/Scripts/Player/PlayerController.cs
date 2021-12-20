@@ -14,7 +14,6 @@ namespace FightShipArena.Assets.Scripts.Player
 
         public IPlayerControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; protected set; }
-        //public List<GameObject> Weapons => weapons;
         public PlayerSettings InitSettings => initSettings;
 
 
@@ -57,14 +56,7 @@ namespace FightShipArena.Assets.Scripts.Player
             if (context.started)
             {
                 Debug.Log("OnFire started");
-                //Do an action
                 Core.StartFiring();
-            }
-            else if (context.performed)
-            {
-                Debug.Log("OnFire started");
-                //Do an action
-                Core.Fire();
             }
             else if (context.canceled)
             {

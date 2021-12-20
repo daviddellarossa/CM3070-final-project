@@ -2,6 +2,7 @@
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
@@ -11,6 +12,12 @@ namespace FightShipArena.Assets.Scripts.Player
         IPlayerControllerCore Core { get; set; }
         IHealthManager HealthManager { get; }
         WeaponBase[] Weapons { get; }
-        public PlayerSettings InitSettings { get; }
+        PlayerSettings InitSettings { get; }
+
+        void OnMove(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnFireAlt(InputAction.CallbackContext context);
+        void OnOpenSelectionMenu(InputAction.CallbackContext context);
+
     }
 }

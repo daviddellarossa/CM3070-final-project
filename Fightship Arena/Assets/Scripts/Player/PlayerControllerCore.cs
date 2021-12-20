@@ -14,7 +14,6 @@ namespace FightShipArena.Assets.Scripts.Player
     {
         public IPlayerController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
-        //public Rigidbody2D Rigidbody { get; protected set; }
         public PlayerSettings InitSettings { get; set; }
         public IHealthManager HealthManager { get; }
         public WeaponBase[] Weapons { get; }
@@ -46,11 +45,6 @@ namespace FightShipArena.Assets.Scripts.Player
         public void Move()
         {
             Transform.position += Movement;
-        }
-
-        public void Fire()
-        {
-            //CurrentWeapon.Fire();
         }
 
         public void StartFiring()
