@@ -19,7 +19,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
         {
             //arrange
             var gameObject = new GameObject();
-            var monoBehaviourMock = new Mock<IMyMonoBehaviour>();
+            var monoBehaviourMock = new Mock<IPlayerController>();
             monoBehaviourMock
                 .SetupGet(x => x.GameObject)
                 .Returns(gameObject);
@@ -30,7 +30,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
             var healthManager = healthManagerMock.Object;
 
             //act
-            var core = new PlayerControllerCore(monoBehaviour, healthManager, null);
+            var core = new PlayerControllerCore(monoBehaviour);
 
             //assert
             Assert.That(core.Parent, Is.SameAs(monoBehaviour));
@@ -44,7 +44,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
             var gameObject = new GameObject();
             gameObject.transform.position = Vector3.zero;
 
-            var monoBehaviourMock = new Mock<IMyMonoBehaviour>();
+            var monoBehaviourMock = new Mock<IPlayerController>();
             monoBehaviourMock
                 .SetupGet(x => x.GameObject)
                 .Returns(gameObject);
@@ -54,7 +54,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
             var healthManagerMock = new Mock<IHealthManager>();
             var healthManager = healthManagerMock.Object;
 
-            var core = new PlayerControllerCore(monoBehaviour, healthManager, null);
+            var core = new PlayerControllerCore(monoBehaviour);
 
             core.Movement = Vector3.one;
 

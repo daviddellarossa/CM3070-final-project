@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Player
@@ -12,6 +13,6 @@ namespace FightShipArena.Assets.Scripts.Player
     {
         public int InitHealth;
         public int DamageAppliedOnCollision;
-
+        public List<WeaponSettings> WeaponSettings;
     }
 }

@@ -19,6 +19,6 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         void Move();
         void HandleCollisionWithPlayer();
-
+        void HandleCollisionWithBullet();
     }
 }

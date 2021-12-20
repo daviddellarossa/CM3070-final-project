@@ -34,7 +34,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         public void Move()
         {
-            if(PlayerControllerCore == null) return;
+            if(PlayerControllerCore == null || PlayerControllerCore.Transform == null) return;
 
             var distance = PlayerControllerCore.Transform.position - this.Transform.position;
 
@@ -55,6 +55,11 @@ namespace FightShipArena.Assets.Scripts.Enemies
         }
 
         public void HandleCollisionWithPlayer()
+        {
+            HealthManager.Kill();
+        }
+
+        public void HandleCollisionWithBullet()
         {
             HealthManager.Kill();
         }
