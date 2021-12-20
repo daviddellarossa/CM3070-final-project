@@ -11,6 +11,8 @@ namespace FightShipArena.Assets.Scripts.Weapons
         public WeaponSettings InitSettings;
         public GameObject Bullet;
         private Coroutine _fireCoroutine;
+
+        public int Ammo;
         void Awake()
         {
             if (InitSettings == null)
@@ -30,6 +32,8 @@ namespace FightShipArena.Assets.Scripts.Weapons
                 throw new Exception(
                     $"Bullet of type {bulletScript.InitSettings.WeaponType.ToString()} not compatible with Weapon of type {WeaponType}");
             }
+            Ammo = InitSettings.Ammo;
+
         }
 
         public virtual void StartFiring()
@@ -53,10 +57,11 @@ namespace FightShipArena.Assets.Scripts.Weapons
 
             var delta = 1.0f / InitSettings.RateOfFire;
 
-            while (true)
+            while (Ammo > 0)
             {
                 var bulletGo = GameObject.Instantiate(this.Bullet, this.transform);
                 bulletGo.transform.parent = null;
+                Ammo--;
 
                 if (onlyOnce) yield break;
                 yield return new WaitForSeconds(delta);
