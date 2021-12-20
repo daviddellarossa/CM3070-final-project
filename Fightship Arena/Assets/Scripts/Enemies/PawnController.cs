@@ -50,9 +50,23 @@ namespace FightShipArena.Assets.Scripts.Enemies
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log($"Collision detected with {col.gameObject.name}");
-            if (col.gameObject.tag == "Player")
+            //if (col.gameObject.tag == "Player")
+            //{
+            //    Core.HandleCollisionWithPlayer();
+            //}
+
+            switch (col.gameObject.tag)
             {
-                Core.HandleCollisionWithPlayer();
+                case "Player":
+                {
+                    Core.HandleCollisionWithPlayer();
+                    break;
+                }
+                case "Bullet":
+                {
+                    //The collision is managed by the bullet
+                    break;
+                }
             }
         }
 

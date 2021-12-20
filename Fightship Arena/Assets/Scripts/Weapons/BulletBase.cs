@@ -10,5 +10,15 @@ namespace FightShipArena.Assets.Scripts.Weapons
     public abstract class BulletBase : MyMonoBehaviour
     {
         public BulletSettings InitSettings;
+        public bool IsDestroyed = false;
+
+        void Awake()
+        {
+            if (InitSettings == null)
+            {
+                throw new NullReferenceException("BulletSetting cannot be null");
+            }
+        }
+
     }
 }

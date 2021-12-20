@@ -6,7 +6,7 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public interface IPlayerControllerCore
     {
-        IMyMonoBehaviour Parent { get; }
+        IPlayerController Parent { get; }
         Transform Transform { get; }
         public IHealthManager HealthManager { get; }
         public PlayerSettings InitSettings { get; set; }
@@ -16,6 +16,8 @@ namespace FightShipArena.Assets.Scripts.Player
         void SetMovement(Vector2 movement);
         void Move();
         void Fire();
+        void StartFiring();
+        void StopFiring();
         void FireAlt();
         void OpenSelectionMenu();
 

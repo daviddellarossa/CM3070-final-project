@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a451a94910ec0f4bbd2819145dff849, type: 3}
   m_Name: MultiCannon
   m_EditorClassIdentifier: 
+  WeaponType: 0
+  MagazineCapacity: 100
+  Ammo: 100
+  RateOfFire: 5

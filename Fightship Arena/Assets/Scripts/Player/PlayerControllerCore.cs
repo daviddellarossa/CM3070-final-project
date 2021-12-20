@@ -5,28 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Enemies;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerControllerCore : IPlayerControllerCore
     {
-        public IMyMonoBehaviour Parent { get; protected set; }
+        public IPlayerController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
         //public Rigidbody2D Rigidbody { get; protected set; }
         public PlayerSettings InitSettings { get; set; }
         public IHealthManager HealthManager { get; }
+        public WeaponBase[] Weapons { get; }
         public Vector3 Movement { get; set; }
+        public bool IsFiring { get; set; }
+        public WeaponBase CurrentWeapon { get; set; }
 
-        public PlayerControllerCore(IMyMonoBehaviour parent, IHealthManager healthManager, PlayerSettings settings)
+        public PlayerControllerCore(IPlayerController parent/*, IHealthManager healthManager, PlayerSettings settings*/)
         {
             Parent = parent;
             Transform = parent.GameObject.transform;
             //Rigidbody = parent.GameObject.GetComponent<Rigidbody2D>();
-            HealthManager = healthManager;
+            HealthManager = parent.HealthManager;
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
-            InitSettings = settings;
+            InitSettings = parent.InitSettings;
+            Weapons = parent.Weapons.Select(x=>x.GetComponent<WeaponBase>()).ToArray();
+            CurrentWeapon = Weapons[0];
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
@@ -44,7 +50,17 @@ namespace FightShipArena.Assets.Scripts.Player
 
         public void Fire()
         {
-           
+            //CurrentWeapon.Fire();
+        }
+
+        public void StartFiring()
+        {
+            CurrentWeapon.StartFiring();
+        }
+
+        public void StopFiring()
+        {
+            CurrentWeapon.StopFiring();
         }
 
         public void FireAlt()

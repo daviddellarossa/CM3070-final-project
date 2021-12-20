@@ -1,19 +1,27 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using FightShipArena.Assets.Scripts.Enemies;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
-    public class PlayerController : MyMonoBehaviour
+    public class PlayerController : MyMonoBehaviour, IPlayerController
     {
 
         public IPlayerControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; protected set; }
+        //public List<GameObject> Weapons => weapons;
+        public PlayerSettings InitSettings => initSettings;
+
+
+        public WeaponBase[] Weapons { get; protected set; }
 
         [SerializeField]
-        private PlayerSettings InitSettings;
+        private PlayerSettings initSettings;
 
 
         /// <summary>
@@ -45,7 +53,14 @@ namespace FightShipArena.Assets.Scripts.Player
         /// <param name="context"></param>
         public void OnFire(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            
+            if (context.started)
+            {
+                Debug.Log("OnFire started");
+                //Do an action
+                Core.StartFiring();
+            }
+            else if (context.performed)
             {
                 Debug.Log("OnFire started");
                 //Do an action
@@ -54,7 +69,7 @@ namespace FightShipArena.Assets.Scripts.Player
             else if (context.canceled)
             {
                 Debug.Log("OnFire canceled");
-
+                Core.StopFiring();
             }
         }
 
@@ -98,20 +113,44 @@ namespace FightShipArena.Assets.Scripts.Player
 
         void Awake()
         {
-            HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
+            HealthManager = new HealthManager(initSettings.InitHealth, initSettings.InitHealth, false);
             HealthManager.HasDied += HealthManager_HasDied;
-            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged; 
+            HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
 
-            Core = new PlayerControllerCore(this, HealthManager, InitSettings);
+            CheckWeaponsConfiguration();
+
+            Core = new PlayerControllerCore(this);
         }
 
+        private void CheckWeaponsConfiguration()
+        {
+            Weapons = this.GameObject.GetComponentsInChildren<WeaponBase>();
+            foreach (var weapon in Weapons)
+            {
+                //Check if there is a new settings for the current weapon. If there is, assign.
+                var weaponSettings =
+                    initSettings.WeaponSettings.SingleOrDefault(x => x.WeaponType == weapon.WeaponType);
+                if (weaponSettings != null)
+                {
+                    weapon.InitSettings = weaponSettings;
+                }
+
+                //If the current weapon has no configuration, throw.
+                if (weapon.InitSettings == null)
+                {
+                    throw new Exception($"No settings for weapon {weapon.WeaponType}");
+                }
+            }
+        }
 
         void Start()
         {
-            if (InitSettings == null)
+            if (initSettings == null)
             {
                 throw new NullReferenceException("InitSettings");
             }
+
+
         }
 
         void OnCollisionEnter2D(Collision2D col)

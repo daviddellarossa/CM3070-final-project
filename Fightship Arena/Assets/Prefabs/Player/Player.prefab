@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e146e4676a8ab49b463115838f9464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSettings: {fileID: 11400000, guid: 7d3c1c0a8739f7d4c8daf78ae1105488, type: 2}
+  weapons: []
+  initSettings: {fileID: 0}
 --- !u!114 &420153996349222509
 MonoBehaviour:
   m_ObjectHideFlags: 0

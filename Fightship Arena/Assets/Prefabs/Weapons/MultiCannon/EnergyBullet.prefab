@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267893357580813493}
   - component: {fileID: 7073976009568255122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,9 +92,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2760934862295703564}
   - component: {fileID: 968700025736927390}
-  m_Layer: 0
+  - component: {fileID: -3249302182585380599}
+  m_Layer: 8
   m_Name: EnergyBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,3 +128,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitSettings: {fileID: 11400000, guid: 1043130faf54b0840b1c049b2dc04564, type: 2}
+--- !u!58 &-3249302182585380599
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7425401016712400766}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

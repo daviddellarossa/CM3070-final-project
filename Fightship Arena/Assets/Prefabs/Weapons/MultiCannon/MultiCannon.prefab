@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4331961327857491358}
   - component: {fileID: 6663516006945538587}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MultiCannon
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423022d76b48f644587493d4bdc29da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 0
   InitSettings: {fileID: 11400000, guid: 4fe04e83b5d7517459192bebab2acd2b, type: 2}
   Bullet: {fileID: 7425401016712400766, guid: 10219c3e4856b2843b47e327fc9f9704, type: 3}
