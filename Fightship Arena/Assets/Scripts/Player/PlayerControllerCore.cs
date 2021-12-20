@@ -32,6 +32,11 @@ namespace FightShipArena.Assets.Scripts.Player
         private void HealthManager_HealthLevelChanged(int obj) { }
         private void HealthManager_HasDied() { }
 
+        public void SetMovement(Vector2 movement)
+        {
+            Movement = new Vector3(movement.x, movement.y);
+        }
+
         public void Move()
         {
             Transform.position += Movement;

@@ -27,15 +27,14 @@ namespace FightShipArena.Assets.Scripts.Player
 
             if (context.performed)
             {
-                Core.Movement = new Vector3(inputVector.x, inputVector.y);
+                Core.SetMovement(inputVector);
                 Debug.Log($"Moving {Core.Movement}");
 
             }
             else if (context.canceled)
             {
                 Debug.Log("Not moving");
-                Core.Movement = new Vector3(inputVector.x, inputVector.y);
-
+                Core.SetMovement(inputVector);
             }
         }
 

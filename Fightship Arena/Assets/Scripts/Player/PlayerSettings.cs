@@ -12,6 +12,7 @@ namespace FightShipArena.Assets.Scripts.Player
     {
         public int InitHealth;
         public int DamageAppliedOnCollision;
+        public List<GameObject> Weapons;
 
     }
 }

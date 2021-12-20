@@ -389,20 +389,7 @@ MonoBehaviour:
     m_ActionId: c8b67a6c-a20e-4dd8-be3b-bb55d19275e9
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1455586405}
-        m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.EnemyManagement.EnemyManager,
-          FightShipArena
-        m_MethodName: SpawnPawnAtRandomLocation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: e445d392-53b8-4722-98e9-c281156f1111
     m_ActionName: Player/Fire[/Keyboard/j]
   - m_PersistentCalls:
@@ -436,7 +423,7 @@ MonoBehaviour:
     m_ActionName: Test/SpawnPawn[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 4ed0035d-3ec2-4b82-8280-c8a804875ae1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1455586405

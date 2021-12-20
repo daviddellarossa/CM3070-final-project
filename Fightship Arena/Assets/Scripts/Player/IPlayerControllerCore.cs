@@ -13,6 +13,7 @@ namespace FightShipArena.Assets.Scripts.Player
 
         Vector3 Movement { get; set; }
 
+        void SetMovement(Vector2 movement);
         void Move();
         void Fire();
         void FireAlt();
