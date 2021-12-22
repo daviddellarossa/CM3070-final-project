@@ -72,5 +72,10 @@ namespace FightShipArena.Assets.Scripts.Player
             var damage = enemyController.InitSettings.DamageAppliedOnCollision;
             HealthManager.Damage(damage);
         }
+
+        public void HandleCollisionWithPowerUp(PowerUps.PowerUpBase powerUp)
+        {
+
+        }
     }
 }

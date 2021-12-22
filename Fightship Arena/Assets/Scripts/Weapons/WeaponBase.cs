@@ -20,6 +20,12 @@ namespace FightShipArena.Assets.Scripts.Weapons
                 throw new NullReferenceException($"InitSettings cannot be null for Weapon {this.GetType().Name}");
             }
 
+            if (InitSettings.WeaponType != WeaponType)
+            {
+                throw new Exception(
+                    $"Weapon Settings of type {InitSettings.WeaponType.ToString()} not compatible with Weapon of type {WeaponType}");
+            }
+
             if (Bullet == null)
             {
                 throw new NullReferenceException($"Bullet cannot be null for Weapon {this.GetType().Name}");
