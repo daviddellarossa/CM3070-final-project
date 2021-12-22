@@ -9,6 +9,7 @@ namespace FightShipArena.Assets.Scripts.Weapons
 {
     public abstract class BulletBase : MyMonoBehaviour
     {
+        public WeaponType WeaponType;
         public BulletSettings InitSettings;
         public bool IsDestroyed = false;
 
@@ -18,7 +19,12 @@ namespace FightShipArena.Assets.Scripts.Weapons
             {
                 throw new NullReferenceException("BulletSetting cannot be null");
             }
-        }
 
+            if (InitSettings.WeaponType != WeaponType)
+            {
+                throw new Exception(
+                    $"Bullet Settings of type {InitSettings.WeaponType.ToString()} not compatible with Bullet of type {WeaponType}");
+            }
+        }
     }
 }

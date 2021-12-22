@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.092648709"
-     inkscape:cx="-3216.4506"
-     inkscape:cy="-917.44397"
+     inkscape:zoom="0.18529742"
+     inkscape:cx="-269.83646"
+     inkscape:cy="1797.1108"
      inkscape:window-width="1920"
      inkscape:window-height="1018"
      inkscape:window-x="-6"
@@ -64,7 +64,10 @@
        ry="56.063972" />
     <g
        id="g30741"
-       transform="translate(297.85173,-243.32972)">
+       transform="translate(297.85173,-243.32972)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\energy_charger.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#00ff00;fill-opacity:0;stroke:#00ff00;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse18046"
@@ -87,7 +90,10 @@
     </g>
     <g
        id="g34502"
-       transform="translate(289.7744,-237.27172)">
+       transform="translate(289.7744,-237.27172)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\score_multiplier.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#00ffff;fill-opacity:0;stroke:#00ffff;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse20911"
@@ -110,7 +116,10 @@
     </g>
     <g
        id="g34532"
-       transform="translate(604.79047,91.879687)">
+       transform="translate(604.79047,91.879687)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\plasma_beam_charger.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#ff6600;fill-opacity:0;stroke:#2a7fff;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse22444"
@@ -139,7 +148,10 @@
     </g>
     <g
        id="g34510"
-       transform="translate(609.8388,87.84102)">
+       transform="translate(609.8388,87.84102)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\fire-flow_charger.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#ff6600;fill-opacity:0;stroke:#ff6600;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse34504"
@@ -156,7 +168,10 @@
     </g>
     <g
        id="g35528"
-       transform="translate(702.72816,476.56277)">
+       transform="translate(702.72816,476.56277)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\protective_shield_charger.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#ff6600;fill-opacity:0;stroke:#d42aff;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse35522"
@@ -172,7 +187,10 @@
     </g>
     <g
        id="g48122"
-       transform="translate(222.75,459.77885)">
+       transform="translate(222.75,459.77885)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\rocket_ammo.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#ff6600;fill-opacity:0;stroke:#ff0000;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse48110"
@@ -217,7 +235,10 @@
     </g>
     <g
        id="g49615"
-       transform="translate(496.1899,778.91106)">
+       transform="translate(496.1899,778.91106)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\serious_bomb.png"
+       inkscape:export-xdpi="9.5154877"
+       inkscape:export-ydpi="9.5154877">
       <ellipse
          style="fill:#ff6600;fill-opacity:0;stroke:#ffff00;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
          id="ellipse49600"

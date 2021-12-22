@@ -59,9 +59,9 @@ namespace FightShipArena.Assets.Scripts.Enemies
             HealthManager.Kill();
         }
 
-        public void HandleCollisionWithBullet()
-        {
-            HealthManager.Kill();
-        }
+        //public void HandleCollisionWithBullet()
+        //{
+        //    HealthManager.Kill();
+        //}
     }
 }
