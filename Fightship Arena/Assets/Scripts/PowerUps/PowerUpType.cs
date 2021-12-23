@@ -8,6 +8,7 @@ namespace FightShipArena.Assets.Scripts.PowerUps
 {
     public enum PowerUpType
     {
-        EnergyCharger
+        EnergyCharger,
+        ScoreMultiplier
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
 {
@@ -29,6 +30,7 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
         public void AddMultiplier(int multiplier)
         {
             Multiplier += multiplier;
+            Debug.Log($"Multiplier set to {Multiplier}");
         }
 
         public void ResetMultiplier()

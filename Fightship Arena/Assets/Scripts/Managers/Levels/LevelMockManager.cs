@@ -42,8 +42,15 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
                 throw new NullReferenceException("Player object not found");
             }
 
-            this.PlayerControllerCore = player.GetComponent<IPlayerControllerCore>();
+            this.PlayerControllerCore = player.GetComponent<IPlayerController>().Core;
+            this.PlayerControllerCore.ScoreMultiplierCollected += PlayerControllerCore_ScoreMultiplierCollected;
+
             Core.OnStart();
+        }
+
+        private void PlayerControllerCore_ScoreMultiplierCollected(int value)
+        {
+            ScoreManager.AddMultiplier(value);
         }
 
         public void OnAwake()
