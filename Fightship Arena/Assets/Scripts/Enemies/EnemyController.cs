@@ -16,8 +16,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
             {
                 return;
             }
+
             var value = (UnityEngine.Random.value * InitSettings.Powerups.Count) % InitSettings.Powerups.Count;
             var index = Mathf.FloorToInt(value);
+
             var selectedPowerUp = InitSettings.Powerups[index];
             if (selectedPowerUp.ReleaseRate < value - index)
             {

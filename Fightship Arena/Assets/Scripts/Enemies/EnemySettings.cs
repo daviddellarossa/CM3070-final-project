@@ -21,5 +21,6 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public bool InvulnerableAtStart;
         public float InvulnerableAtStartForSeconds;
         public List<EnemyPowerUp> Powerups;
+        public int PlayerScoreWhenKilled;
     }
 }

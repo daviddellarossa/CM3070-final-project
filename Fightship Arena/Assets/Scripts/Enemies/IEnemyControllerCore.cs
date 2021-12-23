@@ -11,6 +11,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
 {
     public interface IEnemyControllerCore
     {
+        event Action<IEnemyControllerCore> HasDied;
+
         IPlayerControllerCore PlayerControllerCore { get; set; }
         IMyMonoBehaviour Parent { get; }
         Transform Transform { get; } 
@@ -19,6 +21,5 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         void Move();
         void HandleCollisionWithPlayer();
-        //void HandleCollisionWithBullet();
     }
 }
