@@ -16,8 +16,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
         public ILevelMockManagerCore Core { get; protected set; }
-        public IScoreManager ScoreManager { get; set; }
-
         private PlayerInput _playerInput;
 
         void Awake()

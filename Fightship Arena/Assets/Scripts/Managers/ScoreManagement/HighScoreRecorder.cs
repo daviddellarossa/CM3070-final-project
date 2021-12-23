@@ -6,7 +6,7 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
 {
     [CreateAssetMenu(fileName = "High score", menuName = "Score/High Score")]
 
-    public class HighScoreSettings : ScriptableObject
+    public class HighScoreRecorder : ScriptableObject
     {
         public List<Score> HighScores;
 

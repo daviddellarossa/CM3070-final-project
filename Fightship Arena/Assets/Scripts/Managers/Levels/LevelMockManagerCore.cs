@@ -60,10 +60,4 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             _playerInput.enabled = true;
         }
     }
-
-    //public class LevelMockManagerCoreMock : LevelMockManagerCore
-    //{
-    //    public LevelMockManagerCoreMock(ILevelMockManager parent) : base(parent) { }
-
-    //}
 }

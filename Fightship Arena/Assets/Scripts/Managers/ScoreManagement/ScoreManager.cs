@@ -7,7 +7,7 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
     public class ScoreManager : MyMonoBehaviour, IScoreManager
     {
         public Score CurrentScore;
-        public HighScoreSettings HighScores;
+        public HighScoreRecorder HighScores;
         public int Multiplier = 1;
 
         void Start()
