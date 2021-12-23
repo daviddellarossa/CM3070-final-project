@@ -15,7 +15,7 @@ namespace FightShipArena.Assets.Scripts.PowerUps.EnergyCharger
             Debug.Log("Collision Power-up-Player");
             var playerGo = collision.gameObject;
             var playerController = playerGo.GetComponent<PlayerController>();
-            playerController.HealthManager.Heal((int)InitSettings.Value);
+            playerController.Core.HealthManager.Heal((int)InitSettings.Value);
             GameObject.Destroy(this.GameObject);
         }
 

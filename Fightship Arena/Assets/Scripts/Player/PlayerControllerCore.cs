@@ -12,6 +12,8 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerControllerCore : IPlayerControllerCore
     {
+        public event Action<int> ScoreMultiplierCollected;
+
         public IPlayerController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
         public PlayerSettings InitSettings { get; set; }
@@ -74,6 +76,11 @@ namespace FightShipArena.Assets.Scripts.Player
         {
             var damage = enemyController.InitSettings.DamageAppliedOnCollision;
             HealthManager.Damage(damage);
+        }
+
+        public void AddMultiplier(int multiplier)
+        {
+            ScoreMultiplierCollected?.Invoke(multiplier);
         }
 
         public void HandleCollisionWithPowerUp(PowerUps.PowerUpBase powerUp)

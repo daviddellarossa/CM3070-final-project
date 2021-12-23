@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public class LevelMockManagerCore : ILevelMockManager
+    public class LevelMockManagerCore : ILevelMockManagerCore
     {
-        public readonly IMyMonoBehaviour Parent;
+        public readonly ILevelMockManager Parent;
+        public IPlayerControllerCore PlayerControllerCore { get; set; }
 
         protected PlayerInput _playerInput;
 
-        public LevelMockManagerCore(IMyMonoBehaviour parent)
+        public LevelMockManagerCore(ILevelMockManager parent)
         {
             Parent = parent;
+
         }
 
         public void OnStart()
         {
+            this.PlayerControllerCore = Parent.PlayerControllerCore;
             Debug.Log($"Level started");
-
         }
 
         public void OnAwake() 
@@ -58,9 +61,9 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         }
     }
 
-    public class LevelMockManagerCoreMock : LevelMockManagerCore
-    {
-        public LevelMockManagerCoreMock(IMyMonoBehaviour parent) : base(parent) { }
+    //public class LevelMockManagerCoreMock : LevelMockManagerCore
+    //{
+    //    public LevelMockManagerCoreMock(ILevelMockManager parent) : base(parent) { }
 
-    }
+    //}
 }
