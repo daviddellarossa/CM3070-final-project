@@ -21,11 +21,10 @@ namespace FightShipArena.Assets.Scripts.Player
         public bool IsFiring { get; set; }
         public WeaponBase CurrentWeapon { get; set; }
 
-        public PlayerControllerCore(IPlayerController parent/*, IHealthManager healthManager, PlayerSettings settings*/)
+        public PlayerControllerCore(IPlayerController parent)
         {
             Parent = parent;
             Transform = parent.GameObject.transform;
-            //Rigidbody = parent.GameObject.GetComponent<Rigidbody2D>();
             HealthManager = parent.HealthManager;
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
@@ -35,7 +34,11 @@ namespace FightShipArena.Assets.Scripts.Player
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
-        private void HealthManager_HasDied() { }
+
+        private void HealthManager_HasDied()
+        {
+
+        }
 
         public void SetMovement(Vector2 movement)
         {

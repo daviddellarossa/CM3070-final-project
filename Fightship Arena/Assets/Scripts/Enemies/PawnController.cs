@@ -20,6 +20,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
         {
             Debug.Log($"Destroying object {this.gameObject.name}");
             GameObject.Destroy(this.gameObject);
+            ReleasePowerUp();
         }
 
         void Awake()
