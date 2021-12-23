@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 1455586404}
   - component: {fileID: 1455586403}
   - component: {fileID: 1455586405}
+  - component: {fileID: 1455586406}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: SceneManager
@@ -435,7 +436,7 @@ MonoBehaviour:
     m_ActionName: Test/SpawnPawn[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 4ed0035d-3ec2-4b82-8280-c8a804875ae1
+  m_DefaultActionMap: Test
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1455586405
@@ -451,3 +452,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PawnGO: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
+--- !u!114 &1455586406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455586401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a306d30249ad841b069e93c653ffc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentScore:
+    Value: 0
+    Name: 
+    Date: 
+  HighScores: {fileID: 11400000, guid: 652c9bcc6b14fe54887174de9a619460, type: 2}
+  Multiplier: 1

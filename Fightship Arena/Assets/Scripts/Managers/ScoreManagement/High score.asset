@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdf853491e1f2443bc385fccb545524, type: 3}
-  m_Name: EnergyCharger
+  m_Script: {fileID: 11500000, guid: 7cac6e619f6d34a4aa1fb5d28d56731c, type: 3}
+  m_Name: High score
   m_EditorClassIdentifier: 
-  PowerUpType: 0
-  Value: 10
-  Duration: 5

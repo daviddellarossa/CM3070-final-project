@@ -11,17 +11,14 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerController : MyMonoBehaviour, IPlayerController
     {
-
         public IPlayerControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; protected set; }
         public PlayerSettings InitSettings => initSettings;
-
 
         public WeaponBase[] Weapons { get; protected set; }
 
         [SerializeField]
         private PlayerSettings initSettings;
-
 
         /// <summary>
         ///  

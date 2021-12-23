@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.PowerUps.EnergyCharger
+namespace FightShipArena.Assets.Scripts.PowerUps.ScoreMultiplier
 {
-    public class EnergyCharger : PowerUpBase
+    public class ScoreMultiplier : PowerUpBase
     {
         void OnTriggerEnter2D(UnityEngine.Collider2D collision)
         {
             var playerGo = collision.gameObject;
             var playerController = playerGo.GetComponent<PlayerController>();
-            playerController.Core.HealthManager.Heal((int)InitSettings.Value);
+            playerController.Core.AddMultiplier((int)InitSettings.Value);
             GameObject.Destroy(this.GameObject);
         }
-
     }
 }

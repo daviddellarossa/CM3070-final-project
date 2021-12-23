@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cdf853491e1f2443bc385fccb545524, type: 3}
-  m_Name: EnergyCharger
+  m_Name: ScoreMultiplier
   m_EditorClassIdentifier: 
-  PowerUpType: 0
-  Value: 10
+  PowerUpType: 1
+  Value: 1
   Duration: 5

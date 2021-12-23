@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
+using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
+using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -13,13 +15,14 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     [RequireComponent(typeof(EnemyManagement.EnemyManager))]
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
-        public ILevelMockManager Core { get; protected set; }
-
+        public ILevelMockManagerCore Core { get; protected set; }
         private PlayerInput _playerInput;
 
         void Awake()
         {
+            ScoreManager = GameObject.GetComponent<IScoreManager>();
             Core = new LevelMockManagerCore(this);
+
             OnAwake();
         }
 
@@ -31,7 +34,21 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         public void OnStart()
         {
+            var player = GameObject.FindWithTag("Player");
+            if (player == null)
+            {
+                throw new NullReferenceException("Player object not found");
+            }
+
+            this.PlayerControllerCore = player.GetComponent<IPlayerController>().Core;
+            this.PlayerControllerCore.ScoreMultiplierCollected += PlayerControllerCore_ScoreMultiplierCollected;
+
             Core.OnStart();
+        }
+
+        private void PlayerControllerCore_ScoreMultiplierCollected(int value)
+        {
+            ScoreManager.AddMultiplier(value);
         }
 
         public void OnAwake()
