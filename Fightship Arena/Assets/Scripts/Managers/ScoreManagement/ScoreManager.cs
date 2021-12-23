@@ -24,7 +24,9 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
 
         public void AddToScore(int score)
         {
-            CurrentScore.Value += score * Multiplier;
+            var totScore = score * Multiplier;
+            CurrentScore.Value += totScore;
+            Debug.Log($"Adding score {totScore}");
         }
 
         public void AddMultiplier(int multiplier)

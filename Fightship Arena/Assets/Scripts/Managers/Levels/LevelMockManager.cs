@@ -21,9 +21,16 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         void Awake()
         {
             ScoreManager = GameObject.GetComponent<IScoreManager>();
+            EnemyManager = GameObject.GetComponent<IEnemyManager>();
+            EnemyManager.SendScore += EnemyManagerSendScore;
             Core = new LevelMockManagerCore(this);
 
             OnAwake();
+        }
+
+        private void EnemyManagerSendScore(int value)
+        {
+            ScoreManager.AddToScore(value);
         }
 
         void Start()

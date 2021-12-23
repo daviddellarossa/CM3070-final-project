@@ -11,6 +11,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
 {
     public class PawnControllerCore : IEnemyControllerCore
     {
+        public event Action<IEnemyControllerCore> HasDied;
+
         public IPlayerControllerCore PlayerControllerCore { get; set; }
         public IMyMonoBehaviour Parent { get; protected set; }
         public Transform Transform { get; protected set; }
@@ -30,7 +32,11 @@ namespace FightShipArena.Assets.Scripts.Enemies
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
-        private void HealthManager_HasDied() { }
+
+        private void HealthManager_HasDied()
+        {
+            HasDied?.Invoke(this);
+        }
 
         public void Move()
         {
