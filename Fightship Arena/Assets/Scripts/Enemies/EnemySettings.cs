@@ -20,10 +20,6 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public int DamageAppliedOnCollision;
         public bool InvulnerableAtStart;
         public float InvulnerableAtStartForSeconds;
-    }
-
-    public enum EnemyType
-    {
-        Pawn
+        public List<EnemyPowerUp> Powerups;
     }
 }
