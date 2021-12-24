@@ -13,6 +13,11 @@ namespace FightShipArena.Assets.Scripts.Player
     {
         public int InitHealth;
         public int DamageAppliedOnCollision;
+        [Range(0, 10)]
+        public float MaxSpeed;
+        [Range(0, 1)]
+        public float Deceleration;
+        public float ForceMultiplier;
         public List<WeaponSettings> WeaponSettings;
     }
 }

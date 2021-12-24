@@ -10,10 +10,11 @@ namespace FightShipArena.Assets.Scripts.Player
 
         IPlayerController Parent { get; }
         Transform Transform { get; }
+        Rigidbody2D RigidBody { get; }
         public IHealthManager HealthManager { get; }
         public PlayerSettings InitSettings { get; set; }
-        Vector3 Movement { get; set; }
-        void SetMovement(Vector2 movement);
+        Vector2 PlayerInput { get; set; }
+        void SetPlayerInput(Vector2 playerInput);
         void Move();
         void StartFiring();
         void StopFiring();

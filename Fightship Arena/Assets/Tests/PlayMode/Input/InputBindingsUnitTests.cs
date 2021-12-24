@@ -49,49 +49,49 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
         [UnityTest]
         public IEnumerator Key_W_assigns_movement_to_Core()
         {
-            //arrange
+            ////arrange
             yield return new WaitWhile(() => sceneLoaded == false);
+            Assert.Fail("Needs review");
+            //InputTestFixture input = new InputTestFixture();
 
-            InputTestFixture input = new InputTestFixture();
+            //var keyboard = ResetAndReturnKeyboard();
 
-            var keyboard = ResetAndReturnKeyboard();
+            //var player = GameObject.FindGameObjectWithTag("Player");
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+            //var playerController = player.GetComponent<PlayerController>();
 
-            var playerController = player.GetComponent<PlayerController>();
+            //var playerInput = player.GetComponent<PlayerInput>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
+            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+            //var playerActionAsset = new PlayerActionAsset();
 
-            //WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            var playerActionAsset = new PlayerActionAsset();
+            //var processor = playerActionAsset.Player.Move.processors;
 
-            var processor = playerActionAsset.Player.Move.processors;
+            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+            //var match = Regex.Match(processor, regex);
 
-            var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            var match = Regex.Match(processor, regex);
+            //var value = float.Parse(match.Groups[1].Value);
+            ////-------------------------------------------------------------------------------
 
-            var value = float.Parse(match.Groups[1].Value);
-            //-------------------------------------------------------------------------------
+            //Vector3 firstValue = new Vector3(0f, value, 0f);
+            //var secondValue = Vector3.zero;
 
-            Vector3 firstValue = new Vector3(0f, value, 0f);
-            var secondValue = Vector3.zero;
+            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
-
-            playerControllerCoreMock.SetupProperty(x => x.Movement, firstValue);
-            playerControllerCoreMock.SetupProperty(x => x.Movement, Vector3.zero);
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
 
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+            //var playerControllerCore = playerControllerCoreMock.Object;
+            //playerController.Core = playerControllerCore;
 
-            //act
-            input.Press((ButtonControl)keyboard["w"]);
+            ////act
+            //input.Press((ButtonControl)keyboard["w"]);
 
-            yield return null;
+            //yield return null;
 
-            //assert
-            playerControllerCoreMock.VerifyAll();
+            ////assert
+            //playerControllerCoreMock.VerifyAll();
 
         }
 
@@ -100,48 +100,49 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
         {
             //arrange
             yield return new WaitWhile(() => sceneLoaded == false);
+            Assert.Fail("Needs review");
 
-            InputTestFixture input = new InputTestFixture();
+            //InputTestFixture input = new InputTestFixture();
 
-            var keyboard = ResetAndReturnKeyboard();
+            //var keyboard = ResetAndReturnKeyboard();
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+            //var player = GameObject.FindGameObjectWithTag("Player");
 
-            var playerController = player.GetComponent<PlayerController>();
+            //var playerController = player.GetComponent<PlayerController>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
-
-
-            //WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            var playerActionAsset = new PlayerActionAsset();
-
-            var processor = playerActionAsset.Player.Move.processors;
-
-            var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            var match = Regex.Match(processor, regex);
-
-            var value = float.Parse(match.Groups[1].Value);
-            //-------------------------------------------------------------------------------
-
-            Vector3 firstValue = new Vector3(-value, 0f, 0f);
-            var secondValue = Vector3.zero;
-
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
-
-            playerControllerCoreMock.SetupProperty(x => x.Movement, firstValue);
-            playerControllerCoreMock.SetupProperty(x => x.Movement, Vector3.zero);
+            //var playerInput = player.GetComponent<PlayerInput>();
 
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+            //var playerActionAsset = new PlayerActionAsset();
 
-            //act
-            input.Press((ButtonControl)keyboard["a"]);
+            //var processor = playerActionAsset.Player.Move.processors;
 
-            yield return null;
+            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+            //var match = Regex.Match(processor, regex);
 
-            //assert
-            playerControllerCoreMock.VerifyAll();
+            //var value = float.Parse(match.Groups[1].Value);
+            ////-------------------------------------------------------------------------------
+
+            //Vector3 firstValue = new Vector3(-value, 0f, 0f);
+            //var secondValue = Vector3.zero;
+
+            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+
+
+            //var playerControllerCore = playerControllerCoreMock.Object;
+            //playerController.Core = playerControllerCore;
+
+            ////act
+            //input.Press((ButtonControl)keyboard["a"]);
+
+            //yield return null;
+
+            ////assert
+            //playerControllerCoreMock.VerifyAll();
 
         }
 
@@ -150,48 +151,49 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
         {
             //arrange
             yield return new WaitWhile(() => sceneLoaded == false);
+            Assert.Fail("Needs review");
 
-            InputTestFixture input = new InputTestFixture();
+            //InputTestFixture input = new InputTestFixture();
 
-            var keyboard = ResetAndReturnKeyboard();
+            //var keyboard = ResetAndReturnKeyboard();
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+            //var player = GameObject.FindGameObjectWithTag("Player");
 
-            var playerController = player.GetComponent<PlayerController>();
+            //var playerController = player.GetComponent<PlayerController>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
-
-
-            //WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            var playerActionAsset = new PlayerActionAsset();
-
-            var processor = playerActionAsset.Player.Move.processors;
-
-            var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            var match = Regex.Match(processor, regex);
-
-            var value = float.Parse(match.Groups[1].Value);
-            //-------------------------------------------------------------------------------
-
-            Vector3 firstValue = new Vector3(0f, -value, 0f);
-            var secondValue = Vector3.zero;
-
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
-
-            playerControllerCoreMock.SetupProperty(x => x.Movement, firstValue);
-            playerControllerCoreMock.SetupProperty(x => x.Movement, Vector3.zero);
+            //var playerInput = player.GetComponent<PlayerInput>();
 
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+            //var playerActionAsset = new PlayerActionAsset();
 
-            //act
-            input.Press((ButtonControl)keyboard["s"]);
+            //var processor = playerActionAsset.Player.Move.processors;
 
-            yield return null;
+            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+            //var match = Regex.Match(processor, regex);
 
-            //assert
-            playerControllerCoreMock.VerifyAll();
+            //var value = float.Parse(match.Groups[1].Value);
+            ////-------------------------------------------------------------------------------
+
+            //Vector3 firstValue = new Vector3(0f, -value, 0f);
+            //var secondValue = Vector3.zero;
+
+            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+
+
+            //var playerControllerCore = playerControllerCoreMock.Object;
+            //playerController.Core = playerControllerCore;
+
+            ////act
+            //input.Press((ButtonControl)keyboard["s"]);
+
+            //yield return null;
+
+            ////assert
+            //playerControllerCoreMock.VerifyAll();
 
         }
 
@@ -200,48 +202,49 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
         {
             //arrange
             yield return new WaitWhile(() => sceneLoaded == false);
+            Assert.Fail("Needs review");
 
-            InputTestFixture input = new InputTestFixture();
+            //InputTestFixture input = new InputTestFixture();
 
-            var keyboard = ResetAndReturnKeyboard();
+            //var keyboard = ResetAndReturnKeyboard();
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+            //var player = GameObject.FindGameObjectWithTag("Player");
 
-            var playerController = player.GetComponent<PlayerController>();
+            //var playerController = player.GetComponent<PlayerController>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
-
-
-            //WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            var playerActionAsset = new PlayerActionAsset();
-
-            var processor = playerActionAsset.Player.Move.processors;
-
-            var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            var match = Regex.Match(processor, regex);
-
-            var value = float.Parse(match.Groups[1].Value);
-            //-------------------------------------------------------------------------------
-
-            Vector3 firstValue = new Vector3(-value, 0f, 0f);
-            var secondValue = Vector3.zero;
-
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
-
-            playerControllerCoreMock.SetupProperty(x => x.Movement, firstValue);
-            playerControllerCoreMock.SetupProperty(x => x.Movement, Vector3.zero);
+            //var playerInput = player.GetComponent<PlayerInput>();
 
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+            //var playerActionAsset = new PlayerActionAsset();
 
-            //act
-            input.Press((ButtonControl)keyboard["d"]);
+            //var processor = playerActionAsset.Player.Move.processors;
 
-            yield return null;
+            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+            //var match = Regex.Match(processor, regex);
 
-            //assert
-            playerControllerCoreMock.VerifyAll();
+            //var value = float.Parse(match.Groups[1].Value);
+            ////-------------------------------------------------------------------------------
+
+            //Vector3 firstValue = new Vector3(-value, 0f, 0f);
+            //var secondValue = Vector3.zero;
+
+            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+
+
+            //var playerControllerCore = playerControllerCoreMock.Object;
+            //playerController.Core = playerControllerCore;
+
+            ////act
+            //input.Press((ButtonControl)keyboard["d"]);
+
+            //yield return null;
+
+            ////assert
+            //playerControllerCoreMock.VerifyAll();
         }
 
         [UnityTest, Ignore("Needs review after refactoring")]
