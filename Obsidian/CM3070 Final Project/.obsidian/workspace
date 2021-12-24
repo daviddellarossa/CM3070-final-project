@@ -20,8 +20,11 @@
         "type": "leaf",
         "dimension": 84.48275862068965,
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "Game mechanics sub/Power-ups.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -32,17 +35,9 @@
     "type": "split",
     "children": [
       {
-        "id": "0caef5f00c2dead8",
+        "id": "01010c64a960d461",
         "type": "tabs",
         "children": [
-          {
-            "id": "d6ea716b5da7ea0f",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {}
-            }
-          },
           {
             "id": "57fc1cf658c2391f",
             "type": "leaf",
@@ -56,6 +51,20 @@
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
+            }
+          }
+        ]
+      },
+      {
+        "id": "0caef5f00c2dead8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d6ea716b5da7ea0f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
             }
           }
         ]
@@ -78,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Game mechanics sub/Power-ups.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,15 +107,15 @@
   },
   "active": "33300e8f84ce6685",
   "lastOpenFiles": [
-    "GDD.md",
-    "Home.md",
-    "Game mechanics sub/Weapons and enhancements.md",
-    "Game mechanics sub/Multi-cannon.md",
-    "Gameplay sub/Highlander mode.md",
-    "Game mechanics sub/Fire-flow charger.md",
     "Game mechanics sub/Power-ups.md",
-    "Game mechanics sub/Score multiplier.md",
-    "Game mechanics sub/Serious bomb ammunition.md",
-    "Game mechanics sub/Protective shield charger.md"
+    "Game mechanics sub/Player's fightship control.md",
+    "Game mechanics sub/Player interaction pattern.md",
+    "Interface sub/Audio, music, sound effects.md",
+    "Interface sub/Camera model.md",
+    "Interface sub/Control system.md",
+    "Interface sub/Game art.md",
+    "Interface sub/Help system.md",
+    "Interface sub/HUD.md",
+    "Interface sub/Menu.md"
   ]
 }
