@@ -26,6 +26,7 @@ namespace FightShipArena.Assets.Scripts.Weapons.MultiCannon
                 var enemy = col.gameObject.GetComponent<EnemyController>();
                 enemy.HealthManager.Damage(InitSettings.Damage);
             }
+
             IsDestroyed = true;
             GameObject.Destroy(this.GameObject);
         }

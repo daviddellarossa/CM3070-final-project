@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - PowerUp
   - ScoreManager
+  - Layout
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Player
   - Bullets
   - PowerUps
-  - 
+  - Layout
   - 
   - 
   - 

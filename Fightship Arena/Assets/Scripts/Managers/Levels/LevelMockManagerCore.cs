@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,7 +26,15 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         public void OnStart()
         {
             this.PlayerControllerCore = Parent.PlayerControllerCore;
+            this.PlayerControllerCore.HealthManager.HasDied += PlayerHasDied;
             Debug.Log($"Level started");
+            this.Parent.EnemyManager.StartSpawing();
+        }
+
+        private void PlayerHasDied()
+        {
+            this.Parent.EnemyManager.StopSpawning();
+            //Change LevelManager state to GameOver
         }
 
         public void OnAwake() 

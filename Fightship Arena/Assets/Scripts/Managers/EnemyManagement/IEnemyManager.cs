@@ -11,6 +11,9 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
         event Action<int> SendScore;
 
         List<IEnemyControllerCore> Enemies { get; set; }
-        void SpawnPawnAtRandomLocation(InputAction.CallbackContext context);
+        void SpawnPawnAtPlayerCommand(InputAction.CallbackContext context);
+
+        void StartSpawing();
+        void StopSpawning();
     }
 }
