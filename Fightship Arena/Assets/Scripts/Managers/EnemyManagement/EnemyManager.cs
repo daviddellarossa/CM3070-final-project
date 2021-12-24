@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,35 +13,73 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
 {
     public class EnemyManager : MyMonoBehaviour, IEnemyManager
     {
+        private Coroutine _spawningCoroutine;
         public event Action<int> SendScore;
 
         public GameObject PawnGO;
+
+        public List<GameObject> SpawnPoints;
 
         public List<IEnemyControllerCore> Enemies { get; set; }
 
         void Awake()
         {
             Enemies = new List<IEnemyControllerCore>();
+            SpawnPoints.AddRange(GameObject.FindGameObjectsWithTag("SpawnPoint"));
         }
-        public void SpawnPawnAtRandomLocation(InputAction.CallbackContext context)
+
+        void Start()
+        {
+
+        }
+
+        public void StartSpawing()
+        {
+            if (_spawningCoroutine != null)
+            {
+                return;
+            }
+
+            _spawningCoroutine = StartCoroutine(StartSpawningAtTimeInterval());
+        }
+        public void StopSpawning()
+        {
+            if (_spawningCoroutine != null)
+            {
+                StopCoroutine(_spawningCoroutine);
+                _spawningCoroutine = null;
+            }
+        }
+        private IEnumerator StartSpawningAtTimeInterval()
+        {
+            yield return new WaitForSeconds(2.0f);
+
+            while (true)
+            {
+                SpawnPawnAtRandomSpawnPoint();
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
+        private void SpawnPawnAtRandomSpawnPoint()
+        {
+            var rndIndex = UnityEngine.Random.Range(0, SpawnPoints.Count);
+
+            var spawnPoint = SpawnPoints[rndIndex];
+
+            var newParticle = Instantiate(PawnGO, spawnPoint.transform.position, Quaternion.identity);
+            var newParticleCore = newParticle.GetComponent<EnemyController>().Core;
+
+            newParticleCore.HasDied += EnemyKilled;
+
+            Enemies.Add(newParticleCore);
+        }
+        public void SpawnPawnAtPlayerCommand(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                var cam = GameObject.FindObjectOfType<Camera>();
-
-                Vector3 randomSpawnPosition = GetRandomSpawnPoint(cam.pixelRect, -cam.transform.position.z);
-
-                var point = cam.ScreenToWorldPoint(randomSpawnPosition);
-
-                var newParticle = Instantiate(PawnGO, point, Quaternion.identity);
-                var newParticleCore = newParticle.GetComponent<EnemyController>().Core;
-
-                newParticleCore.HasDied += EnemyKilled;
-
-                Enemies.Add(newParticleCore);
+                SpawnPawnAtRandomSpawnPoint();
             }
         }
-
         private void EnemyKilled(IEnemyControllerCore obj)
         {
             SendScore?.Invoke(obj.InitSettings.PlayerScoreWhenKilled);
@@ -53,14 +92,5 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
 
         }
 
-        private Vector3 GetRandomSpawnPoint(Rect box, float z)
-        {
-            var point = new Vector3(
-                UnityEngine.Random.value * box.width,
-                UnityEngine.Random.value * box.height,
-                z
-            );
-            return point;
-        }
     }
 }
