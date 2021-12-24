@@ -56,7 +56,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Player
 
             var core = new PlayerControllerCore(monoBehaviour);
 
-            core.Movement = Vector3.one;
+            core.PlayerInput = Vector3.one;
 
             //act
             core.Move();

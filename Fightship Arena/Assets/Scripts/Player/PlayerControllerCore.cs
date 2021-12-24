@@ -16,17 +16,18 @@ namespace FightShipArena.Assets.Scripts.Player
 
         public IPlayerController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
+        public Rigidbody2D RigidBody { get; protected set; }
         public PlayerSettings InitSettings { get; set; }
         public IHealthManager HealthManager { get; }
         public WeaponBase[] Weapons { get; }
-        public Vector3 Movement { get; set; }
-        public bool IsFiring { get; set; }
+        public Vector2 PlayerInput { get; set; }
         public WeaponBase CurrentWeapon { get; set; }
 
         public PlayerControllerCore(IPlayerController parent)
         {
             Parent = parent;
             Transform = parent.GameObject.transform;
+            RigidBody = parent.GameObject.GetComponent<Rigidbody2D>();
             HealthManager = parent.HealthManager;
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
@@ -42,14 +43,27 @@ namespace FightShipArena.Assets.Scripts.Player
 
         }
 
-        public void SetMovement(Vector2 movement)
+        public void SetPlayerInput(Vector2 playerInput)
         {
-            Movement = new Vector3(movement.x, movement.y);
+            PlayerInput = playerInput;
         }
 
         public void Move()
         {
-            Transform.position += Movement;
+            RigidBody.AddForce(PlayerInput * InitSettings.ForceMultiplier, ForceMode2D.Impulse);
+            var speed = RigidBody.velocity.magnitude;
+
+            //Limit speed
+            if (speed > InitSettings.MaxSpeed)
+            {
+                RigidBody.velocity = RigidBody.velocity.normalized * InitSettings.MaxSpeed;
+            }
+
+            //Stop fightship when input is zero
+            if (PlayerInput == Vector2.zero && speed != 0)
+            {
+                RigidBody.velocity *= InitSettings.Deceleration;
+            }
         }
 
         public void StartFiring()
