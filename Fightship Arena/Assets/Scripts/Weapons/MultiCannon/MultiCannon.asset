@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MultiCannon
   m_EditorClassIdentifier: 
   WeaponType: 0
-  MagazineCapacity: 100
-  Ammo: 100
-  RateOfFire: 5
+  MagazineCapacity: 1000
+  Ammo: 1000
+  RateOfFire: 10
