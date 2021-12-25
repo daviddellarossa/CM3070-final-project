@@ -16,6 +16,6 @@ MonoBehaviour:
   DamageAppliedOnCollision: 100
   MaxSpeed: 5
   Deceleration: 0.8
-  ForceMultiplier: 0.5
+  ForceMultiplier: 50
   WeaponSettings:
   - {fileID: 11400000, guid: 4fe04e83b5d7517459192bebab2acd2b, type: 2}

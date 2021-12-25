@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.Menus;
-using PlasticGui.WorkspaceWindow;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
