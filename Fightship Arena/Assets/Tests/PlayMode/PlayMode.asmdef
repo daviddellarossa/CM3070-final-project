@@ -1,10 +1,12 @@
 {
     "name": "PlayMode",
-    "rootNamespace": "",
+    "rootNamespace": "FightshipArena",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "FightShipArena"
+        "FightShipArena",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
