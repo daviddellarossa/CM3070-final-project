@@ -100,6 +100,54 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        public void OnTurnLeft(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Core.TurnLeft();
+                Debug.Log($"Turning {Core.PlayerInput}");
+            }
+            else if (context.canceled)
+            {
+            }
+        }
+
+        public void OnTurnRight(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Core.TurnRight();
+                Debug.Log($"Turning {Core.PlayerInput}");
+            }
+            else if (context.canceled)
+            {
+            }
+        }
+
+        public void OnTurnUp(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Core.TurnUp();
+                Debug.Log($"Turning {Core.PlayerInput}");
+            }
+            else if (context.canceled)
+            {
+            }
+        }
+
+        public void OnTurnDown(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Core.TurnDown();
+                Debug.Log($"Turning {Core.PlayerInput}");
+            }
+            else if (context.canceled)
+            {
+            }
+        }
+
         void Awake()
         {
             HealthManager = new HealthManager(initSettings.InitHealth, initSettings.InitHealth, false);

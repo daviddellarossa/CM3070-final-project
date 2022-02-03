@@ -92,6 +92,48 @@ namespace FightShipArena.Assets.Scripts.Player
             HealthManager.Damage(damage);
         }
 
+        public void TurnLeft()
+        {
+            if (Transform.forward == Vector3.left)
+            {
+                return;
+            }
+            RotatePlayer(Vector3.left);
+        }
+
+        public void TurnRight()
+        {
+            if (Transform.forward == Vector3.right)
+            {
+                return;
+            }
+            RotatePlayer(Vector3.right);
+        }
+
+        public void TurnUp()
+        {
+            if (Transform.forward == Vector3.forward)
+            {
+                return;
+            }
+            RotatePlayer(Vector3.up);
+        }
+
+        public void TurnDown()
+        {
+            if (Transform.forward == Vector3.back)
+            {
+                return;
+            }
+            RotatePlayer(Vector3.down);
+        }
+
+        private void RotatePlayer(Vector3 direction)
+        {
+            Debug.Log($"Rotating: {direction}");
+            //Add here code to rotate player
+        }
+
         public void AddMultiplier(int multiplier)
         {
             ScoreMultiplierCollected?.Invoke(multiplier);
@@ -101,5 +143,6 @@ namespace FightShipArena.Assets.Scripts.Player
         {
 
         }
+
     }
 }
