@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -94,45 +95,62 @@ namespace FightShipArena.Assets.Scripts.Player
 
         public void TurnLeft()
         {
-            if (Transform.forward == Vector3.left)
-            {
-                return;
-            }
-            RotatePlayer(Vector3.left);
+            //if (Transform.up == Vector3.left)
+            //{
+            //    return;
+            //}
+            RotatePlayer(Quaternion.Euler(0, 0, 90));
         }
 
         public void TurnRight()
         {
-            if (Transform.forward == Vector3.right)
-            {
-                return;
-            }
-            RotatePlayer(Vector3.right);
+            //if (Transform.up == Vector3.right)
+            //{
+            //    return;
+            //}
+            RotatePlayer(Quaternion.Euler(0, 0, -90));
         }
 
         public void TurnUp()
         {
-            if (Transform.forward == Vector3.forward)
-            {
-                return;
-            }
-            RotatePlayer(Vector3.up);
+            //if (Transform.up == Vector3.up)
+            //{
+            //    return;
+            //}
+            RotatePlayer(Quaternion.Euler(0, 0, 0));
         }
 
         public void TurnDown()
         {
-            if (Transform.forward == Vector3.back)
-            {
-                return;
-            }
-            RotatePlayer(Vector3.down);
+            //if (Transform.up == Vector3.down)
+            //{
+            //    return;
+            //}
+            RotatePlayer(Quaternion.Euler(0, 0, 180));
         }
 
-        private void RotatePlayer(Vector3 direction)
+        private void RotatePlayer(Quaternion quaternion)
         {
-            Debug.Log($"Rotating: {direction}");
-            //Add here code to rotate player
+            (Parent as MonoBehaviour).StartCoroutine(DoRotatePlayer(quaternion));
         }
+
+
+        private IEnumerator DoRotatePlayer(Quaternion quaternion)
+        {
+            float tolerance = 0.95f;
+            float rotationSpeed = 0.1f;
+            Debug.Log("In coroutine");
+            while ( Mathf.Abs(Quaternion.Dot(Transform.rotation, quaternion) ) < tolerance)
+            {
+                Transform.rotation = Quaternion.Slerp(Transform.rotation, quaternion, rotationSpeed);
+                yield return  null;
+            }
+
+            Transform.rotation = quaternion;
+
+        }
+
+        
 
         public void AddMultiplier(int multiplier)
         {
