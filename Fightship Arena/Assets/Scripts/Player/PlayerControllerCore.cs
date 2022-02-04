@@ -95,51 +95,33 @@ namespace FightShipArena.Assets.Scripts.Player
 
         public void TurnLeft()
         {
-            //if (Transform.up == Vector3.left)
-            //{
-            //    return;
-            //}
-            RotatePlayer(Quaternion.Euler(0, 0, 90));
+            var rotation = Quaternion.Euler(0, 0, 90);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
         public void TurnRight()
         {
-            //if (Transform.up == Vector3.right)
-            //{
-            //    return;
-            //}
-            RotatePlayer(Quaternion.Euler(0, 0, -90));
+            var rotation = Quaternion.Euler(0, 0, -90);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
         public void TurnUp()
         {
-            //if (Transform.up == Vector3.up)
-            //{
-            //    return;
-            //}
-            RotatePlayer(Quaternion.Euler(0, 0, 0));
+            var rotation = Quaternion.Euler(0, 0, 0);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
         public void TurnDown()
         {
-            //if (Transform.up == Vector3.down)
-            //{
-            //    return;
-            //}
-            RotatePlayer(Quaternion.Euler(0, 0, 180));
+            var rotation = Quaternion.Euler(0, 0, 180);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
-
-        private void RotatePlayer(Quaternion quaternion)
-        {
-            (Parent as MonoBehaviour).StartCoroutine(DoRotatePlayer(quaternion));
-        }
-
 
         private IEnumerator DoRotatePlayer(Quaternion quaternion)
         {
             float tolerance = 0.95f;
             float rotationSpeed = 0.1f;
-            Debug.Log("In coroutine");
+
             while ( Mathf.Abs(Quaternion.Dot(Transform.rotation, quaternion) ) < tolerance)
             {
                 Transform.rotation = Quaternion.Slerp(Transform.rotation, quaternion, rotationSpeed);
@@ -147,10 +129,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
 
             Transform.rotation = quaternion;
-
         }
-
-        
 
         public void AddMultiplier(int multiplier)
         {
