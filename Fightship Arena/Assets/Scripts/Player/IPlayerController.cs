@@ -18,6 +18,10 @@ namespace FightShipArena.Assets.Scripts.Player
         void OnFire(InputAction.CallbackContext context);
         void OnFireAlt(InputAction.CallbackContext context);
         void OnOpenSelectionMenu(InputAction.CallbackContext context);
+        void OnTurnLeft(InputAction.CallbackContext context);
+        void OnTurnRight(InputAction.CallbackContext context);
+        void OnTurnUp(InputAction.CallbackContext context);
+        void OnTurnDown(InputAction.CallbackContext context);
 
     }
 }

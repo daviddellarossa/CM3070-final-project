@@ -21,7 +21,10 @@ namespace FightShipArena.Assets.Scripts.Player
         void FireAlt();
         void OpenSelectionMenu();
         void HandleCollisionWithEnemy(IEnemyControllerCore enemyController);
-
+        void TurnLeft();
+        void TurnRight();
+        void TurnUp();
+        void TurnDown();
         void AddMultiplier(int multiplier);
     }
 }

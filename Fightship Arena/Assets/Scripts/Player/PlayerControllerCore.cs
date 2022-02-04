@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -92,6 +93,44 @@ namespace FightShipArena.Assets.Scripts.Player
             HealthManager.Damage(damage);
         }
 
+        public void TurnLeft()
+        {
+            var rotation = Quaternion.Euler(0, 0, 90);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
+        }
+
+        public void TurnRight()
+        {
+            var rotation = Quaternion.Euler(0, 0, -90);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
+        }
+
+        public void TurnUp()
+        {
+            var rotation = Quaternion.Euler(0, 0, 0);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
+        }
+
+        public void TurnDown()
+        {
+            var rotation = Quaternion.Euler(0, 0, 180);
+            ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
+        }
+
+        private IEnumerator DoRotatePlayer(Quaternion quaternion)
+        {
+            float tolerance = 0.95f;
+            float rotationSpeed = 0.1f;
+
+            while ( Mathf.Abs(Quaternion.Dot(Transform.rotation, quaternion) ) < tolerance)
+            {
+                Transform.rotation = Quaternion.Slerp(Transform.rotation, quaternion, rotationSpeed);
+                yield return  null;
+            }
+
+            Transform.rotation = quaternion;
+        }
+
         public void AddMultiplier(int multiplier)
         {
             ScoreMultiplierCollected?.Invoke(multiplier);
@@ -101,5 +140,6 @@ namespace FightShipArena.Assets.Scripts.Player
         {
 
         }
+
     }
 }
