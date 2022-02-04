@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="Enemies.svg"
+   inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\pawn_01.png"
+   inkscape:export-xdpi="8.8304157"
+   inkscape:export-ydpi="8.8304157"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.30141807"
+     inkscape:cx="-1428.2488"
+     inkscape:cy="-889.1305"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient1145"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ce0d23;stop-opacity:1;"
+         offset="0"
+         id="stop1143" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#0000ff;fill-rule:evenodd;fill-opacity:0;stroke:#00ffff;stroke-opacity:1;stroke-width:72;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round"
+       id="rect31"
+       width="449.83273"
+       height="449.83276"
+       x="31.083633"
+       y="31.083618"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\pawn_01.png"
+       inkscape:export-xdpi="8.8304157"
+       inkscape:export-ydpi="8.8304157" />
+    <path
+       style="color:#000000;fill:#ff6500;-inkscape-stroke:none;stroke:#186432;stroke-opacity:1;fill-opacity:1"
+       d="m -1270.9004,-677.05078 -26.6055,329.14062 26.6055,329.142582 298.34571,-141.531252 271.74219,-187.61133 -41.29492,-28.50976 -230.44727,-159.09961 z m 60.9766,121.1402 202.6113,96.11523 170.47521,111.88519 -170.47521,111.88715 -202.6113,96.11328 -18.0664,-208.00043 z"
+       id="path1007"
+       transform="matrix(0,-1.1371951,0.77304596,0,51.90663,-1732.0201)"
+       sodipodi:nodetypes="ccccccccccccccc"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\infantry_01.png"
+       inkscape:export-xdpi="9.0342045"
+       inkscape:export-ydpi="9.0342045" />
+    <circle
+       id="path21146"
+       style="fill:#000000;stroke:none"
+       cx="-1576.4674"
+       cy="-21.113401"
+       r="1.5" />
+    <circle
+       id="path21148"
+       style="fill:#000000;stroke:none"
+       cx="-1402.8683"
+       cy="-14.075602"
+       r="1.5" />
+    <g
+       id="g38714"
+       transform="matrix(0,0.91967963,-0.84568276,0,-1069.9686,299.84049)"
+       style="stroke:#d42aff;stroke-opacity:1">
+      <g
+         id="g94940"
+         transform="matrix(1.2775895,0,0,1.4054363,319.56509,207.4472)"
+         inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\shielder_01.png"
+         inkscape:export-xdpi="9.6714096"
+         inkscape:export-ydpi="9.6714096">
+        <path
+           style="fill:none;fill-opacity:1;stroke:#d42aff;stroke-width:58.387;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="path21007"
+           sodipodi:type="arc"
+           sodipodi:cx="-1008.7515"
+           sodipodi:cy="-37.545712"
+           sodipodi:rx="107.91295"
+           sodipodi:ry="371.83047"
+           sodipodi:start="1.5707963"
+           sodipodi:end="4.7431232"
+           sodipodi:open="true"
+           sodipodi:arc-type="arc"
+           d="m -1008.7515,334.28476 a 107.91295,371.83047 0 0 1 -94.0032,-189.22388 107.91295,371.83047 0 0 1 1.6729,-375.08025 107.91295,371.83047 0 0 1 95.6464,-179.18122" />
+        <circle
+           style="fill:none;fill-opacity:1;stroke:#d42aff;stroke-width:58.387;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="path21031"
+           cx="-868.35284"
+           cy="-37.534939"
+           r="98.529205" />
+        <path
+           style="color:#000000;fill:#d42aff;fill-opacity:1;stroke:#d42aff;stroke-width:0.550637;stroke-opacity:1;-inkscape-stroke:none"
+           d="m -1133.7952,-55.611155 -0.1648,55.58117998 180.50239,0.31634 0.16482,-56.05567998 z"
+           id="path21265"
+           sodipodi:nodetypes="ccccc" />
+      </g>
+    </g>
+    <g
+       id="g148149"
+       transform="matrix(0.96284523,0,0,1,-2214.1342,72.988324)"
+       inkscape:export-filename="C:\repo\University\CM3070-final-project\Fightship Arena\Assets\Sprites\Turret_01.png"
+       inkscape:export-xdpi="10.623963"
+       inkscape:export-ydpi="10.623963">
+      <g
+         aria-label="]"
+         id="text135404"
+         style="font-size:40px;line-height:1.25;fill:#2a7fff;fill-opacity:1;stroke-width:0.999981;stroke-miterlimit:4;stroke-dasharray:none"
+         transform="matrix(18.958365,0,0,22.040422,102645.95,48582.927)">
+        <path
+           d="m -5424.7563,-2214.5479 c -0.9505,0.9505 -10.1563,0 -10.1563,0 v -2.7929 c 0,0 5.4535,1.3043 6.7578,0 1.3043,-1.3043 1.6672,-30.7938 0,-32.461 -1.6672,-1.6672 -6.7578,0 -6.7578,0 v -2.7929 c 0,0 8.156,-2.0003 10.1563,0 2.0003,2.0003 0.9505,37.0963 0,38.0468 z"
+           id="path143085"
+           sodipodi:nodetypes="zcczzcczz"
+           style="fill:#2a7fff;fill-opacity:1;stroke-width:0.999981;stroke-miterlimit:4;stroke-dasharray:none" />
+      </g>
+      <g
+         aria-label="]"
+         id="g143895"
+         style="font-size:40px;line-height:1.25;fill:#2a7fff;fill-opacity:1;stroke-width:0.999981;stroke-miterlimit:4;stroke-dasharray:none"
+         transform="matrix(-18.958365,0,0,22.040422,-102981.7,48582.927)">
+        <path
+           d="m -5424.7563,-2214.5479 c -0.9505,0.9505 -10.1563,0 -10.1563,0 v -2.7929 c 0,0 5.4535,1.3043 6.7578,0 1.3043,-1.3043 1.6672,-30.7938 0,-32.461 -1.6672,-1.6672 -6.7578,0 -6.7578,0 v -2.7929 c 0,0 8.156,-2.0003 10.1563,0 2.0003,2.0003 0.9505,37.0963 0,38.0468 z"
+           id="path143893"
+           sodipodi:nodetypes="zcczzcczz"
+           style="fill:#2a7fff;fill-opacity:1;stroke-width:0.999981;stroke-miterlimit:4;stroke-dasharray:none" />
+      </g>
+    </g>
+  </g>
+</svg>
