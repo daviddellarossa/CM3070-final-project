@@ -15,11 +15,14 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         IPlayerControllerCore PlayerControllerCore { get; set; }
         IMyMonoBehaviour Parent { get; }
-        Transform Transform { get; } 
+        Transform Transform { get; }
+        Rigidbody2D Rigidbody { get; }
         EnemySettings InitSettings { get; }
         public IHealthManager HealthManager { get; }
 
         void Move();
+        void LookAtPlayer();
+
         void HandleCollisionWithPlayer();
     }
 }
