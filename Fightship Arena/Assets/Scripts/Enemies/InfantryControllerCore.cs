@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
@@ -30,6 +31,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
             InitSettings = settings;
+
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
@@ -46,34 +48,29 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         public void Move()
         {
+            if (Time.frameCount % 5 != 0)
+                return;
+            var maxImpulse = 10;
+            var mag = Random.value * maxImpulse;
+            var impulse = Random.insideUnitCircle * mag;
+
+            Rigidbody.AddForce(impulse);
         }
+
 
         public void LookAtPlayer()
         {
             float rotationSpeed = 0.1f;
 
-            var playerPosition = PlayerControllerCore.Transform.position;
-            var playerDirection = (playerPosition - Transform.position).normalized;
-            //var rotation = Quaternion.FromToRotation(Transform.up, playerDirection);
+            //Improve the aim of the enemy implementing this suggestion
+            //https://stackoverflow.com/questions/3211374/2d-game-algorithm-to-calculate-a-bullets-needed-speed-to-hit-target
 
-            var rotation = Quaternion.LookRotation(Transform.up, playerDirection);
+            var playerDirection = (PlayerControllerCore.Transform.position - Transform.position);
+
+            float angle = (Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg) - 90;
+            var rotation = Quaternion.Euler(0, 0, angle);
+
             Transform.rotation = Quaternion.Slerp(Transform.rotation, rotation, rotationSpeed);
-
         }
-
-        //private IEnumerator DoRotate(Quaternion quaternion)
-        //{
-        //    float tolerance = 0.95f;
-        //    float rotationSpeed = 0.1f;
-
-        //    while (Mathf.Abs(Quaternion.Dot(Transform.rotation, quaternion)) < tolerance)
-        //    {
-        //        Transform.rotation = Quaternion.Slerp(Transform.rotation, quaternion, rotationSpeed);
-        //        yield return null;
-        //    }
-
-        //    Transform.rotation = quaternion;
-        //}
-
     }
 }
