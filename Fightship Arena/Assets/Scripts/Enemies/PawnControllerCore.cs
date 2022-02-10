@@ -60,6 +60,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
             Rigidbody.velocity = Vector2.ClampMagnitude(Rigidbody.velocity, InitSettings.MaxSpeed);
         }
 
+        public void LookAtPlayer() { }
+
         public void HandleCollisionWithPlayer()
         {
             HealthManager.Kill();

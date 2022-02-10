@@ -1,36 +1,32 @@
-﻿using FightShipArena.Assets.Scripts.Player;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
-    public class PawnController : EnemyController
+    public class InfantryController : EnemyController
     {
-
         private void HealthManager_HealthLevelChanged(int obj)
         {
         }
-
         private void HealthManager_HasDied()
         {
             Debug.Log($"Destroying object {this.gameObject.name}");
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
-
         void Awake()
         {
             HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
-            Core = new PawnControllerCore(this, HealthManager, InitSettings);
+            Core = new InfantryControllerCore(this, HealthManager, InitSettings);
         }
-
         void Start()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
@@ -47,7 +43,6 @@ namespace FightShipArena.Assets.Scripts.Enemies
                 throw new NullReferenceException("InitSettings");
             }
         }
-
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log($"Collision detected with {col.gameObject.name}");
@@ -70,13 +65,14 @@ namespace FightShipArena.Assets.Scripts.Enemies
                 }
             }
         }
-
         private void FixedUpdate()
         {
             if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
                 return;
 
+            Core.LookAtPlayer();
             Core.Move();
         }
+
     }
 }

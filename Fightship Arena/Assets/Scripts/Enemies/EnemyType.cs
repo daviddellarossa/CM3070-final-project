@@ -2,6 +2,7 @@
 {
     public enum EnemyType
     {
-        Pawn
+        Pawn,
+        Infantry
     }
 }

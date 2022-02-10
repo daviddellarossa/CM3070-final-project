@@ -17,6 +17,7 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
         public event Action<int> SendScore;
 
         public GameObject PawnGO;
+        public GameObject InfantryGO;
 
         public List<GameObject> SpawnPoints;
 
