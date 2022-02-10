@@ -1733,6 +1733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Infantry
       objectReference: {fileID: 0}
+    - target: {fileID: 7587412185580740274, guid: 73fcfaa91805ce64bbc3fe7dae1cede6, type: 3}
+      propertyPath: InitSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d29cf3f4f618c241b8aedbb9e426917, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73fcfaa91805ce64bbc3fe7dae1cede6, type: 3}
 --- !u!1 &1945458030

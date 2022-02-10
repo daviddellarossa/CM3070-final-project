@@ -73,6 +73,9 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         private void FixedUpdate()
         {
+            if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
+                return;
+
             Core.Move();
         }
     }

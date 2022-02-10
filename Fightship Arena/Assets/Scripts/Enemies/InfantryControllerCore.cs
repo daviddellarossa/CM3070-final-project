@@ -48,10 +48,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         public void Move()
         {
-            if (Time.frameCount % 5 != 0)
-                return;
-            var maxImpulse = 10;
-            var mag = Random.value * maxImpulse;
+            var mag = Random.value * InitSettings.MaxMovementMagnitude;
             var impulse = Random.insideUnitCircle * mag;
 
             Rigidbody.AddForce(impulse);

@@ -17,7 +17,7 @@ MonoBehaviour:
   MinAttractiveForceMagnitude: 0
   MaxAttractiveForceMagnitude: 0
   MinMovementMagnitude: 0
-  MaxMovementMagnitude: 0
+  MaxMovementMagnitude: 10
   InitHealth: 20
   DamageAppliedOnCollision: 50
   InvulnerableAtStart: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
   - PowerUp: {fileID: 3398998649458850787, guid: e3c46782a8c097b49a35444d8e70259b, type: 3}
     ReleaseRate: 0.5
   PlayerScoreWhenKilled: 10
+  UpdateEveryXFrames: 5
