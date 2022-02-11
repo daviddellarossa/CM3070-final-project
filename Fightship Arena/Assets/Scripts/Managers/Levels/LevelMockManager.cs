@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     [RequireComponent(typeof(EnemyManagement.EnemyManager))]
+    [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
         public ILevelMockManagerCore Core { get; protected set; }
