@@ -4,6 +4,6 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement.Conditi
 {
     public abstract class ConditionBase : ScriptableObject
     {
-        public abstract bool Verify();
+        public abstract bool Verify(float prevStart, float prevEnd);
     }
 }

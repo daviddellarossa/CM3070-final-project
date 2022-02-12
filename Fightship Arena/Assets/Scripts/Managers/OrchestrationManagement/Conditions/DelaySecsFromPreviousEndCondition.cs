@@ -11,9 +11,15 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement.Conditi
     public class DelaySecsFromPreviousEndCondition : ConditionBase
     {
         public float Delay;
-        public override bool Verify()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prevStart">Fixed Time</param>
+        /// <param name="prevEnd">Fixed Time</param>
+        /// <returns></returns>
+        public override bool Verify(float prevStart, float prevEnd)
         {
-            throw new NotImplementedException();
+            return prevEnd + Delay < Time.fixedTime;
         }
     }
 }

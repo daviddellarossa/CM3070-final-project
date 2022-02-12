@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
 {
+    [Obsolete("Use OrchestrationManager instead")]
     public interface IEnemyManager : IMyMonoBehaviour
     {
         event Action<int> SendScore;

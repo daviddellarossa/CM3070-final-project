@@ -17,7 +17,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     {
         public IPlayerControllerCore PlayerControllerCore { get; set; }
         public IScoreManager ScoreManager { get; set; }
-        //public IEnemyManager EnemyManager { get; set; }
         public IOrchestrationManager OrchestrationManager { get; set; }
 
         public virtual void Move(InputAction.CallbackContext context){}

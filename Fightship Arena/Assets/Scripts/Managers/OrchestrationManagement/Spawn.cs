@@ -16,7 +16,6 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
     {
         
         public GameObject EnemyPrefab;
-        public float DelayTime;
         public GameObject SpawnPoint;
         private GameObject _enemyInstance;
         private IEnemyControllerCore _core;
@@ -30,7 +29,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
         public override event Action<GameObject> EnemyKilled;
         public override event Action<SpawnBase, OrchestrationState> StateChanged;
 
-        protected void ChangeState(OrchestrationState newState)
+        protected override void ChangeState(OrchestrationState newState)
         {
             this.State = newState;
 

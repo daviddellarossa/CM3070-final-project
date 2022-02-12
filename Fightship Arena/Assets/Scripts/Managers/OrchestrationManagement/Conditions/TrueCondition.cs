@@ -11,7 +11,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement.Conditi
 
     public class TrueCondition : ConditionBase
     {
-        public override bool Verify()
+        public override bool Verify(float prevStart, float prevEnd)
         {
             return true;
         }

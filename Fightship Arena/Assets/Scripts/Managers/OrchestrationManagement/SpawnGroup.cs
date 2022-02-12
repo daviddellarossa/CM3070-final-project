@@ -16,6 +16,10 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
         public List<SpawnBase> Spawns = new List<SpawnBase>();
 
+        private float _lastStart;
+        private float _lastEnd;
+
+
         void OnEnable()
         {
             this.State = OrchestrationState.NotStarted;
@@ -27,7 +31,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
         public override void Execute()
         {
-            this.State = OrchestrationState.Running;
+            ChangeState(OrchestrationState.Running);
 
             StartCoroutine(RunCoroutine());
         }
@@ -39,6 +43,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
         private void StartCoroutine(IEnumerator task)
         {
+
             if (!Application.isPlaying)
             {
                 Debug.LogError("Can not run coroutine outside of play mode.");
@@ -49,13 +54,17 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
             coworker.Work(task);
         }
 
+
         IEnumerator RunCoroutine()
         {
+            _lastStart = Time.fixedTime;
+            _lastEnd = float.PositiveInfinity;
+
             for (CurrentIndex = 0; CurrentIndex < Spawns.Count; ++CurrentIndex)
             {
                 var currentWave = Spawns[CurrentIndex];
 
-                yield return new WaitUntil(() => currentWave.StartCondition.Verify());
+                yield return new WaitUntil(() => currentWave.StartCondition.Verify(_lastStart, _lastEnd));
 
                 currentWave.EnemyKilled += EnemyKilledEventHandler;
                 currentWave.EnemySpawned += EnemySpawnedEventHandler;
@@ -67,6 +76,8 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
                 {
                     yield break;
                 }
+
+                //yield return new WaitForEndOfFrame();
             }
 
             yield return new WaitUntil(() => Spawns.TrueForAll(x => x.State == OrchestrationState.Finished));
@@ -78,10 +89,15 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
         {
             switch (newState)
             {
+                case OrchestrationState.Running:
+                    _lastStart = Time.fixedTime;
+                    break;
                 case OrchestrationState.Finished:
                     sender.EnemyKilled -= EnemyKilledEventHandler;
                     sender.EnemySpawned -= EnemySpawnedEventHandler;
                     sender.StateChanged -= StateChangedEventHandler;
+
+                    _lastEnd = Time.fixedTime;
                     break;
             }
         }

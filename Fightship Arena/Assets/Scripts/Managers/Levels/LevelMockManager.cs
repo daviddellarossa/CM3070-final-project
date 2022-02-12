@@ -25,7 +25,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             ScoreManager = GameObject.GetComponent<IScoreManager>();
             //EnemyManager = GameObject.GetComponent<IEnemyManager>();
             OrchestrationManager = GameObject.GetComponent<IOrchestrationManager>();
-            OrchestrationManager.SendScore += EnemyManagerSendScore;
+            OrchestrationManager.SendScore += OrchestrationManager_SendScore;
             OrchestrationManager.OrchestrationComplete += OrchestrationManager_OrchestrationComplete;
 
             Core = new LevelMockManagerCore(this);
@@ -38,7 +38,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             Debug.Log("Orchestration complete");
         }
 
-        private void EnemyManagerSendScore(int value)
+        private void OrchestrationManager_SendScore(int value)
         {
             ScoreManager.AddToScore(value);
         }

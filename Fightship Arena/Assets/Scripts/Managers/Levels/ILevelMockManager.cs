@@ -10,7 +10,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     {
         IPlayerControllerCore PlayerControllerCore { get; set; }
         IScoreManager ScoreManager { get; set; }
-        //IEnemyManager EnemyManager { get; set; }
         IOrchestrationManager OrchestrationManager { get; set; }
 
         void OnStart();

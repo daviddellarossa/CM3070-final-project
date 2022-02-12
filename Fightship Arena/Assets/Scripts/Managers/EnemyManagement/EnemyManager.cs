@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
 {
+    [Obsolete("Use OrchestrationManager instead")]
     public class EnemyManager : MyMonoBehaviour, IEnemyManager
     {
         private Coroutine _spawningCoroutine;

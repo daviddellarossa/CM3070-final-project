@@ -1266,7 +1266,6 @@ GameObject:
   - component: {fileID: 1455586402}
   - component: {fileID: 1455586404}
   - component: {fileID: 1455586403}
-  - component: {fileID: 1455586405}
   - component: {fileID: 1455586406}
   - component: {fileID: 1455586407}
   m_Layer: 0
@@ -1362,7 +1361,7 @@ MonoBehaviour:
     m_ActionName: GameManager/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1455586405}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.EnemyManagement.EnemyManager,
           FightShipArena
         m_MethodName: SpawnPawnAtRandomLocation
@@ -1398,21 +1397,6 @@ MonoBehaviour:
   m_DefaultActionMap: Test
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1455586405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455586401}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a5fc9232f128f44ab1524e9a5d5070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PawnGO: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
-  InfantryGO: {fileID: 2347523137725475495, guid: 73fcfaa91805ce64bbc3fe7dae1cede6, type: 3}
-  SpawnPoints: []
 --- !u!114 &1455586406
 MonoBehaviour:
   m_ObjectHideFlags: 0
