@@ -81,6 +81,17 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
                 SpawnPawnAtRandomSpawnPoint();
             }
         }
+
+        public void EnemySpawned(GameObject obj)
+        {
+            var enemyCore = obj.GetComponent<EnemyController>().Core;
+
+            enemyCore.HasDied += EnemyKilled;
+
+            Enemies.Add(enemyCore);
+
+        }
+
         private void EnemyKilled(IEnemyControllerCore obj)
         {
             SendScore?.Invoke(obj.InitSettings.PlayerScoreWhenKilled);

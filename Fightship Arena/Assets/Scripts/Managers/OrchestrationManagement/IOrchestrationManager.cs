@@ -8,6 +8,10 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     public interface IOrchestrationManager
     {
+        event Action<int> SendScore;
+        event Action OrchestrationComplete;
+
         void Run();
+        void Stop();
     }
 }

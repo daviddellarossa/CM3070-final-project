@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f196501112519149a828ae39c8ffc29, type: 3}
-  m_Name: Wave 1
+  m_Script: {fileID: 11500000, guid: 0034b8c86035a6048abde77fc883fbdc, type: 3}
+  m_Name: W1-group-001
   m_EditorClassIdentifier: 
+  StartCondition: {fileID: 11400000, guid: ea964d948a9501f42b72f5b17d04049c, type: 2}
   Spawns:
   - {fileID: 11400000, guid: c28131626d0702b42983bde480a15649, type: 2}
-  StartCondition: {fileID: 11400000, guid: ea964d948a9501f42b72f5b17d04049c, type: 2}
+  - {fileID: 11400000, guid: e69818da75ff851448828aeeb069a9e9, type: 2}

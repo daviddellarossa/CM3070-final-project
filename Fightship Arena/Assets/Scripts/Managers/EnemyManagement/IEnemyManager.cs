@@ -15,5 +15,6 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
 
         void StartSpawing();
         void StopSpawning();
+        void EnemySpawned(GameObject obj);
     }
 }

@@ -8,7 +8,8 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
-    [CreateAssetMenu(fileName = "New Wave", menuName = "Orchestration/Wave")]
+    [Obsolete]
+    //[CreateAssetMenu(fileName = "New Wave", menuName = "Orchestration/Wave")]
 
     public class Wave : ScriptableObject
     {

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using FightShipArena.Assets.Scripts.Enemies;
 using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
@@ -7,34 +9,75 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     public class OrchestrationManager : MyMonoBehaviour, IOrchestrationManager
     {
-        public List<Wave> Waves = new List<Wave>();
-        public int CurrentIndex { get; private set; }
-        private Coroutine _runCoroutineInstance;
+        public SpawnGroup Spawns;
+        public event Action<int> SendScore;
+        public event Action OrchestrationComplete;
+        public List<IEnemyControllerCore> Enemies { get; set; }
+
+        void Awake()
+        {
+            Enemies = new List<IEnemyControllerCore>();
+        }
 
         public void Run()
         {
-            if (Waves == null || Waves.Count == 0)
+            if (Spawns == null)
             {
-                Debug.Log("Wave is empty");
+                Debug.Log("Spawns is empty");
                 return;
             }
 
+            StartCoroutine(RunCoroutine());
+        }
 
-            _runCoroutineInstance = StartCoroutine(RunCoroutine());
+        public void Stop()
+        {
+            Spawns.CancelExecution();
         }
 
         IEnumerator RunCoroutine()
         {
-            for (CurrentIndex = 0; CurrentIndex < Waves.Count; ++CurrentIndex)
+            Spawns.EnemyKilled += EnemyKilledEventHandler;
+            Spawns.EnemySpawned += EnemySpawnedEventHandler;
+            Spawns.StateChanged += StateChangedEventHandler;
+
+            Spawns.Execute();
+
+            yield return new WaitUntil(() => Spawns.State == OrchestrationState.Finished);
+
+            Spawns.EnemyKilled -= EnemyKilledEventHandler;
+            Spawns.EnemySpawned -= EnemySpawnedEventHandler;
+
+            OrchestrationComplete?.Invoke();
+        }
+
+        private void StateChangedEventHandler(SpawnBase sender, OrchestrationState newState)
+        {
+            switch (newState)
             {
-                var currentWave = Waves[CurrentIndex];
-
-                yield return new WaitUntil(() => currentWave.StartCondition.Verify());
-
-                currentWave.Start();
-
-                yield return new WaitUntil(() => currentWave.State != OrchestrationState.Finished);
+                case OrchestrationState.Finished:
+                    sender.EnemyKilled -= EnemyKilledEventHandler;
+                    sender.EnemySpawned -= EnemySpawnedEventHandler;
+                    sender.StateChanged -= StateChangedEventHandler;
+                    break;
             }
+        }
+
+        private void EnemySpawnedEventHandler(GameObject obj)
+        {
+            var enemyCore = obj.GetComponent<EnemyController>().Core;
+            Enemies.Add(enemyCore);
+        }
+
+        private void EnemyKilledEventHandler(GameObject obj)
+        {
+            var enemyCore = obj.GetComponent<EnemyController>().Core;
+
+            SendScore?.Invoke(enemyCore.InitSettings.PlayerScoreWhenKilled);
+
+            Debug.Assert(Enemies.Contains(enemyCore), $"Enemy {enemyCore.Parent.GameObject.name} not found in EnemyManager's Enemies collection");
+
+            Enemies.Remove(enemyCore);
         }
     }
 }
