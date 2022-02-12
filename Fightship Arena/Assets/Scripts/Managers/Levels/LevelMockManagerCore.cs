@@ -15,7 +15,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         public readonly ILevelMockManager Parent;
         public IPlayerControllerCore PlayerControllerCore { get; set; }
 
-        public bool SpawnEnemiesEnabled = false;
+        public bool SpawnEnemiesEnabled = true;
 
         protected PlayerInput _playerInput;
 
@@ -30,13 +30,17 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             this.PlayerControllerCore = Parent.PlayerControllerCore;
             this.PlayerControllerCore.HealthManager.HasDied += PlayerHasDied;
             Debug.Log($"Level started");
-            if(SpawnEnemiesEnabled)
-                this.Parent.EnemyManager.StartSpawing();
+            if (SpawnEnemiesEnabled)
+            {
+                //this.Parent.EnemyManager.StartSpawing();
+                this.Parent.OrchestrationManager.Run();
+            }
         }
 
         private void PlayerHasDied()
         {
-            this.Parent.EnemyManager.StopSpawning();
+            this.Parent.OrchestrationManager.Stop();
+            //this.Parent.EnemyManager.StopSpawning();
             //Change LevelManager state to GameOver
         }
 

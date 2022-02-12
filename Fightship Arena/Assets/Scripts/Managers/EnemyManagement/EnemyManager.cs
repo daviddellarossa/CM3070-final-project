@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
 {
+    [Obsolete("Use OrchestrationManager instead")]
     public class EnemyManager : MyMonoBehaviour, IEnemyManager
     {
         private Coroutine _spawningCoroutine;
@@ -81,6 +82,17 @@ namespace FightShipArena.Assets.Scripts.Managers.EnemyManagement
                 SpawnPawnAtRandomSpawnPoint();
             }
         }
+
+        public void EnemySpawned(GameObject obj)
+        {
+            var enemyCore = obj.GetComponent<EnemyController>().Core;
+
+            enemyCore.HasDied += EnemyKilled;
+
+            Enemies.Add(enemyCore);
+
+        }
+
         private void EnemyKilled(IEnemyControllerCore obj)
         {
             SendScore?.Invoke(obj.InitSettings.PlayerScoreWhenKilled);

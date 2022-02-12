@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
+using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
@@ -12,7 +13,8 @@ using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    [RequireComponent(typeof(EnemyManagement.EnemyManager))]
+    //[RequireComponent(typeof(EnemyManagement.EnemyManager))]
+    [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
         public ILevelMockManagerCore Core { get; protected set; }
@@ -21,14 +23,22 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         void Awake()
         {
             ScoreManager = GameObject.GetComponent<IScoreManager>();
-            EnemyManager = GameObject.GetComponent<IEnemyManager>();
-            EnemyManager.SendScore += EnemyManagerSendScore;
+            //EnemyManager = GameObject.GetComponent<IEnemyManager>();
+            OrchestrationManager = GameObject.GetComponent<IOrchestrationManager>();
+            OrchestrationManager.SendScore += OrchestrationManager_SendScore;
+            OrchestrationManager.OrchestrationComplete += OrchestrationManager_OrchestrationComplete;
+
             Core = new LevelMockManagerCore(this);
 
             OnAwake();
         }
 
-        private void EnemyManagerSendScore(int value)
+        private void OrchestrationManager_OrchestrationComplete()
+        {
+            Debug.Log("Orchestration complete");
+        }
+
+        private void OrchestrationManager_SendScore(int value)
         {
             ScoreManager.AddToScore(value);
         }
