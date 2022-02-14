@@ -20,6 +20,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
         EnemySettings InitSettings { get; }
         public IHealthManager HealthManager { get; }
 
+        void OnStart();
         void Move();
         void LookAtPlayer();
 

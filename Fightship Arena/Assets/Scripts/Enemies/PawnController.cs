@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using UnityEditor;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
@@ -46,6 +47,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
             {
                 throw new NullReferenceException("InitSettings");
             }
+
+            Core.OnStart();
         }
 
         void OnCollisionEnter2D(Collision2D col)

@@ -47,6 +47,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
             {
                 throw new NullReferenceException("InitSettings");
             }
+
+            Core.OnStart();
         }
         void OnCollisionEnter2D(Collision2D col)
         {

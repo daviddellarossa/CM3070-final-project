@@ -38,6 +38,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
             HasDied?.Invoke(this);
         }
 
+        public void OnStart()
+        {
+        }
+
         public void Move()
         {
             if(PlayerControllerCore == null || PlayerControllerCore.Transform == null) return;

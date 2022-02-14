@@ -37,11 +37,17 @@ namespace FightShipArena.Assets.Scripts.Enemies
             HealthManager = healthManager;
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
+
             InitSettings = settings;
             Weapons = parent.Weapons.Select(x => x.GetComponent<WeaponBase>()).ToArray();
             CurrentWeapon = Weapons[0];
 
             var mb = parent.StartCoroutine(Attack());
+        }
+
+        private void Player_HasDied()
+        {
+            State = EnemyState.Idle;
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
@@ -63,6 +69,11 @@ namespace FightShipArena.Assets.Scripts.Enemies
             var impulse = Random.insideUnitCircle * mag;
 
             Rigidbody.AddForce(impulse);
+        }
+
+        public void OnStart()
+        {
+            PlayerControllerCore.HealthManager.HasDied += Player_HasDied;
         }
 
         public void LookAtPlayer()

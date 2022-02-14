@@ -32,6 +32,5 @@ namespace FightShipArena.Assets.Scripts.Enemies
             instance.transform.parent = null;
             instance.transform.position = this.transform.position;
         }
-
     }
 }
