@@ -14,13 +14,13 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public event Action<IEnemyControllerCore> HasDied;
 
         public IPlayerControllerCore PlayerControllerCore { get; set; }
-        public IMyMonoBehaviour Parent { get; protected set; }
+        public IEnemyController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
         public Rigidbody2D Rigidbody { get; protected set; }
         public EnemySettings InitSettings { get; protected set; }
         public IHealthManager HealthManager { get; }
 
-        public PawnControllerCore(IMyMonoBehaviour parent, IHealthManager healthManager, EnemySettings settings)
+        public PawnControllerCore(IEnemyController parent, IHealthManager healthManager, EnemySettings settings)
         {
             Parent = parent;
             Transform = parent.GameObject.transform;

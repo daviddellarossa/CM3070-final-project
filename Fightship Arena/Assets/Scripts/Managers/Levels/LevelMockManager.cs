@@ -13,7 +13,6 @@ using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    //[RequireComponent(typeof(EnemyManagement.EnemyManager))]
     [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
@@ -23,7 +22,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         void Awake()
         {
             ScoreManager = GameObject.GetComponent<IScoreManager>();
-            //EnemyManager = GameObject.GetComponent<IEnemyManager>();
             OrchestrationManager = GameObject.GetComponent<IOrchestrationManager>();
             OrchestrationManager.SendScore += OrchestrationManager_SendScore;
             OrchestrationManager.OrchestrationComplete += OrchestrationManager_OrchestrationComplete;

@@ -14,7 +14,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
         event Action<IEnemyControllerCore> HasDied;
 
         IPlayerControllerCore PlayerControllerCore { get; set; }
-        IMyMonoBehaviour Parent { get; }
+        IEnemyController Parent { get; }
         Transform Transform { get; }
         Rigidbody2D Rigidbody { get; }
         EnemySettings InitSettings { get; }

@@ -1,5 +1,6 @@
 ﻿using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Player;
+using FightShipArena.Assets.Scripts.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,16 +15,22 @@ namespace FightShipArena.Assets.Scripts.Enemies
     public class InfantryControllerCore : IEnemyControllerCore
     {
         public IPlayerControllerCore PlayerControllerCore { get; set; }
-        public IMyMonoBehaviour Parent { get; protected set; }
+        public IEnemyController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
         public Rigidbody2D Rigidbody { get; protected set; }
         public EnemySettings InitSettings { get; protected set; }
         public IHealthManager HealthManager { get; }
+        public WeaponBase[] Weapons { get; }
+        public WeaponBase CurrentWeapon { get; set; }
+
+        public EnemyState State { get; set; }
+
 
         public event Action<IEnemyControllerCore> HasDied;
 
-        public InfantryControllerCore(IMyMonoBehaviour parent, IHealthManager healthManager, EnemySettings settings)
+        public InfantryControllerCore(IEnemyController parent, IHealthManager healthManager, EnemySettings settings)
         {
+            //State = EnemyState.Idle;
             Parent = parent;
             Transform = parent.GameObject.transform;
             Rigidbody = parent.GameObject.GetComponent<Rigidbody2D>();
@@ -31,13 +38,17 @@ namespace FightShipArena.Assets.Scripts.Enemies
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
             InitSettings = settings;
+            Weapons = parent.Weapons.Select(x => x.GetComponent<WeaponBase>()).ToArray();
+            CurrentWeapon = Weapons[0];
 
+            var mb = parent.StartCoroutine(Attack());
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
 
         private void HealthManager_HasDied()
         {
+            State = EnemyState.Dead;
             HasDied?.Invoke(this);
         }
 
@@ -54,7 +65,6 @@ namespace FightShipArena.Assets.Scripts.Enemies
             Rigidbody.AddForce(impulse);
         }
 
-
         public void LookAtPlayer()
         {
             float rotationSpeed = 0.1f;
@@ -68,6 +78,33 @@ namespace FightShipArena.Assets.Scripts.Enemies
             var rotation = Quaternion.Euler(0, 0, angle);
 
             Transform.rotation = Quaternion.Slerp(Transform.rotation, rotation, rotationSpeed);
+
+            State = EnemyState.Attack;
         }
+
+        public IEnumerator Attack()
+        {
+            var stopFiringInterval = 1.0f;
+            var firingInterval = 1.0f;
+
+            while (State != EnemyState.Dead)
+            {
+                var startFiringAt = Time.fixedTime;
+                CurrentWeapon.StartFiring();
+                yield return new WaitWhile(() => startFiringAt + firingInterval > Time.fixedTime);
+
+                var stopFiringAt = Time.fixedTime;
+                CurrentWeapon.StopFiring();
+                yield return new WaitWhile(() => stopFiringAt + stopFiringInterval > Time.fixedTime);
+
+            }
+        }
+    }
+
+    public enum EnemyState
+    {
+        Idle,
+        Attack,
+        Dead
     }
 }

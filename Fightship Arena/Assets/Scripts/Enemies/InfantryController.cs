@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Player;
+using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
@@ -25,7 +26,11 @@ namespace FightShipArena.Assets.Scripts.Enemies
             HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
+
+            CheckWeaponsConfiguration();
+
             Core = new InfantryControllerCore(this, HealthManager, InitSettings);
+
         }
         void Start()
         {
@@ -72,6 +77,19 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
             Core.LookAtPlayer();
             Core.Move();
+        }
+
+        private void CheckWeaponsConfiguration()
+        {
+            Weapons = this.GameObject.GetComponentsInChildren<WeaponBase>();
+            foreach (var weapon in Weapons)
+            {
+                //If the current weapon has no configuration, throw.
+                if (weapon.InitSettings == null)
+                {
+                    throw new Exception($"No settings for weapon {weapon.WeaponType}");
+                }
+            }
         }
 
     }
