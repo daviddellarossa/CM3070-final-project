@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Player;
 using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Enemies
+namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 {
     public class InfantryController : EnemyController
     {
@@ -74,10 +70,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
         }
         private void FixedUpdate()
         {
-            if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
-                return;
+            //if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
+            //    return;
 
-            Core.LookAtPlayer();
+            //Core.LookAtPlayer();
             Core.Move();
         }
 

@@ -22,7 +22,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         void OnStart();
         void Move();
-        void LookAtPlayer();
+        //void LookAtPlayer();
 
         void HandleCollisionWithPlayer();
     }

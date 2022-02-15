@@ -1,14 +1,9 @@
-﻿using FightShipArena.Assets.Scripts.Player;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
-using UnityEditor;
+using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Enemies
+namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 {
     public class PawnController : EnemyController
     {
@@ -76,8 +71,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
 
         private void FixedUpdate()
         {
-            if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
-                return;
+            //if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
+            //    return;
 
             Core.Move();
         }

@@ -1,13 +1,9 @@
-﻿using FightShipArena.Assets.Scripts.Player;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Enemies
+namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 {
     public class PawnControllerCore : IEnemyControllerCore
     {
