@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 {
-    public class AttackState : IInfantryState
+    public class AttackState : InfantryState
     {
         private Coroutine _fireCoroutine;
         private Coroutine _seekPlayerCoroutine;
         private bool fireCondition = false;
-        public void Move()
+        public override void Move()
         {
             var mag = UnityEngine.Random.value * Parent.InitSettings.MaxMovementMagnitude;
             var impulse = UnityEngine.Random.insideUnitCircle * mag;
@@ -18,22 +18,22 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
         }
 
             
-        public void Rotate()
+        public override void Rotate()
         {
             LookAtPlayer();
         }
 
-        public void OnEnter()
+        public override void OnEnter()
         {
-            Debug.Log($"State {this.GetType().Name}: OnEnter");
+            base.OnEnter();
             fireCondition = true;
             _seekPlayerCoroutine = Parent.Parent.StartCoroutine(SeekPlayer());
             _fireCoroutine = Parent.Parent.StartCoroutine(Fire());
         }
 
-        public void OnExit()
+        public override void OnExit()
         {
-            Debug.Log($"State {this.GetType().Name}: OnExit");
+            base.OnExit();
             fireCondition = false;
             Parent.Parent.StopCoroutine(_seekPlayerCoroutine);
             Parent.Parent.StopCoroutine(_fireCoroutine);
@@ -86,15 +86,13 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             {
                 yield return new WaitUntil(() => Parent.PlayerControllerCore.HealthManager.IsDead);
                 //Player found
-                ChangeState?.Invoke(Factory.IdleState);
+                ChangeState?.Invoke(Factory.SeekState);
                 yield return new WaitForSeconds(1);
             }
         }
 
 
-        public event Action<IInfantryState> ChangeState;
-        public InfantryControllerCore Parent { get; set; }
-        public StateFactory Factory { get; set; }
+        public override event Action<IInfantryState> ChangeState;
 
         public AttackState(InfantryControllerCore parent, StateFactory factory)
         {

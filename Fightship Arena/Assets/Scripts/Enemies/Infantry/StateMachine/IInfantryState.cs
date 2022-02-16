@@ -2,9 +2,8 @@
 
 namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 {
-    public interface IInfantryState : IEnemyState
+    public interface IInfantryState : IEnemyState<IInfantryState>
     {
-        event Action<IInfantryState> ChangeState;
         InfantryControllerCore Parent { get; set; }
         StateFactory Factory { get; set; }
     }

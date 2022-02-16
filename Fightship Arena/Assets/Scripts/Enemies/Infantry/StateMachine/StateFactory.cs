@@ -10,13 +10,16 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
     {
         public InfantryControllerCore Parent { get; set; }
         public IInfantryState AttackState { get; protected set; }
+        public IInfantryState SeekState { get; protected set; }
         public IInfantryState IdleState { get; protected set; }
 
         public StateFactory(InfantryControllerCore parent)
         {
             this.Parent = parent;
             AttackState = new AttackState(this.Parent, this);
+            SeekState = new SeekState(this.Parent, this);
             IdleState = new IdleState(this.Parent, this);
+
         }
     }
 }

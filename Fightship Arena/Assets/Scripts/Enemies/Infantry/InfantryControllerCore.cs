@@ -42,6 +42,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             CurrentWeapon = Weapons[0];
 
             _stateFactory = new StateFactory(this);
+            CurrentState = _stateFactory.IdleState;
         }
 
         private void Player_HasDied()
@@ -53,6 +54,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 
         private void HealthManager_HasDied()
         {
+            ChangeState(_stateFactory.IdleState);
             HasDied?.Invoke(this);
         }
 
@@ -70,7 +72,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         public void OnStart()
         {
             PlayerControllerCore.HealthManager.HasDied += Player_HasDied; 
-            ChangeState(_stateFactory.IdleState);
+            ChangeState(_stateFactory.SeekState);
         }
 
         protected void ChangeState(IInfantryState newState)
@@ -80,6 +82,12 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
                 CurrentState.OnExit();
                 CurrentState.ChangeState -= CurrentStateOnChangeState;
             }
+
+            if (CurrentState == newState)
+            {
+                return;
+            }
+
 
             CurrentState = newState;
             CurrentState.ChangeState += CurrentStateOnChangeState;

@@ -353,10 +353,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2771088272159019401, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
-      propertyPath: InitSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: c4492aab05fce654e907aba2d9a99ff5, type: 2}
     - target: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
       propertyPath: m_Name
       value: Pawn
@@ -367,11 +363,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2771088272159019406, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.86
+      value: 3.77
       objectReference: {fileID: 0}
     - target: {fileID: 2771088272159019406, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.822
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 2771088272159019406, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
       propertyPath: m_LocalPosition.z

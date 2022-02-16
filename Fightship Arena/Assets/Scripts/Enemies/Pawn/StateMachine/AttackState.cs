@@ -8,11 +8,11 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
 {
-    public class AttackState : IPawnState
+    public class AttackState : PawnState
     {
         private Coroutine _seekPlayerCoroutine;
 
-        public void Move()
+        public override void Move()
         {
             if (Parent.PlayerControllerCore == null || Parent.PlayerControllerCore.Transform == null) return;
 
@@ -34,27 +34,27 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
             Parent.Rigidbody.velocity = Vector2.ClampMagnitude(Parent.Rigidbody.velocity, Parent.InitSettings.MaxSpeed);
         }
 
-        public void Rotate() { }
+        public override void Rotate() { }
 
-        public void OnEnter()
+        public override void OnEnter()
         {
-            Debug.Log($"State {this.GetType().Name}: OnEnter");
+            base.OnEnter();
             _seekPlayerCoroutine = Parent.Parent.StartCoroutine(SeekPlayer());
         }
         private IEnumerator SeekPlayer()
         {
             while (true)
             {
-                yield return new WaitWhile(() => Parent.PlayerControllerCore.HealthManager.IsDead);
+                yield return new WaitUntil(() => Parent.PlayerControllerCore.HealthManager.IsDead);
                 //Player found
                 ChangeState?.Invoke(Factory.AttackState);
                 yield return new WaitForFixedUpdate();
             }
         }
 
-        public void OnExit()
+        public override void OnExit()
         {
-            Debug.Log($"State {this.GetType().Name}: OnExit");
+            base.OnExit();
             Parent.Parent.StopCoroutine(_seekPlayerCoroutine);
         }
 
@@ -64,8 +64,6 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
             Factory = factory;
         }
 
-        public event Action<IPawnState> ChangeState;
-        public PawnControllerCore Parent { get; set; }
-        public StateFactory Factory { get; set; }
+        public override event Action<IPawnState> ChangeState;
     }
 }

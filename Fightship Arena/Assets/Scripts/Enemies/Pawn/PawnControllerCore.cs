@@ -32,6 +32,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
             InitSettings = settings;
 
             _stateFactory = new StateFactory(this);
+            CurrentState = _stateFactory.IdleState;
 
         }
 
@@ -46,7 +47,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
         public void OnStart()
         {
             PlayerControllerCore.HealthManager.HasDied += Player_HasDied;
-            ChangeState(_stateFactory.IdleState);
+            ChangeState(_stateFactory.SeekState);
 
         }
 
@@ -63,6 +64,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
                 CurrentState.ChangeState -= CurrentStateOnChangeState;
             }
 
+            if (CurrentState == newState)
+            {
+                return;
+            }
+
             CurrentState = newState;
             CurrentState.ChangeState += CurrentStateOnChangeState;
             CurrentState.OnEnter();
@@ -73,14 +79,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
             ChangeState(state);
         }
 
-
         public void Move()
         {
             CurrentState.Move();
             CurrentState.Rotate();
         }
-
-        public void LookAtPlayer() { }
 
         public void HandleCollisionWithPlayer()
         {
