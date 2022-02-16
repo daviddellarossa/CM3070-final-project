@@ -15,6 +15,8 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
         public int MaxHealth { get; set; }
         public int Health { get; set; }
         public bool IsInvulnerable { get; set; }
+        public bool IsDead { get; protected set;
+        }
 
         public void Heal(int byValue)
         {
@@ -23,12 +25,14 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
             {
                 Health = MaxHealth;
             }
+
             HealthLevelChanged?.Invoke(Health);
         }
 
         public void Heal()
         {
-            Health = MaxHealth;
+            Heal(MaxHealth);
+            IsDead = false;
         }
 
         public void Damage(int byValue)
@@ -41,6 +45,7 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
 
             if (Health <= 0)
             {
+                IsDead = true;
                 HasDied?.Invoke();
             }
         }

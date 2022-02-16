@@ -1,36 +1,33 @@
-﻿using FightShipArena.Assets.Scripts.Player;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Player;
+using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Enemies
+namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 {
-    public class PawnController : EnemyController
+    public class InfantryController : EnemyController
     {
-
         private void HealthManager_HealthLevelChanged(int obj)
         {
         }
-
         private void HealthManager_HasDied()
         {
             Debug.Log($"Destroying object {this.gameObject.name}");
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
-
         void Awake()
         {
             HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
-            Core = new PawnControllerCore(this, HealthManager, InitSettings);
-        }
 
+            CheckWeaponsConfiguration();
+
+            Core = new InfantryControllerCore(this, HealthManager, InitSettings);
+
+        }
         void Start()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
@@ -46,8 +43,9 @@ namespace FightShipArena.Assets.Scripts.Enemies
             {
                 throw new NullReferenceException("InitSettings");
             }
-        }
 
+            Core.OnStart();
+        }
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log($"Collision detected with {col.gameObject.name}");
@@ -70,13 +68,27 @@ namespace FightShipArena.Assets.Scripts.Enemies
                 }
             }
         }
-
         private void FixedUpdate()
         {
-            if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
-                return;
+            //if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
+            //    return;
 
+            //Core.LookAtPlayer();
             Core.Move();
         }
+
+        private void CheckWeaponsConfiguration()
+        {
+            Weapons = this.GameObject.GetComponentsInChildren<WeaponBase>();
+            foreach (var weapon in Weapons)
+            {
+                //If the current weapon has no configuration, throw.
+                if (weapon.InitSettings == null)
+                {
+                    throw new Exception($"No settings for weapon {weapon.WeaponType}");
+                }
+            }
+        }
+
     }
 }

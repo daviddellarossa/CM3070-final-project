@@ -10,6 +10,8 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
         int MaxHealth { get; set; }
         int Health { get; set; }
         bool IsInvulnerable { get; set; }
+        //TODO: Add a property IsAlive or IsDead
+        bool IsDead { get;}
         void Heal(int byValue);
         void Heal();
         void Damage(int byValue);

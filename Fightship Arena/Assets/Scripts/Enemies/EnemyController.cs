@@ -1,14 +1,16 @@
 ﻿using System.Linq;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies
 {
-    public abstract class EnemyController : MyMonoBehaviour
+    public abstract class EnemyController : MyMonoBehaviour, IEnemyController
     {
         public EnemySettings InitSettings;
         public IEnemyControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; set; }
+        public WeaponBase[] Weapons { get; set; }
 
         protected virtual void ReleasePowerUp()
         {
@@ -30,6 +32,5 @@ namespace FightShipArena.Assets.Scripts.Enemies
             instance.transform.parent = null;
             instance.transform.position = this.transform.position;
         }
-
     }
 }
