@@ -1,4 +1,5 @@
 ﻿using System;
+using FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
@@ -16,6 +17,9 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
         public EnemySettings InitSettings { get; protected set; }
         public IHealthManager HealthManager { get; }
 
+        public IPawnState CurrentState { get; protected set; }
+        private StateFactory _stateFactory;
+
         public PawnControllerCore(IEnemyController parent, IHealthManager healthManager, EnemySettings settings)
         {
             Parent = parent;
@@ -24,40 +28,56 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
             HealthManager = healthManager;
             HealthManager.HasDied += HealthManager_HasDied;
             HealthManager.HealthLevelChanged += HealthManager_HealthLevelChanged;
+
             InitSettings = settings;
+
+            _stateFactory = new StateFactory(this);
+
         }
 
         private void HealthManager_HealthLevelChanged(int obj) { }
 
         private void HealthManager_HasDied()
         {
+            ChangeState(_stateFactory.IdleState);
             HasDied?.Invoke(this);
         }
 
         public void OnStart()
         {
+            PlayerControllerCore.HealthManager.HasDied += Player_HasDied;
+            ChangeState(_stateFactory.IdleState);
+
         }
+
+        private void Player_HasDied()
+        {
+            ChangeState(_stateFactory.IdleState);
+        }
+
+        protected void ChangeState(IPawnState newState)
+        {
+            if (CurrentState != null)
+            {
+                CurrentState.OnExit();
+                CurrentState.ChangeState -= CurrentStateOnChangeState;
+            }
+
+            CurrentState = newState;
+            CurrentState.ChangeState += CurrentStateOnChangeState;
+            CurrentState.OnEnter();
+        }
+
+        private void CurrentStateOnChangeState(IPawnState state)
+        {
+            ChangeState(state);
+        }
+
 
         public void Move()
         {
-            if(PlayerControllerCore == null || PlayerControllerCore.Transform == null) return;
-
-            var distance = PlayerControllerCore.Transform.position - this.Transform.position;
-
-            var direction = (distance).normalized;
-
-            //add impulse - Impulse increases (clamped) with the distance from the player
-            var forceMagnitude = UnityEngine.Mathf.Clamp(distance.magnitude, InitSettings.MinAttractiveForceMagnitude, InitSettings.MaxAttractiveForceMagnitude);
-            var force = direction * forceMagnitude;
-            Rigidbody.AddForce(force, ForceMode2D.Impulse);
-
-            //force movement - This effect increases when the distance lowers
-            var movementMagnitude = UnityEngine.Mathf.Clamp(0.1f / distance.magnitude, InitSettings.MinMovementMagnitude, InitSettings.MaxMovementMagnitude);
-            var movement = direction * movementMagnitude;
-            Rigidbody.position += new Vector2(movement.x, movement.y);
-
-            //Clamp maximum velocity
-            Rigidbody.velocity = Vector2.ClampMagnitude(Rigidbody.velocity, InitSettings.MaxSpeed);
+            CurrentState.Move();
+            CurrentState.Rotate();
         }
 
         public void LookAtPlayer() { }

@@ -17,7 +17,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             Parent.Rigidbody.AddForce(impulse);
         }
 
-
+            
         public void Rotate()
         {
             LookAtPlayer();

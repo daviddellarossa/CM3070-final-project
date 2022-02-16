@@ -12,6 +12,8 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 {
     public class InfantryControllerCore : IEnemyControllerCore
     {
+        public event Action<IEnemyControllerCore> HasDied;
+
         public IPlayerControllerCore PlayerControllerCore { get; set; }
         public IEnemyController Parent { get; protected set; }
         public Transform Transform { get; protected set; }
@@ -21,13 +23,9 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         public WeaponBase[] Weapons { get; }
         public WeaponBase CurrentWeapon { get; set; }
 
-        //public EnemyState State__ { get; set; }
-
         public IInfantryState CurrentState { get; protected set; }
         private StateFactory _stateFactory;
 
-
-        public event Action<IEnemyControllerCore> HasDied;
 
         public InfantryControllerCore(IEnemyController parent, IHealthManager healthManager, EnemySettings settings)
         {
@@ -44,9 +42,6 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             CurrentWeapon = Weapons[0];
 
             _stateFactory = new StateFactory(this);
-
-
-            //var mb = parent.StartCoroutine(Attack());
         }
 
         private void Player_HasDied()
