@@ -35,7 +35,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
         {
             while (true)
             {
-                yield return new WaitWhile(() => Parent.PlayerControllerCore == null);
+                yield return new WaitWhile(() => Parent.PlayerControllerCore.HealthManager.IsDead);
                 //Player found
                 ChangeState?.Invoke(Factory.AttackState);
                 yield return new WaitForFixedUpdate();

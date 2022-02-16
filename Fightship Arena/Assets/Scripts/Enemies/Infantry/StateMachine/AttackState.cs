@@ -6,6 +6,9 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 {
     public class AttackState : IInfantryState
     {
+        private Coroutine _fireCoroutine;
+        private Coroutine _seekPlayerCoroutine;
+        private bool fireCondition = false;
         public void Move()
         {
             var mag = UnityEngine.Random.value * Parent.InitSettings.MaxMovementMagnitude;
@@ -13,6 +16,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 
             Parent.Rigidbody.AddForce(impulse);
         }
+
 
         public void Rotate()
         {
@@ -22,21 +26,24 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
         public void OnEnter()
         {
             Debug.Log($"State {this.GetType().Name}: OnEnter");
-            Parent.Parent.StartCoroutine(SeekPlayer());
-            Parent.Parent.StartCoroutine(Fire());
+            fireCondition = true;
+            _seekPlayerCoroutine = Parent.Parent.StartCoroutine(SeekPlayer());
+            _fireCoroutine = Parent.Parent.StartCoroutine(Fire());
         }
 
         public void OnExit()
         {
             Debug.Log($"State {this.GetType().Name}: OnExit");
-            Parent.Parent.StopCoroutine(SeekPlayer());
-            Parent.Parent.StopCoroutine(Fire());
+            fireCondition = false;
+            Parent.Parent.StopCoroutine(_seekPlayerCoroutine);
+            Parent.Parent.StopCoroutine(_fireCoroutine);
+            Parent.CurrentWeapon.StopFiring();
 
         }
 
         protected void LookAtPlayer()
         {
-            if (Parent.PlayerControllerCore.Transform == null)
+            if (Parent.PlayerControllerCore.Transform == null )
             {
                 return;
             }
@@ -55,12 +62,12 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 
         }
 
-        protected IEnumerator Fire()
+        public IEnumerator Fire()
         {
             var stopFiringInterval = 1.0f;
             var firingInterval = 1.0f;
 
-            while (true)
+            while (fireCondition)
             {
                 var startFiringAt = Time.fixedTime;
                 Parent.CurrentWeapon.StartFiring();
@@ -73,11 +80,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             }
         }
 
-        private IEnumerator SeekPlayer()
+        public IEnumerator SeekPlayer()
         {
             while (true)
             {
-                yield return new WaitUntil(() => Parent.PlayerControllerCore == null);
+                yield return new WaitUntil(() => Parent.PlayerControllerCore.HealthManager.IsDead);
                 //Player found
                 ChangeState?.Invoke(Factory.IdleState);
                 yield return new WaitForSeconds(1);
