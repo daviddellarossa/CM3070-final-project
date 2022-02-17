@@ -71,11 +71,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             {
                 var startFiringAt = Time.fixedTime;
                 Parent.CurrentWeapon.StartFiring();
-                yield return new WaitWhile(() => startFiringAt + firingInterval > Time.fixedTime);
+                yield return new WaitWhile(() => startFiringAt + Parent.InitSettings.FiringIntervalLength > Time.fixedTime);
 
                 var stopFiringAt = Time.fixedTime;
                 Parent.CurrentWeapon.StopFiring();
-                yield return new WaitWhile(() => stopFiringAt + stopFiringInterval > Time.fixedTime);
+                yield return new WaitWhile(() => stopFiringAt + Parent.InitSettings.StopFiringIntervalLength > Time.fixedTime);
 
             }
         }

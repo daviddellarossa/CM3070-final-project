@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FightShipArena.Assets.Scripts.Enemies;
+using FightShipArena.Assets.Scripts.Player;
 using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
