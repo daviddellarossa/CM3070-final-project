@@ -34,7 +34,8 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 
             if (player == null)
             {
-                throw new NullReferenceException("Player");
+                Debug.LogWarning("Player not found");
+                return;
             }
 
             Core.PlayerControllerCore = player.GetComponent<PlayerController>().Core;
@@ -46,6 +47,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 
             Core.OnStart();
         }
+
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log($"Collision detected with {col.gameObject.name}");
@@ -70,11 +72,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         }
         private void FixedUpdate()
         {
-            //if (Time.frameCount % InitSettings.UpdateEveryXFrames != 0)
-            //    return;
-
-            //Core.LookAtPlayer();
-            Core.Move();
+            Core?.Move();
         }
 
         private void CheckWeaponsConfiguration()
