@@ -8,8 +8,10 @@ using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
@@ -45,7 +47,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         {
             OnStart();
         }
-
 
         public void OnStart()
         {
