@@ -16,11 +16,6 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
 
         public HighScoreRecorder HighScores;
 
-        [SerializeField]
-        [Range(1, 10)]
-        private int HighScoreListLength = 5;
-
-
         private int _multiplier;
         public int Multiplier
         {
