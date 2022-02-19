@@ -63,7 +63,6 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
             MultiplierChanged?.Invoke(Multiplier);
         }
 
-
         public void AddToHighScore()
         {
             if (CurrentScore.Value == 0)

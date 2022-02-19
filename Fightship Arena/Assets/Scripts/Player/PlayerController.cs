@@ -5,12 +5,16 @@ using FightShipArena.Assets.Scripts.Enemies;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
 using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerController : MyMonoBehaviour, IPlayerController
     {
+        public UnityEvent<int, int> PlayerHealthLevelChanged;
+        public UnityEvent PlayerHasDied;
+
         public IPlayerControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; protected set; }
         public PlayerSettings InitSettings => initSettings;
@@ -186,8 +190,6 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 throw new NullReferenceException("InitSettings");
             }
-
-
         }
 
         void OnCollisionEnter2D(Collision2D col)
@@ -204,12 +206,14 @@ namespace FightShipArena.Assets.Scripts.Player
         {
             Core.Move();
         }
-        private void HealthManager_HealthLevelChanged(int obj)
+        private void HealthManager_HealthLevelChanged(int value, int maxValue)
         {
+            PlayerHealthLevelChanged?.Invoke(value, maxValue);
         }
 
         private void HealthManager_HasDied()
         {
+            PlayerHasDied?.Invoke();
             Debug.Log($"Destroying object {this.gameObject.name}");
             Destroy(this.gameObject);
         }

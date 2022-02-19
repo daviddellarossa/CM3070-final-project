@@ -15434,6 +15434,44 @@
 							"target": {
 								"$ref": "AAAAAAF92XUJ/N4nPPM="
 							}
+						},
+						{
+							"_type": "UMLSignal",
+							"_id": "AAAAAAF/FBYJJ73ODhw=",
+							"_parent": {
+								"$ref": "AAAAAAF9DaygEWV+zr8="
+							},
+							"name": "PlayerHealthLevelChanged",
+							"stereotype": "UnityEvent",
+							"attributes": [
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAF/FBZdK73/Og4=",
+									"_parent": {
+										"$ref": "AAAAAAF/FBYJJ73ODhw="
+									},
+									"name": "value",
+									"type": "int"
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAF/FBakXr468ts=",
+									"_parent": {
+										"$ref": "AAAAAAF/FBYJJ73ODhw="
+									},
+									"name": "maxValue",
+									"type": "int"
+								}
+							]
+						},
+						{
+							"_type": "UMLSignal",
+							"_id": "AAAAAAF/FBcVhb8gg+4=",
+							"_parent": {
+								"$ref": "AAAAAAF9DaygEWV+zr8="
+							},
+							"name": "PlayerHasDied",
+							"stereotype": "UnityEvent"
 						}
 					],
 					"stereotype": "MonoBehaviour",
@@ -59808,6 +59846,17 @@
 							"signal": {
 								"$ref": "AAAAAAF/E8fV/CTrJU8="
 							}
+						},
+						{
+							"_type": "UMLReception",
+							"_id": "AAAAAAF/FBSHdL2RwbA=",
+							"_parent": {
+								"$ref": "AAAAAAF/E8lOrSmBMPc="
+							},
+							"name": "PlayerHealthLevelChanged",
+							"signal": {
+								"$ref": "AAAAAAF/FBYJJ73ODhw="
+							}
 						}
 					]
 				},
@@ -59980,13 +60029,30 @@
 											"height": 13,
 											"text": "+SetMultiplier(value: int)",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAF/FBNVO7yOYTw=",
+											"_parent": {
+												"$ref": "AAAAAAF/E82wADJm240="
+											},
+											"model": {
+												"$ref": "AAAAAAF/FBNVGryLvj8="
+											},
+											"font": "Arial;13;0",
+											"left": 1101,
+											"top": 202,
+											"width": 139.80712890625,
+											"height": 13,
+											"text": "+SetHealth(value: int)",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1096,
 									"top": 152,
 									"width": 149.80712890625,
-									"height": 53
+									"height": 68
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -60022,7 +60088,7 @@
 							"left": 1096,
 							"top": 104,
 							"width": 149.80712890625,
-							"height": 102,
+							"height": 117,
 							"stereotypeDisplay": "icon",
 							"nameCompartment": {
 								"$ref": "AAAAAAF/E82wADJgmoM="
@@ -60070,7 +60136,7 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 325,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "«MonoBehaviour»"
 										},
@@ -60083,7 +60149,7 @@
 											"font": "Arial;13;1",
 											"left": 1053,
 											"top": 340,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "HudManager"
 										},
@@ -60118,7 +60184,7 @@
 									"font": "Arial;13;0",
 									"left": 1048,
 									"top": 320,
-									"width": 231.48876953125,
+									"width": 370.0009765625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF/E88LrjMEbW8="
@@ -60155,7 +60221,7 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 363,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "-HiScore: TextMeshProUGUI",
 											"horizontalAlignment": 0
@@ -60172,7 +60238,7 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 378,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "-Score: TextMeshProUGUI",
 											"horizontalAlignment": 0
@@ -60189,7 +60255,7 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 393,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "-Multiplier: TextMeshProUGUI",
 											"horizontalAlignment": 0
@@ -60198,7 +60264,7 @@
 									"font": "Arial;13;0",
 									"left": 1048,
 									"top": 358,
-									"width": 231.48876953125,
+									"width": 370.0009765625,
 									"height": 53
 								},
 								{
@@ -60213,7 +60279,7 @@
 									"font": "Arial;13;0",
 									"left": 1048,
 									"top": 411,
-									"width": 231.48876953125,
+									"width": 370.0009765625,
 									"height": 10
 								},
 								{
@@ -60238,7 +60304,7 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 426,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "«signal»+ScoreChanged(value: int)",
 											"horizontalAlignment": 0
@@ -60255,7 +60321,7 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 441,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "«signal»+MultiplierChanged(value: int)",
 											"horizontalAlignment": 0
@@ -60272,17 +60338,34 @@
 											"font": "Arial;13;0",
 											"left": 1053,
 											"top": 456,
-											"width": 221.48876953125,
+											"width": 360.0009765625,
 											"height": 13,
 											"text": "«signal»+HiScoreChanged(value: int)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLReceptionView",
+											"_id": "AAAAAAF/FBSHfr2UjzA=",
+											"_parent": {
+												"$ref": "AAAAAAF/E88LrjMK09I="
+											},
+											"model": {
+												"$ref": "AAAAAAF/FBSHdL2RwbA="
+											},
+											"font": "Arial;13;0",
+											"left": 1053,
+											"top": 471,
+											"width": 360.0009765625,
+											"height": 13,
+											"text": "«signal»+PlayerHealthLevelChanged(value: int, maxValue: int)",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1048,
 									"top": 421,
-									"width": 231.48876953125,
-									"height": 53
+									"width": 370.0009765625,
+									"height": 68
 								},
 								{
 									"_type": "UMLTemplateParameterCompartmentView",
@@ -60305,8 +60388,8 @@
 							"containerChangeable": true,
 							"left": 1048,
 							"top": 320,
-							"width": 231.48876953125,
-							"height": 154,
+							"width": 370.0009765625,
+							"height": 169,
 							"nameCompartment": {
 								"$ref": "AAAAAAF/E88LrjMD4s0="
 							},
@@ -60345,8 +60428,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1152,
-									"top": 216,
+									"left": 1175,
+									"top": 219,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -60366,8 +60449,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1137,
-									"top": 216,
+									"left": 1160,
+									"top": 222,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -60387,8 +60470,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1181,
-									"top": 217,
+									"left": 1204,
+									"top": 214,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -60406,7 +60489,7 @@
 								"$ref": "AAAAAAF/E88LrjMCPO4="
 							},
 							"lineStyle": 1,
-							"points": "1165:319;1169.7362637362637:127",
+							"points": "1210:319;1171.698113207547:127",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF/E89ThjM2Stw="
@@ -60479,6 +60562,25 @@
 									"_id": "AAAAAAF/E85yUTKiIzs=",
 									"_parent": {
 										"$ref": "AAAAAAF/E85A7zKaKXw="
+									},
+									"name": "value",
+									"type": "int"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAF/FBNVGryLvj8=",
+							"_parent": {
+								"$ref": "AAAAAAF/E82v/zJd8dY="
+							},
+							"name": "SetHealth",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAF/FBOWZ7yTcm8=",
+									"_parent": {
+										"$ref": "AAAAAAF/FBNVGryLvj8="
 									},
 									"name": "value",
 									"type": "int"

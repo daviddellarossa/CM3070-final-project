@@ -4,7 +4,7 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
 {
     public interface IHealthManager
     {
-        event Action<int> HealthLevelChanged;
+        event Action<int, int> HealthLevelChanged;
         event Action HasDied;
 
         int MaxHealth { get; set; }

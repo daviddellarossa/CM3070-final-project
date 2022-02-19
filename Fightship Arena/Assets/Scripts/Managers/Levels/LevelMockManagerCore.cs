@@ -30,6 +30,9 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             this.PlayerControllerCore = Parent.PlayerControllerCore;
             this.PlayerControllerCore.HealthManager.HasDied += PlayerHasDied;
             Debug.Log($"Level started");
+
+            this.PlayerControllerCore.HealthManager.Heal();
+
             if (SpawnEnemiesEnabled)
             {
                 this.Parent.OrchestrationManager.Run();
