@@ -4,7 +4,7 @@
     {
         void AddToHighScore();
         void AddToScore(int score);
-        void AddMultiplier(int multiplier);
+        void AddToMultiplier(int multiplier);
         void ResetMultiplier();
         void ResetCurrentScore();
         void ResetHighScore();

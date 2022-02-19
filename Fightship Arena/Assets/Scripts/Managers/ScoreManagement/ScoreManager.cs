@@ -11,49 +11,98 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
         public UnityEvent<int> ScoreChanged;
         public UnityEvent<int> MultiplierChanged;
         public UnityEvent<int> HiScoreChanged;
-        public Score CurrentScore;
+
+        private Score CurrentScore;
+
         public HighScoreRecorder HighScores;
-        public int Multiplier = 1;
+
+        [SerializeField]
+        [Range(1, 10)]
+        private int HighScoreListLength = 5;
+
+
+        private int _multiplier;
+        public int Multiplier
+        {
+            get => _multiplier;
+            protected set
+            {
+                if (value == _multiplier)
+                {
+                    return;
+                }
+
+                _multiplier = value;
+                Debug.Log($"Multiplier set to {Multiplier}");
+                NotifyMultiplierValueChange();
+            }
+        }
 
         void Start()
         {
             ResetCurrentScore();
+            ResetMultiplier();
+            NotifyHighScoreValueChange();
+
         }
+
+        private void NotifyHighScoreValueChange()
+        {
+            var highScore = HighScores.HighScores.OrderByDescending(x => x.Value).FirstOrDefault();
+            int highScoreValue = 0;
+            if (highScore != null)
+            {
+                highScoreValue = highScore.Value;
+            }
+
+            HiScoreChanged.Invoke(highScoreValue);
+        }
+
+        private void NotifyScoreValueChange()
+        {
+            ScoreChanged?.Invoke(CurrentScore.Value);
+        }
+
+        private void NotifyMultiplierValueChange()
+        {
+            MultiplierChanged?.Invoke(Multiplier);
+        }
+
 
         public void AddToHighScore()
         {
+            if (CurrentScore.Value == 0)
+            {
+                return;
+            }
             CurrentScore.Date = DateTime.Now.ToString("s");
             CurrentScore.Name = "DDR";
             HighScores.HighScores.Add(CurrentScore);
-            HiScoreChanged?.Invoke(HighScores.HighScores.OrderByDescending(x=>x.Value).Select(x=>x.Value).FirstOrDefault());
+            NotifyHighScoreValueChange();
         }
 
         public void AddToScore(int score)
         {
             var totScore = score * Multiplier;
             CurrentScore.Value += totScore;
-            ScoreChanged?.Invoke(CurrentScore.Value);
-            Debug.Log($"Adding score {totScore}");
+            Debug.Log($"Score set to {CurrentScore.Value}");
+            NotifyScoreValueChange();
         }
 
-        public void AddMultiplier(int multiplier)
+        public void AddToMultiplier(int multiplier)
         {
             Multiplier += multiplier;
-            MultiplierChanged?.Invoke(Multiplier);
-            Debug.Log($"Multiplier set to {Multiplier}");
         }
 
         public void ResetMultiplier()
         {
             Multiplier = 1;
-            MultiplierChanged?.Invoke(Multiplier);
-
         }
 
         public void ResetCurrentScore()
         {
             CurrentScore = new Score();
-            ScoreChanged?.Invoke(CurrentScore.Value);
+            NotifyScoreValueChange();
 
         }
 

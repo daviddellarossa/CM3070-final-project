@@ -36,6 +36,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         private void OrchestrationManager_OrchestrationComplete()
         {
             Debug.Log("Orchestration complete");
+            ScoreManager.AddToHighScore();
         }
 
         private void OrchestrationManager_SendScore(int value)
@@ -64,7 +65,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         private void PlayerControllerCore_ScoreMultiplierCollected(int value)
         {
-            ScoreManager.AddMultiplier(value);
+            ScoreManager.AddToMultiplier(value);
         }
 
         public void OnAwake()

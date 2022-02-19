@@ -2359,7 +2359,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1455586405}
         m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.HudManagement.HudManager,
           FightShipArena
-        m_MethodName: SetMultiplier
+        m_MethodName: SetHiScore
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2369,12 +2369,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  CurrentScore:
-    Value: 0
-    Name: 
-    Date: 
   HighScores: {fileID: 11400000, guid: 652c9bcc6b14fe54887174de9a619460, type: 2}
-  Multiplier: 1
+  HighScoreListLength: 5
 --- !u!114 &1455586407
 MonoBehaviour:
   m_ObjectHideFlags: 0
