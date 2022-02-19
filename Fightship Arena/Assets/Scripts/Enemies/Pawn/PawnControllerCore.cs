@@ -36,7 +36,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 
         }
 
-        private void HealthManager_HealthLevelChanged(int obj) { }
+        private void HealthManager_HealthLevelChanged(int value, int maxValue) { }
 
         private void HealthManager_HasDied()
         {

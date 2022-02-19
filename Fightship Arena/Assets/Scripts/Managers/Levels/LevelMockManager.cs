@@ -8,14 +8,18 @@ using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class LevelMockManager : LevelManager, ILevelMockManager
     {
+
         public ILevelMockManagerCore Core { get; protected set; }
         private PlayerInput _playerInput;
 
@@ -34,6 +38,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         private void OrchestrationManager_OrchestrationComplete()
         {
             Debug.Log("Orchestration complete");
+            ScoreManager.AddToHighScore();
         }
 
         private void OrchestrationManager_SendScore(int value)
@@ -46,7 +51,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             OnStart();
         }
 
-
         public void OnStart()
         {
             var player = GameObject.FindWithTag("Player");
@@ -57,13 +61,12 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
             this.PlayerControllerCore = player.GetComponent<IPlayerController>().Core;
             this.PlayerControllerCore.ScoreMultiplierCollected += PlayerControllerCore_ScoreMultiplierCollected;
-
             Core.OnStart();
         }
 
         private void PlayerControllerCore_ScoreMultiplierCollected(int value)
         {
-            ScoreManager.AddMultiplier(value);
+            ScoreManager.AddToMultiplier(value);
         }
 
         public void OnAwake()

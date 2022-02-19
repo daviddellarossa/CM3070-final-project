@@ -37,7 +37,7 @@ namespace FightShipArena.Assets.Scripts.Player
             CurrentWeapon = Weapons[0];
         }
 
-        private void HealthManager_HealthLevelChanged(int obj) { }
+        private void HealthManager_HealthLevelChanged(int value, int maxValue) { }
 
         private void HealthManager_HasDied()
         {

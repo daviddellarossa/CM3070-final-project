@@ -50,7 +50,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             ChangeState(_stateFactory.IdleState);
         }
 
-        private void HealthManager_HealthLevelChanged(int obj) { }
+        private void HealthManager_HealthLevelChanged(int value, int maxValue) { }
 
         private void HealthManager_HasDied()
         {

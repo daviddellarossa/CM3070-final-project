@@ -8,7 +8,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
     public class PawnController : EnemyController
     {
 
-        private void HealthManager_HealthLevelChanged(int obj)
+        private void HealthManager_HealthLevelChanged(int value, int maxValue)
         {
         }
 
