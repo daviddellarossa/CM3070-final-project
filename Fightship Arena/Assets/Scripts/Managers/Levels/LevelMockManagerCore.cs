@@ -32,7 +32,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             Debug.Log($"Level started");
             if (SpawnEnemiesEnabled)
             {
-                //this.Parent.EnemyManager.StartSpawing();
                 this.Parent.OrchestrationManager.Run();
             }
         }
@@ -40,7 +39,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         private void PlayerHasDied()
         {
             this.Parent.OrchestrationManager.Stop();
-            //this.Parent.EnemyManager.StopSpawning();
             //Change LevelManager state to GameOver
         }
 
