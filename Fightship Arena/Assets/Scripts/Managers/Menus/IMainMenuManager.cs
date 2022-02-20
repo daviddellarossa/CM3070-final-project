@@ -11,5 +11,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         void OnAwake();
         void StartGame();
         void QuitGame();
+        void ShowCredits();
     }
 }

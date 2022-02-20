@@ -48,5 +48,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         { 
             Core.QuitGame();
         }
+
+        public void ShowCredits()
+        {
+            Core.ShowCredits();
+        }
     }
 }

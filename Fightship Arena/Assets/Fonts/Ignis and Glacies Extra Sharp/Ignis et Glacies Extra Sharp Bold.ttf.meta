@@ -11,7 +11,6 @@ TrueTypeFontImporter:
   fontNames:
   - Ignis et Glacies Extra Sharp
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 71c3526f4372d4341a0839fe1262f6df, type: 3}
   - {fileID: 12800000, guid: 02db5a99e59c59943adea1b9ebf3a714, type: 3}
   customCharacters: 
   fontRenderingMode: 0

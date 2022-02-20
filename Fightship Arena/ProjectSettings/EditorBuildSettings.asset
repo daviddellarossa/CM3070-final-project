@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/LevelMock.unity
     guid: 3586f3bf86cd1f442bff25fad6b6d2ea
   - enabled: 1
-    path: Assets/Scenes/Menus/PauseMenu.unity
+    path: Assets/Scenes/Menus/CreditsMenu.unity
     guid: e6ad72bc698346d4b822162d876254b8
   - enabled: 1
     path: Assets/Scenes/Test Input.unity

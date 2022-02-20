@@ -34,5 +34,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         {
             QuitGameEvent?.Invoke(this, new EventArgs());
         }
+
+        public void ShowCredits()
+        {
+            
+        }
     }
 }
