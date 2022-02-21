@@ -330,6 +330,17 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""action"": ""PauseResume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b064888c-d3e3-401c-bbe5-046d05771177"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseResume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
