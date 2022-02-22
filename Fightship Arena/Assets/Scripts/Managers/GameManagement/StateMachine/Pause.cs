@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.Menus;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
@@ -12,6 +13,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
     {
         public readonly string _sceneName = "PauseMenu";
         protected IPauseMenuManager _menuManager;
+
+        private float _timeScale;
 
         public Pause(
             IGameManager gameManager,
@@ -29,11 +32,18 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.OnEnter();
 
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
+
+            // Slow time to zero
+            _timeScale = Time.timeScale;
+            Time.timeScale = 0;
         }
 
         public override void OnExit()
         {
             base.OnExit();
+
+            // Reset time to normal speed
+            Time.timeScale = _timeScale;
 
             SceneManagerWrapper.UnloadSceneAsync(_sceneName);
         }
