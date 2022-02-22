@@ -246,10 +246,14 @@ PrefabInstance:
     - target: {fileID: 5396380119384443893, guid: e42abe60165804e4daa3df288c7331f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1222860805}
+      objectReference: {fileID: 1222860807}
     - target: {fileID: 5396380119384443893, guid: e42abe60165804e4daa3df288c7331f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396380119384443893, guid: e42abe60165804e4daa3df288c7331f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FightShipArena.Assets.Scripts.Managers.Menus.CreditsMenuManager, FightShipArena
       objectReference: {fileID: 0}
     - target: {fileID: 5396380119384443895, guid: e42abe60165804e4daa3df288c7331f9, type: 3}
       propertyPath: m_Name
@@ -584,7 +588,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1222860805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72584c08fade5a840a0d48cb64e231d7, type: 3}
+  m_Script: {fileID: 11500000, guid: a2a2ae5f7006e1d46bf695d1b157667b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1660551541

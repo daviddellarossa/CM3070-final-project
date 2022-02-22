@@ -21,6 +21,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler PlayGameEvent;
         public override event EventHandler QuitCurrentGameEvent;
         public override event EventHandler QuitGameEvent;
+        public override event EventHandler ShowCreditsEvent;
+        public override event EventHandler ReturnToMainEvent;
 
         public override void OnEnter()
         {
@@ -52,6 +54,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             _menuManager.StartGameEvent += StartGameEventHandler;
             _menuManager.QuitGameEvent += QuitGameEventHandler;
+            _menuManager.ShowCreditsEvent += ShowCreditsEventHandler;
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.
@@ -75,5 +78,11 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         {
             QuitGameEvent?.Invoke(this, state);
         }
+
+        protected virtual void ShowCreditsEventHandler(object sender, EventArgs state)
+        {
+            ShowCreditsEvent?.Invoke(this, state);
+        }
+
     }
 }

@@ -12,6 +12,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
     {
         public event EventHandler StartGameEvent;
         public event EventHandler QuitGameEvent;
+        public event EventHandler ShowCreditsEvent;
 
         public IMainMenuManager Core { get; protected set; }
 
@@ -37,6 +38,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 
             Core.QuitGameEvent += (sender, args) => QuitGameEvent?.Invoke(sender, args);
             Core.StartGameEvent += (sender, args) => StartGameEvent?.Invoke(sender, args);
+            Core.ShowCreditsEvent += (sender, args) => ShowCreditsEvent?.Invoke(sender, args);
         }
 
         public void StartGame()

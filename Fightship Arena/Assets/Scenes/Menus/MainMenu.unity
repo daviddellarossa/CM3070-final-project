@@ -873,9 +873,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 570206022}
-        m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.Menus.MainMenu,
+        m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.Menus.MainMenuManager,
           FightShipArena
-        m_MethodName: StartGame
+        m_MethodName: ShowCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

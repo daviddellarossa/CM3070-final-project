@@ -20,6 +20,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler PlayGameEvent;
         public override event EventHandler QuitCurrentGameEvent;
         public override event EventHandler QuitGameEvent;
+        public override event EventHandler ShowCreditsEvent;
+        public override event EventHandler ReturnToMainEvent;
 
         public override void OnActivate()
         {

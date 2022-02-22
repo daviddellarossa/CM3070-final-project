@@ -6,6 +6,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
     {
         event EventHandler StartGameEvent;
         event EventHandler QuitGameEvent;
+        event EventHandler ShowCreditsEvent;
 
         void OnStart();
         void OnAwake();

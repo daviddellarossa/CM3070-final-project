@@ -11,6 +11,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
     {
         public event EventHandler StartGameEvent;
         public event EventHandler QuitGameEvent;
+        public event EventHandler ShowCreditsEvent;
 
         public readonly IMyMonoBehaviour Parent;
 
@@ -37,7 +38,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 
         public void ShowCredits()
         {
-            
+            ShowCreditsEvent?.Invoke(this, new EventArgs());
         }
     }
 }
