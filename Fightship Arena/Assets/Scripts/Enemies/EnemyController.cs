@@ -29,6 +29,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
             }
 
             var instance = GameObject.Instantiate(selectedPowerUp.PowerUp);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(instance, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+
             instance.transform.parent = null;
             instance.transform.position = this.transform.position;
         }

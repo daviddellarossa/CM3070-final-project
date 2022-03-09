@@ -51,6 +51,8 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
             }
 
             var coworker = new GameObject("CoWorker_" + task.ToString()).AddComponent<CoroutineWorker>();
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(coworker.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+
             coworker.Work(task);
         }
 

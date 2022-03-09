@@ -41,7 +41,9 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
             ChangeState(OrchestrationState.Running);
 
             _enemyInstance = Instantiate(EnemyPrefab, SpawnPoint.transform.position, Quaternion.identity);
-
+            
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_enemyInstance, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+            
             _core = _enemyInstance.GetComponent<EnemyController>().Core;
             _core.HasDied += HasDiedEventHandler;
 

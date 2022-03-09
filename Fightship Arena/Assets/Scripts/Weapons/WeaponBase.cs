@@ -66,6 +66,8 @@ namespace FightShipArena.Assets.Scripts.Weapons
             while (Ammo > 0)
             {
                 var bulletGo = GameObject.Instantiate(this.Bullet, this.transform);
+                //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(bulletGo, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+
                 bulletGo.transform.parent = null;
                 Ammo--;
 
