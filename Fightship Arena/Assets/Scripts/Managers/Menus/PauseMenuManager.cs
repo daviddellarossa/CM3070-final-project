@@ -14,6 +14,8 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 
         public IPauseMenuManager Core { get; protected set; }
 
+        private float _timeScale;
+
         void Awake()
         {
             Core = new PauseMenuManagerCore(this);
@@ -29,6 +31,8 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public void OnStart()
         {
             Core.OnStart();
+            _timeScale = Time.timeScale;
+            SetTimeScale();
         }
 
         public void OnAwake()
@@ -42,11 +46,22 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public void ResumeGame()
         {
             Core.ResumeGame();
+            ResetTimeScale();
         }
 
         public void QuitCurrentGame()
         {
             Core.QuitCurrentGame();
+            ResetTimeScale();
+        }
+
+        private void SetTimeScale()
+        {
+            Time.timeScale = 0;
+        }
+        private void ResetTimeScale()
+        {
+            Time.timeScale = _timeScale;
         }
     }
 }
