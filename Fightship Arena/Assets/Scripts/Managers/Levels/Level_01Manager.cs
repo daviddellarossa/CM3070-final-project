@@ -17,7 +17,7 @@ using UnityEngine.UI;
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
-    public class Level_01Manager : LevelManager, ILevelManager
+    public class Level_01Manager : LevelManager
     {
 
         public ILevelManagerCore Core { get; protected set; }
@@ -53,13 +53,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         public void OnStart()
         {
-            var player = GameObject.FindWithTag("Player");
-            if (player == null)
-            {
-                throw new NullReferenceException("Player object not found");
-            }
-
-            this.PlayerControllerCore = player.GetComponent<IPlayerController>().Core;
+            base.OnStart();
             this.PlayerControllerCore.ScoreMultiplierCollected += PlayerControllerCore_ScoreMultiplierCollected;
             Core.OnStart();
         }

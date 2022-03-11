@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
+using FightShipArena.Assets.Scripts.Managers.Levels.StateMachine;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,42 +13,67 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     public class Level_01ManagerCore : ILevelManagerCore
     {
-        public readonly ILevelManager Parent;
         public IPlayerControllerCore PlayerControllerCore { get; set; }
+
+        public State CurrentState { get; private set; }
+        public ILevelManager LevelManager { get; set; }
 
         public bool SpawnEnemiesEnabled = true;
 
         protected PlayerInput _playerInput;
 
-        public Level_01ManagerCore(ILevelManager parent)
+        private StateConfiguration _stateConfiguration;
+
+        public Level_01ManagerCore(ILevelManager levelManager)
         {
-            Parent = parent;
+            LevelManager = levelManager;
 
         }
 
         public void OnStart()
         {
-            this.PlayerControllerCore = Parent.PlayerControllerCore;
+            this.PlayerControllerCore = LevelManager.PlayerControllerCore;
             this.PlayerControllerCore.HealthManager.HasDied += PlayerHasDied;
             Debug.Log($"Level started");
 
             this.PlayerControllerCore.HealthManager.Heal();
 
-            if (SpawnEnemiesEnabled)
+            _stateConfiguration = new StateConfiguration(
+                levelManagerCore: this,
+                orchestrationManager: this.LevelManager.OrchestrationManager,
+                hudManager: this.LevelManager.HudManager,
+                spawnEnemiesEnabled: true
+            );
+
+            ChangeStateRequestEventHandler(this, new WaitForStart(_stateConfiguration));
+        }
+
+        /// <summary>
+        /// Handler for a request to change current state.
+        /// </summary>
+        /// <param name="sender">The sender of the request.</param>
+        /// <param name="e">The new state.</param>
+        protected void ChangeStateRequestEventHandler(object sender, State e)
+        {
+            //Debug.Log($"Changing state from {sender} to {e}");
+            if (CurrentState != null)
             {
-                this.Parent.OrchestrationManager.Run();
+                CurrentState.ChangeStateRequestEvent -= ChangeStateRequestEventHandler;
+                CurrentState.OnExit();
             }
+            CurrentState = e;
+            CurrentState.ChangeStateRequestEvent += ChangeStateRequestEventHandler;
+            CurrentState.OnEnter();
         }
 
         private void PlayerHasDied()
         {
-            this.Parent.OrchestrationManager.Stop();
-            //Change LevelManager state to GameOver
+            ChangeStateRequestEventHandler(this, new GameOver(_stateConfiguration));
         }
 
         public void OnAwake() 
         {
-            _playerInput = Parent.GameObject.GetComponent<PlayerInput>();
+            _playerInput = LevelManager.GameObject.GetComponent<PlayerInput>();
         }
 
         public void Move(InputAction.CallbackContext context)

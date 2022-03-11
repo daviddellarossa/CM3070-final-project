@@ -12,5 +12,6 @@ namespace FightShipArena.Assets.Scripts.Managers.HudManagement
         void SetScore(int value);
         void SetMultiplier(int value);
         void SetHealth(int value, int maxValue);
+        void SetCentralText(string text);
     }
 }
