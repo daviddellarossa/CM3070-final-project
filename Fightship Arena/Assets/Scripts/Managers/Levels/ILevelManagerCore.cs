@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public interface ILevelMockManagerCore
+    public interface ILevelManagerCore
     {
         IPlayerControllerCore PlayerControllerCore { get; set; }
         void OnStart();

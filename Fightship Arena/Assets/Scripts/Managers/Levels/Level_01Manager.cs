@@ -17,10 +17,10 @@ using UnityEngine.UI;
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
-    public class LevelMockManager : LevelManager, ILevelMockManager
+    public class Level_01Manager : LevelManager, ILevelManager
     {
 
-        public ILevelMockManagerCore Core { get; protected set; }
+        public ILevelManagerCore Core { get; protected set; }
         private PlayerInput _playerInput;
 
         void Awake()
@@ -30,7 +30,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             OrchestrationManager.SendScore += OrchestrationManager_SendScore;
             OrchestrationManager.OrchestrationComplete += OrchestrationManager_OrchestrationComplete;
 
-            Core = new LevelMockManagerCore(this);
+            Core = new Level_01ManagerCore(this);
 
             OnAwake();
         }

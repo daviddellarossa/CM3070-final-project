@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 64c984d7f04b214439c3e118c17b3c4e
   - enabled: 1
-    path: Assets/Scenes/Levels/LevelMock.unity
+    path: Assets/Scenes/Levels/Level_01.unity
     guid: 3586f3bf86cd1f442bff25fad6b6d2ea
   - enabled: 1
     path: Assets/Scenes/Menus/PauseMenu.unity

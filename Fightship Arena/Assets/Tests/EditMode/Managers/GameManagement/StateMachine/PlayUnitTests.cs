@@ -64,7 +64,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
             var sceneManagerWrapper = sceneManagerWrapperMock.Object;
 
-            var levelManagerMock = new Mock<ILevelMockManager>();
+            var levelManagerMock = new Mock<ILevelManager>();
             var levelManager = levelManagerMock.Object;
 
             var state = new PlayMock(gameManagerCore, sceneManagerWrapper);
@@ -88,7 +88,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
             var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
             var sceneManagerWrapper = sceneManagerWrapperMock.Object;
 
-            var levelManagerMock = new Mock<ILevelMockManager>();
+            var levelManagerMock = new Mock<ILevelManager>();
             var levelManager = levelManagerMock.Object;
 
             var state = new PlayMock(gameManagerCore, sceneManagerWrapper);
@@ -133,7 +133,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
                 IUnitySceneManagerWrapper sceneManagerWrapper
             ) : base(gameManager, sceneManagerWrapper) { }
 
-            public void SetLevelManager(ILevelMockManager levelManager)
+            public void SetLevelManager(ILevelManager levelManager)
             {
                 this._levelManager = levelManager;
             }

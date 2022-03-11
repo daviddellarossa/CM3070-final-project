@@ -10,16 +10,16 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public class LevelMockManagerCore : ILevelMockManagerCore
+    public class Level_01ManagerCore : ILevelManagerCore
     {
-        public readonly ILevelMockManager Parent;
+        public readonly ILevelManager Parent;
         public IPlayerControllerCore PlayerControllerCore { get; set; }
 
         public bool SpawnEnemiesEnabled = true;
 
         protected PlayerInput _playerInput;
 
-        public LevelMockManagerCore(ILevelMockManager parent)
+        public Level_01ManagerCore(ILevelManager parent)
         {
             Parent = parent;
 

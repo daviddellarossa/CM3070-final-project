@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public interface ILevelMockManager : IMyMonoBehaviour
+    public interface ILevelManager : IMyMonoBehaviour
     {
         IPlayerControllerCore PlayerControllerCore { get; set; }
         IScoreManager ScoreManager { get; set; }
