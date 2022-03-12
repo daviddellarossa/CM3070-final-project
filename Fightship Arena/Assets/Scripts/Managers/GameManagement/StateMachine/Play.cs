@@ -10,8 +10,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Play : State
     {
-        public readonly string _sceneName = "LevelMock";
-        protected ILevelMockManager _levelManager;
+        public readonly string _sceneName = "Level_01";
+        protected ILevelManager _levelManager;
 
         public Play(
             IGameManager gameManager,
@@ -65,14 +65,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.
-        protected virtual ILevelMockManager GetSceneManagerFromScene(Scene scene)
+        protected virtual ILevelManager GetSceneManagerFromScene(Scene scene)
         {
             if (scene.name != _sceneName)
                 return null;
 
             var rootGameObjects = scene.GetRootGameObjects();
             var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
-            var levelManager = sceneManagerGo.GetComponent<LevelMockManager>();
+            var levelManager = sceneManagerGo.GetComponent<Level_01Manager>();
 
             return levelManager;
         }

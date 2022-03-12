@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
 {
-    public class SceneManager : MyMonoBehaviour
+    public class SceneManager : MyMonoBehaviour, IMyMonoBehaviour
     {
         void Start()
         {

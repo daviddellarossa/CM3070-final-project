@@ -14,6 +14,7 @@ namespace FightShipArena.Assets.Scripts.Managers.HudManagement
         [SerializeField] private TextMeshProUGUI Score;
         [SerializeField] private TextMeshProUGUI Multiplier;
         [SerializeField] private TextMeshProUGUI Health;
+        [SerializeField] private TextMeshProUGUI Central;
 
         [SerializeField] private Gradient HealthGradient;
         public void SetHiScore(int value)
@@ -35,6 +36,11 @@ namespace FightShipArena.Assets.Scripts.Managers.HudManagement
         {
             Health.text = value.ToString();
             Health.color = HealthGradient.Evaluate(value / (float)maxValue);
+        }
+
+        public void SetCentralText(string text)
+        {
+            Central.text = text;
         }
     }
 }

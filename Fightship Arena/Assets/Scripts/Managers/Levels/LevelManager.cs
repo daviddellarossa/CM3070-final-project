@@ -14,7 +14,7 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public class LevelManager : SceneManager
+    public class LevelManager : SceneManager, ILevelManager
     {
         public IPlayerControllerCore PlayerControllerCore { get; set; }
         public IScoreManager ScoreManager { get; set; }
@@ -26,5 +26,24 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         public virtual void DisablePlayerInput(){}
 
         public virtual void EnablePlayerInput(){}
+
+        public virtual void OnStart() 
+        {
+            var player = GameObject.FindWithTag("Player");
+            if (player == null)
+            {
+                throw new NullReferenceException("Player object not found");
+            }
+
+            this.PlayerControllerCore = player.GetComponent<IPlayerController>().Core;
+
+            this.HudManager = GetComponent<IHudManager>();
+            if(HudManager == null)
+            {
+                Debug.LogError("HudManager not found in LevelManager OnStart");
+            }
+        }
+
+        public virtual void OnAwake() { }
     }
 }
