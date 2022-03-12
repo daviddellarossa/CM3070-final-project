@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.Menus;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
@@ -24,9 +25,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler QuitCurrentGameEvent;
         public override event EventHandler QuitGameEvent;
 
+        private float _timeScale;
+
         public override void OnEnter()
         {
             base.OnEnter();
+
+            _timeScale = Time.timeScale;
+            SetTimeScale();
 
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
         }
@@ -36,6 +42,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.OnExit();
 
             SceneManagerWrapper.UnloadSceneAsync(_sceneName);
+
+            ResetTimeScale();
         }
 
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -80,5 +88,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             ResumeGameEvent?.Invoke(this, new EventArgs());
         }
+        private void SetTimeScale()
+        {
+            Time.timeScale = 0;
+        }
+        private void ResetTimeScale()
+        {
+            Time.timeScale = _timeScale;
+        }
+
     }
 }
