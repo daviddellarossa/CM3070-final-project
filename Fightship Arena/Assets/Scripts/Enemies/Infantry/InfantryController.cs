@@ -1,5 +1,6 @@
 ﻿using System;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Managers.Levels;
 using FightShipArena.Assets.Scripts.Player;
 using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         private void HealthManager_HasDied()
         {
             Debug.Log($"Destroying object {this.gameObject.name}");
+            
+            _SoundManager.PlayExplodeSound();
+
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
@@ -34,9 +38,25 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 
             if (player == null)
             {
-                Debug.LogWarning("Player not found");
-                return;
+                Debug.LogError("Player not found");
             }
+
+            var sceneManagerGO = GameObject.FindGameObjectWithTag("SceneManager");
+            var sceneManager = sceneManagerGO?.GetComponent<LevelManager>();
+
+            if(sceneManager == null)
+            {
+                Debug.LogError("SceneManager not found");
+            }
+
+            _SoundManager = gameObject.GetComponent<EnemySoundManager>();
+
+            if(_SoundManager == null)
+            {
+                Debug.LogError("SoundManager not found");
+            }
+
+            _SoundManager.SceneManager = sceneManager;
 
             Core.PlayerControllerCore = player.GetComponent<PlayerController>().Core;
 

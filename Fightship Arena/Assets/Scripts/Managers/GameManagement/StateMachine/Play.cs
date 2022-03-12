@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.Levels;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
@@ -65,6 +66,13 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.SceneLoaded(scene, loadSceneMode);
 
             //Bind event handlers here
+            _levelManager.PlaySoundEvent += LevelManager_PlaySoundEvent;
+
+        }
+
+        private void LevelManager_PlaySoundEvent(object sender, Sound e)
+        {
+            GameManager.SoundManager.PlaySound(e);
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.

@@ -7,6 +7,8 @@ namespace FightShipArena.Assets.Scripts.Enemies
 {
     public abstract class EnemyController : MyMonoBehaviour, IEnemyController
     {
+        protected EnemySoundManager _SoundManager;
+
         public EnemySettings InitSettings;
         public IEnemyControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; set; }
