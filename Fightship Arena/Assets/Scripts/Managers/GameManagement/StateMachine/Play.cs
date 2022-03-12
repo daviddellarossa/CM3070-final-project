@@ -29,6 +29,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.OnEnter();
 
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.GameMusic);
         }
 
         public override void OnExit()
@@ -41,6 +42,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override void OnActivate()
         {
             base.OnActivate();
+
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.GameMusic);
 
             _levelManager?.EnablePlayerInput();
         }

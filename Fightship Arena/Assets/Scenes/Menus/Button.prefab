@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1495652133364610999}
   - component: {fileID: 1495652133364610992}
   m_Layer: 5
-  m_Name: Button Text
+  m_Name: Play Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button text
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e9d54dc9003b254e94d6fbace438546, type: 2}
   m_sharedMaterial: {fileID: 5833806407863473465, guid: 1e9d54dc9003b254e94d6fbace438546, type: 2}
@@ -147,6 +147,8 @@ GameObject:
   - component: {fileID: 1495652133462302128}
   - component: {fileID: 1495652133462302135}
   - component: {fileID: 1495652133462302133}
+  - component: {fileID: 8601462663662870216}
+  - component: {fileID: 1495652133062524246}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -161,7 +163,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495652133462302130}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -239,19 +241,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FightShipArena.Assets.Scripts.Managers.Menus.MainMenu,
-          FightShipArena
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1495652133462302135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +291,45 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8601462663662870216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495652133462302130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac8f0dc7fa75c149938458597db90c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverSound:
+    Name: 
+    Clip: {fileID: 0}
+    Volume: 0
+  ClickSound:
+    Name: 
+    Clip: {fileID: 0}
+    Volume: 0
+  SceneManager: {fileID: 0}
+--- !u!114 &1495652133062524246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495652133462302130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []

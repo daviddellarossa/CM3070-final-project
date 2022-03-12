@@ -12,7 +12,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         protected IMainMenuManager _menuManager;
 
         public Init(
-            IGameManager gameManager, 
+            IGameManager gameManager,
             IUnitySceneManagerWrapper sceneManagerWrapper
             ) : base(gameManager, sceneManagerWrapper) { }
 
@@ -27,6 +27,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.OnEnter();
 
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.MenuMusic);
         }
 
         public override void OnExit()
@@ -44,14 +45,19 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             _menuManager = GetMenuManagerFromScene(scene);
-
             if (_menuManager == null)
                 return;
 
             base.SceneLoaded(scene, loadSceneMode);
 
+            _menuManager.PlaySoundEvent += MenuManager_PlaySoundEvent;
             _menuManager.StartGameEvent += StartGameEventHandler;
             _menuManager.QuitGameEvent += QuitGameEventHandler;
+        }
+
+        private void MenuManager_PlaySoundEvent(object sender, SoundManagement.Sound e)
+        {
+            GameManager.SoundManager.PlaySound(e);
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.

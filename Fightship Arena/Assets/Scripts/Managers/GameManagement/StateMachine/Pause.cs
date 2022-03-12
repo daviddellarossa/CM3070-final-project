@@ -35,6 +35,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             SetTimeScale();
 
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.MenuMusic);
+
         }
 
         public override void OnExit()
@@ -55,8 +57,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             base.SceneLoaded(scene, loadSceneMode);
 
+            _menuManager.PlaySoundEvent += MenuManager_PlaySoundEvent;
             _menuManager.ResumeGameEvent += ResumeGameEventHandler;
             _menuManager.QuitCurrentGameEvent += QuitCurrentGameEventHandler;
+        }
+
+        private void MenuManager_PlaySoundEvent(object sender, SoundManagement.Sound e)
+        {
+            GameManager.SoundManager.PlaySound(e);
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.

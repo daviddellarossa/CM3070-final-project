@@ -1,5 +1,6 @@
 using System;
 using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,9 +13,12 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         protected StateStack _stateStack = new StateStack();
 
+        public ISoundManager SoundManager { get; protected set; }
+
         public GameManagerCore(IMyMonoBehaviour parent)
         {
             Parent = parent;
+            SoundManager = (Parent as IGameManager).SoundManager;
             _sceneManagerWrapper = UnitySceneManagerWrapper.Instance;
         }
 

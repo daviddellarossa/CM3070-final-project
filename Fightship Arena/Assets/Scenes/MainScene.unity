@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8416329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8416330}
+  - component: {fileID: 8416331}
+  - component: {fileID: 8416332}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8416330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &8416331
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416329}
+  m_Enabled: 1
+--- !u!114 &8416332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e98be5346ea2134da60322723c59b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MenuMusic: {fileID: 8300000, guid: 610276358c522fe43b4ca072b46ded2c, type: 3}
+  _GameMusic: {fileID: 8300000, guid: 8d8b14f1e6544754e933a07433b0dc28, type: 3}
 --- !u!1 &1643175216
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +253,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d2ed8da1-6c65-4bfc-b56a-2b866f64a6b3
     m_ActionName: GameManager/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6e002fbe-34e4-464c-9238-a208ef54c6d5
+    m_ActionName: Player/Turn Left[/Keyboard/l,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8356ffb9-3d32-4a6d-a4d2-e35283eb52f8
+    m_ActionName: Player/Turn Right[/Keyboard/l,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7aa41dab-03f5-4357-9557-1514a6897443
+    m_ActionName: Player/Turn Up[/Keyboard/l,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f96ccdb-ca9d-40dc-b2d1-d22d987e3ab6
+    m_ActionName: Player/Turn Down[/Keyboard/l,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6968d789-3b4d-42d4-b790-912e82f372f9
+    m_ActionName: Test/SpawnPawn[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: GameManager
@@ -216,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982ee1a09c5a4824da0ce9b2484b0b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SoundManager: {fileID: 8416332}
 --- !u!4 &1643175219
 Transform:
   m_ObjectHideFlags: 0
