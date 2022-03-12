@@ -166,4 +166,8 @@ MonoBehaviour:
     Name: Explode
     Clip: {fileID: 8300000, guid: 1fe50df619bef564fadd6a9f7b7f306f, type: 3}
     Volume: 1
+  HitSound:
+    Name: Hit
+    Clip: {fileID: 8300000, guid: 444b67527d0bfae4e999dbddd18a5a83, type: 3}
+    Volume: 1
   SceneManager: {fileID: 0}

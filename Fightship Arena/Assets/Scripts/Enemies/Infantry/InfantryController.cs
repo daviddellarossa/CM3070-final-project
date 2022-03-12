@@ -71,10 +71,6 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log($"Collision detected with {col.gameObject.name}");
-            //if (col.gameObject.tag == "Player")
-            //{
-            //    Core.HandleCollisionWithPlayer();
-            //}
 
             switch (col.gameObject.tag)
             {
@@ -86,6 +82,8 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
                 case "Bullet":
                 {
                     //The collision is managed by the bullet
+                    _SoundManager.PlayHitSound();
+
                     break;
                 }
             }
