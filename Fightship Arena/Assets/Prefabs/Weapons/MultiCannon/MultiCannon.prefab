@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4331961327857491358}
   - component: {fileID: 6663516006945538587}
+  - component: {fileID: -3829542973050953090}
   m_Layer: 7
   m_Name: MultiCannon
   m_TagString: Weapon
@@ -46,3 +47,21 @@ MonoBehaviour:
   WeaponType: 0
   InitSettings: {fileID: 11400000, guid: 4fe04e83b5d7517459192bebab2acd2b, type: 2}
   Bullet: {fileID: 7425401016712400766, guid: 10219c3e4856b2843b47e327fc9f9704, type: 3}
+  Ammo: 0
+--- !u!114 &-3829542973050953090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331961327857491359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e62018e1d6e5174cab2151cfa2b2a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireSound:
+    Name: Fire
+    Clip: {fileID: 8300000, guid: 96cb69323b3834e4fbf8b57013b8c63a, type: 3}
+    Volume: 1
+  SceneManager: {fileID: 0}

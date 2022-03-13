@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 420153996349222509}
   - component: {fileID: 8591124882686681057}
   - component: {fileID: 1321455278}
+  - component: {fileID: 164226963545443079}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -99,6 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e146e4676a8ab49b463115838f9464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerHealthLevelChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerHasDied:
+    m_PersistentCalls:
+      m_Calls: []
   initSettings: {fileID: 11400000, guid: 7d3c1c0a8739f7d4c8daf78ae1105488, type: 2}
 --- !u!114 &420153996349222509
 MonoBehaviour:
@@ -201,6 +208,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6968d789-3b4d-42d4-b790-912e82f372f9
     m_ActionName: Test/SpawnPawn[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6e002fbe-34e4-464c-9238-a208ef54c6d5
+    m_ActionName: Player/Turn Left[/Keyboard/l,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8356ffb9-3d32-4a6d-a4d2-e35283eb52f8
+    m_ActionName: Player/Turn Right[/Keyboard/l,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7aa41dab-03f5-4357-9557-1514a6897443
+    m_ActionName: Player/Turn Up[/Keyboard/l,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f96ccdb-ca9d-40dc-b2d1-d22d987e3ab6
+    m_ActionName: Player/Turn Down[/Keyboard/l,/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -257,6 +280,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &164226963545443079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420153996349222505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d88bf6b3e24924e8584bd0eed61703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound:
+    Name: 
+    Clip: {fileID: 0}
+    Volume: 0
+  ExplodeSound:
+    Name: Explode
+    Clip: {fileID: 8300000, guid: bfe7f4b422ada6c4588b154c322703a0, type: 3}
+    Volume: 1
+  HitSound:
+    Name: Hit
+    Clip: {fileID: 8300000, guid: 8d4f7fca57b2b7c4b8611241c7378afd, type: 3}
+    Volume: 0.5
+  PowerUpSound:
+    Name: PowerUp
+    Clip: {fileID: 8300000, guid: 10466560d3ca8034b9697af92519f3df, type: 3}
+    Volume: 0.7
+  SceneManager: {fileID: 0}
 --- !u!1001 &1679821991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 420153996349222507}
     m_Modifications:
+    - target: {fileID: -3829542973050953090, guid: 117722df7a9a5ff45af8d6bf5ba0030c, type: 3}
+      propertyPath: FireSound.Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c88993d12611470418d0c2744ace2938, type: 3}
     - target: {fileID: 4331961327857491358, guid: 117722df7a9a5ff45af8d6bf5ba0030c, type: 3}
       propertyPath: m_RootOrder
       value: 0

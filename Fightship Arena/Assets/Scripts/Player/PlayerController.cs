@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FightShipArena.Assets.Scripts.Enemies;
 using FightShipArena.Assets.Scripts.Managers.HealthManagement;
+using FightShipArena.Assets.Scripts.Managers.Levels;
 using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,6 +15,8 @@ namespace FightShipArena.Assets.Scripts.Player
     {
         public UnityEvent<int, int> PlayerHealthLevelChanged;
         public UnityEvent PlayerHasDied;
+
+        protected PlayerSoundManager _SoundManager;
 
         public IPlayerControllerCore Core { get; set; }
         public IHealthManager HealthManager { get; protected set; }
@@ -190,6 +193,25 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 throw new NullReferenceException("InitSettings");
             }
+
+            var sceneManagerGO = GameObject.FindGameObjectWithTag("SceneManager");
+            var sceneManager = sceneManagerGO?.GetComponent<LevelManager>();
+
+            if (sceneManager == null)
+            {
+                Debug.LogError("SceneManager not found");
+            }
+
+            _SoundManager = gameObject.GetComponent<PlayerSoundManager>();
+
+            if (_SoundManager == null)
+            {
+                Debug.LogError("SoundManager not found");
+            }
+
+            _SoundManager.SceneManager = sceneManager;
+
+
         }
 
         void OnCollisionEnter2D(Collision2D col)
@@ -199,6 +221,18 @@ namespace FightShipArena.Assets.Scripts.Player
             {
                 var enemyController = col.gameObject.GetComponent<EnemyController>();
                 Core.HandleCollisionWithEnemy(enemyController.Core);
+            }
+            else if(col.gameObject.tag == "EnemyBullet")
+            {
+                _SoundManager.PlayHitSound();
+            }
+        }
+
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if(col.tag == "PowerUp")
+            {
+                _SoundManager.PlayPowerUpSound();
             }
         }
 
@@ -214,6 +248,9 @@ namespace FightShipArena.Assets.Scripts.Player
         private void HealthManager_HasDied()
         {
             PlayerHasDied?.Invoke();
+
+            _SoundManager.PlayExplodeSound();
+
             Debug.Log($"Destroying object {this.gameObject.name}");
             Destroy(this.gameObject);
         }

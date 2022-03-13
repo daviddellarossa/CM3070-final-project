@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FightShipArena.Assets.Scripts.Managers.SoundManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
     {
         public event EventHandler StartGameEvent;
         public event EventHandler QuitGameEvent;
+        public event EventHandler<Sound> PlaySoundEvent;
 
         public IMainMenuManager Core { get; protected set; }
 
@@ -47,6 +49,11 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public void QuitGame()
         { 
             Core.QuitGame();
+        }
+
+        public override void PlaySound(Sound sound)
+        {
+            PlaySoundEvent?.Invoke(this, sound);
         }
     }
 }

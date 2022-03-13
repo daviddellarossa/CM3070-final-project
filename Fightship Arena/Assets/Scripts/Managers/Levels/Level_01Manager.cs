@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
 using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -22,6 +23,8 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         public ILevelManagerCore Core { get; protected set; }
         private PlayerInput _playerInput;
+
+        public override event EventHandler<Sound> PlaySoundEvent;
 
         void Awake()
         {
@@ -82,6 +85,9 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         {
             Core.EnablePlayerInput();
         }
+        public override void PlaySound(Sound sound)
+        {
+            PlaySoundEvent?.Invoke(this, sound);
+        }
     }
-
 }

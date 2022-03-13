@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FightShipArena.Assets.Scripts.Managers.SoundManagement;
+using System;
 
 namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
@@ -6,6 +7,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
     {
         event EventHandler ResumeGameEvent;
         event EventHandler QuitCurrentGameEvent;
+        event EventHandler<Sound> PlaySoundEvent;
 
         void OnStart();
         void OnAwake();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.Levels;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
@@ -29,6 +30,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.OnEnter();
 
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.GameMusic);
         }
 
         public override void OnExit()
@@ -41,6 +43,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override void OnActivate()
         {
             base.OnActivate();
+
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.GameMusic);
 
             _levelManager?.EnablePlayerInput();
         }
@@ -62,6 +66,13 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.SceneLoaded(scene, loadSceneMode);
 
             //Bind event handlers here
+            _levelManager.PlaySoundEvent += LevelManager_PlaySoundEvent;
+
+        }
+
+        private void LevelManager_PlaySoundEvent(object sender, Sound e)
+        {
+            GameManager.SoundManager.PlaySound(e);
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.

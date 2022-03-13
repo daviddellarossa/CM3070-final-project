@@ -8,14 +8,17 @@ using FightShipArena.Assets.Scripts.Managers.HudManagement;
 using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.SceneManagement;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    public class LevelManager : SceneManager, ILevelManager
+    public abstract class LevelManager : SceneManager, ILevelManager
     {
+        public abstract event EventHandler<Sound> PlaySoundEvent;
+
         public IPlayerControllerCore PlayerControllerCore { get; set; }
         public IScoreManager ScoreManager { get; set; }
         public IOrchestrationManager OrchestrationManager { get; set; }
