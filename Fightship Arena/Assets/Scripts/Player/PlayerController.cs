@@ -259,9 +259,6 @@ namespace FightShipArena.Assets.Scripts.Player
 
             var eeInstance = Instantiate(this.ExplosionEffect, this.gameObject.transform);
             eeInstance.transform.SetParent(null);
-            //var videoPlayer = eeInstance.GetComponent<VideoPlayer>();
-            //videoPlayer.targetCamera = Camera.main;
-            //videoPlayer.Play();
             
             Destroy(eeInstance, 4);
 

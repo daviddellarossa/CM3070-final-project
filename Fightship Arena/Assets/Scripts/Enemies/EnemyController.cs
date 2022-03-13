@@ -14,6 +14,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public IHealthManager HealthManager { get; set; }
         public WeaponBase[] Weapons { get; set; }
 
+        public GameObject ExplosionEffect;
+
+        public GameObject SpawnActivationEffect;
+
         protected virtual void ReleasePowerUp()
         {
             if (!InitSettings.Powerups.Any())

@@ -18,6 +18,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             
             _SoundManager.PlayExplodeSound();
 
+            var eeInstance = Instantiate(this.ExplosionEffect, this.gameObject.transform);
+            eeInstance.transform.SetParent(null);
+
+            Destroy(eeInstance, 4);
+
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
