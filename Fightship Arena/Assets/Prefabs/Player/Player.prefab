@@ -106,7 +106,7 @@ MonoBehaviour:
   PlayerHasDied:
     m_PersistentCalls:
       m_Calls: []
-  ExplosionEffect: {fileID: 8213137412657583243, guid: 6a62c1dea24b3b2478251b477df49cd4, type: 3}
+  ExplosionEffect: {fileID: 5544043527086907277, guid: 123dcdb519cae984fb5b5dffd5fc356f, type: 3}
   initSettings: {fileID: 11400000, guid: 7d3c1c0a8739f7d4c8daf78ae1105488, type: 2}
 --- !u!114 &420153996349222509
 MonoBehaviour:
