@@ -304,6 +304,10 @@ MonoBehaviour:
     Name: Hit
     Clip: {fileID: 8300000, guid: 8d4f7fca57b2b7c4b8611241c7378afd, type: 3}
     Volume: 0.5
+  PowerUpSound:
+    Name: PowerUp
+    Clip: {fileID: 8300000, guid: 10466560d3ca8034b9697af92519f3df, type: 3}
+    Volume: 0.7
   SceneManager: {fileID: 0}
 --- !u!1001 &1679821991
 PrefabInstance:

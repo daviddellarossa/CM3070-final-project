@@ -228,6 +228,14 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if(col.tag == "PowerUp")
+            {
+                _SoundManager.PlayPowerUpSound();
+            }
+        }
+
         void FixedUpdate()
         {
             Core.Move();

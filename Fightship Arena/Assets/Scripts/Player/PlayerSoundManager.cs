@@ -15,6 +15,9 @@ namespace FightShipArena.Assets.Scripts.Player
         [SerializeField]
         private Sound HitSound;
 
+        [SerializeField]
+        private Sound PowerUpSound;
+
         public SceneManager SceneManager;
 
         public void PlayMoveSound()
@@ -28,6 +31,10 @@ namespace FightShipArena.Assets.Scripts.Player
         public void PlayHitSound()
         {
             SceneManager.PlaySound(HitSound);
+        }
+        public void PlayPowerUpSound()
+        {
+            SceneManager.PlaySound(PowerUpSound);
         }
 
     }
