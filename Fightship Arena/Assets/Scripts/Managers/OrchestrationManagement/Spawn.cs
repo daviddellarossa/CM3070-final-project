@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,16 +39,45 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
         public override void Execute()
         {
+            StartCoroutine(DoExecute());
+            //ChangeState(OrchestrationState.Running);
+
+            //_enemyInstance = Instantiate(EnemyPrefab, SpawnPoint.transform.position, Quaternion.identity);
+            
+
+            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_enemyInstance, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+            
+            //_core = _enemyInstance.GetComponent<EnemyController>().Core;
+            //_core.HasDied += HasDiedEventHandler;
+
+            //EnemySpawned?.Invoke(_enemyInstance);
+
+        }
+
+        private IEnumerator DoExecute()
+        {
             ChangeState(OrchestrationState.Running);
 
+            var enemyController = EnemyPrefab.GetComponent<EnemyController>();
+            var spawnActivationEffect = enemyController.SpawnActivationEffect;
+
+            var eeInstance = Instantiate(spawnActivationEffect, SpawnPoint.transform.position, Quaternion.identity);
+            eeInstance.transform.SetParent(null);
+
+            Destroy(eeInstance, 4);
+
+            yield return new WaitForSeconds(1);
+
             _enemyInstance = Instantiate(EnemyPrefab, SpawnPoint.transform.position, Quaternion.identity);
-            
+
+
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_enemyInstance, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
-            
+
             _core = _enemyInstance.GetComponent<EnemyController>().Core;
             _core.HasDied += HasDiedEventHandler;
 
             EnemySpawned?.Invoke(_enemyInstance);
+
 
         }
 

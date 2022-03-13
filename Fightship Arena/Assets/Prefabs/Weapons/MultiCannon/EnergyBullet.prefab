@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1267893357580813493}
   - component: {fileID: 7073976009568255122}
   m_Layer: 8
-  m_Name: Circle
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1638883416312482334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 2760934862295703564}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89f6824e1fa1e9e4399109807cecd3d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0df8408d98a7ff41bb316a7ad63a3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 0
   InitSettings: {fileID: 11400000, guid: 1043130faf54b0840b1c049b2dc04564, type: 2}
+  IsDestroyed: 0
 --- !u!58 &-3249302182585380599
 CircleCollider2D:
   m_ObjectHideFlags: 0

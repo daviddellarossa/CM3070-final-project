@@ -8,6 +8,7 @@ using FightShipArena.Assets.Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
@@ -23,6 +24,9 @@ namespace FightShipArena.Assets.Scripts.Player
         public PlayerSettings InitSettings => initSettings;
 
         public WeaponBase[] Weapons { get; protected set; }
+
+        [SerializeField]
+        private GameObject ExplosionEffect;
 
         [SerializeField]
         private PlayerSettings initSettings;
@@ -252,7 +256,14 @@ namespace FightShipArena.Assets.Scripts.Player
             _SoundManager.PlayExplodeSound();
 
             Debug.Log($"Destroying object {this.gameObject.name}");
+
+            var eeInstance = Instantiate(this.ExplosionEffect, this.gameObject.transform);
+            eeInstance.transform.SetParent(null);
+            
+            Destroy(eeInstance, 4);
+
             Destroy(this.gameObject);
+
         }
 
     }

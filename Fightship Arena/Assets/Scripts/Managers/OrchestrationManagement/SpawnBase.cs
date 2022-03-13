@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement.Conditions;
 using UnityEngine;
 
@@ -18,6 +19,19 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
         {
         }
 
+        protected void StartCoroutine(IEnumerator task)
+        {
 
+            if (!Application.isPlaying)
+            {
+                Debug.LogError("Can not run coroutine outside of play mode.");
+                return;
+            }
+
+            var coworker = new GameObject("CoWorker_" + task.ToString()).AddComponent<CoroutineWorker>();
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(coworker.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+
+            coworker.Work(task);
+        }
     }
 }

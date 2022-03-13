@@ -19,6 +19,9 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 
             _SoundManager.PlayExplodeSound();
 
+            var eeInstance = Instantiate(this.ExplosionEffect, this.gameObject.transform);
+            eeInstance.transform.SetParent(null);
+
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }

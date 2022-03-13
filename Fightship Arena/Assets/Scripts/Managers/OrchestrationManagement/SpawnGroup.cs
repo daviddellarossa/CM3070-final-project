@@ -41,20 +41,20 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
             ChangeState(OrchestrationState.Cancelled);
         }
 
-        private void StartCoroutine(IEnumerator task)
-        {
+        //private void StartCoroutine(IEnumerator task)
+        //{
 
-            if (!Application.isPlaying)
-            {
-                Debug.LogError("Can not run coroutine outside of play mode.");
-                return;
-            }
+        //    if (!Application.isPlaying)
+        //    {
+        //        Debug.LogError("Can not run coroutine outside of play mode.");
+        //        return;
+        //    }
 
-            var coworker = new GameObject("CoWorker_" + task.ToString()).AddComponent<CoroutineWorker>();
-            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(coworker.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+        //    var coworker = new GameObject("CoWorker_" + task.ToString()).AddComponent<CoroutineWorker>();
+        //    UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(coworker.gameObject, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
 
-            coworker.Work(task);
-        }
+        //    coworker.Work(task);
+        //}
 
 
         IEnumerator RunCoroutine()
@@ -78,8 +78,6 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
                 {
                     yield break;
                 }
-
-                //yield return new WaitForEndOfFrame();
             }
 
             yield return new WaitUntil(() => Spawns.TrueForAll(x => x.State == OrchestrationState.Finished));
