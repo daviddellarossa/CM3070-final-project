@@ -1,12 +1,14 @@
-﻿using System;
+﻿using FightShipArena.Assets.Scripts.Managers.Menus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using FightShipArena.Assets.Scripts.Managers.Menus;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
-    public class Init : State
+    public class Help : State
     {
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;
@@ -17,14 +19,15 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler BackToMainMenuEvent;
         public override event EventHandler HelpEvent;
 
-        public readonly string _sceneName = "MainMenu";
-        protected IMainMenuManager _menuManager;
+        public readonly string _sceneName = "HelpMenu";
+        protected IHelpMenuManager _menuManager;
 
-        public Init(
+        public Help(
             IGameManager gameManager,
             IUnitySceneManagerWrapper sceneManagerWrapper
-            ) : base(gameManager, sceneManagerWrapper) { }
-
+            ) : base(gameManager, sceneManagerWrapper)
+        {
+        }
         public override void OnEnter()
         {
             base.OnEnter();
@@ -54,10 +57,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.SceneLoaded(scene, loadSceneMode);
 
             _menuManager.PlaySoundEvent += MenuManager_PlaySoundEvent;
-            _menuManager.StartGameEvent += StartGameEventHandler;
-            _menuManager.QuitGameEvent += QuitGameEventHandler;
-            _menuManager.CreditsEvent += CreditsEventHandler;
-            _menuManager.HelpEvent += HelpEventHandler;
+            _menuManager.BackEvent += BackEventHandler;
         }
 
         private void MenuManager_PlaySoundEvent(object sender, SoundManagement.Sound e)
@@ -65,35 +65,19 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             GameManager.SoundManager.PlaySound(e);
         }
 
-        //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.
-        protected virtual IMainMenuManager GetMenuManagerFromScene(Scene scene)
+        protected virtual IHelpMenuManager GetMenuManagerFromScene(Scene scene)
         {
             if (scene.name != _sceneName)
                 return null;
 
             var rootGameObjects = scene.GetRootGameObjects();
             var sceneManagerGo = rootGameObjects.Single(x => x.name == "SceneManager");
-            var menuManager = sceneManagerGo.GetComponent<MainMenuManager>();
+            var menuManager = sceneManagerGo.GetComponent<HelpMenuManager>();
             return menuManager;
         }
-
-        protected virtual void StartGameEventHandler(object sender, EventArgs state)
+        protected virtual void BackEventHandler(object sender, EventArgs state)
         {
-            PlayGameEvent?.Invoke(this, state);
-        }
-
-        protected virtual void QuitGameEventHandler(object sender, EventArgs state)
-        {
-            QuitGameEvent?.Invoke(this, state);
-        }
-
-        protected virtual void CreditsEventHandler(object sender, EventArgs state)
-        {
-            CreditsEvent?.Invoke(this, state);
-        }
-        protected virtual void HelpEventHandler(object sender, EventArgs state)
-        {
-            HelpEvent?.Invoke(this, state);
+            BackToMainMenuEvent?.Invoke(this, state);
         }
 
     }

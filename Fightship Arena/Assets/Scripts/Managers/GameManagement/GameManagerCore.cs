@@ -47,6 +47,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
             state.QuitCurrentGameEvent += State_QuitCurrentGameEvent;
             state.QuitGameEvent += State_QuitGameEvent;
             state.CreditsEvent += State_CreditsEvent;
+            state.HelpEvent += State_HelpEvent;
             state.BackToMainMenuEvent += State_BackToMainMenuEvent;
         }
 
@@ -58,8 +59,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
             state.QuitCurrentGameEvent -= State_QuitCurrentGameEvent;
             state.QuitGameEvent -= State_QuitGameEvent;
             state.CreditsEvent -= State_CreditsEvent;
+            state.HelpEvent -= State_HelpEvent;
             state.BackToMainMenuEvent -= State_BackToMainMenuEvent;
-
         }
 
         #endregion
@@ -100,7 +101,10 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         {
             ReplaceState(new Credits(this, _sceneManagerWrapper));
         }
-
+        private void State_HelpEvent(object sender, EventArgs e)
+        {
+            ReplaceState(new Help(this, _sceneManagerWrapper));
+        }
 
         protected virtual void State_PlayGameEvent(object sender, EventArgs e)
         {

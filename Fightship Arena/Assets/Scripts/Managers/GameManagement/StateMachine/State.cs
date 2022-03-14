@@ -36,6 +36,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public abstract event EventHandler QuitCurrentGameEvent;
         public abstract event EventHandler QuitGameEvent;
         public abstract event EventHandler CreditsEvent;
+        public abstract event EventHandler HelpEvent;
         public abstract event EventHandler BackToMainMenuEvent;
 
         public IGameManager GameManager { get; private set; }

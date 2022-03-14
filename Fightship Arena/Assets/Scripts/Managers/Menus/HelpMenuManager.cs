@@ -1,18 +1,22 @@
 ﻿using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
-    public class CreditsMenuManager : MenuManager, ICreditsMenuManager
+    public class HelpMenuManager : MenuManager, IHelpMenuManager
     {
         public event EventHandler BackEvent;
         public event EventHandler<Sound> PlaySoundEvent;
 
-        public ICreditsMenuManager Core { get; protected set; }
-        
+        public IHelpMenuManager Core { get; protected set; }
+
         void Awake()
         {
-            Core = new CreditsMenuManagerCore(this);
+            Core = new HelpMenuManagerCore(this);
 
             OnAwake();
         }
@@ -20,6 +24,11 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         void Start()
         {
             OnStart();
+        }
+
+        public void BackToMainMenu()
+        {
+            BackEvent?.Invoke(this, new EventArgs());
         }
 
         public void OnAwake()
@@ -33,10 +42,6 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
             Core.OnStart();
         }
 
-        public void BackToMainMenu()
-        {
-            BackEvent?.Invoke(this, new EventArgs());
-        }
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);

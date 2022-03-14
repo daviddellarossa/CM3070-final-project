@@ -9,11 +9,13 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         event EventHandler CreditsEvent;
         event EventHandler QuitGameEvent;
         event EventHandler<Sound> PlaySoundEvent;
+        event EventHandler HelpEvent;
 
         void OnStart();
         void OnAwake();
         void StartGame();
         void ShowCredits();
         void QuitGame();
+        void ShowHelp();
     }
 }
