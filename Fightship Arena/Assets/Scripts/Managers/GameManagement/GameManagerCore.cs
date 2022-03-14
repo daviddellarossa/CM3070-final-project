@@ -46,6 +46,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
             state.ResumeGameEvent += State_ResumeGameEvent;
             state.QuitCurrentGameEvent += State_QuitCurrentGameEvent;
             state.QuitGameEvent += State_QuitGameEvent;
+            state.CreditsEvent += State_CreditsEvent;
+            state.BackToMainMenuEvent += State_BackToMainMenuEvent;
         }
 
         protected virtual void StateStack_PoppingStateEvent(object sender, State state)
@@ -55,6 +57,9 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
             state.ResumeGameEvent -= State_ResumeGameEvent;
             state.QuitCurrentGameEvent -= State_QuitCurrentGameEvent;
             state.QuitGameEvent -= State_QuitGameEvent;
+            state.CreditsEvent -= State_CreditsEvent;
+            state.BackToMainMenuEvent -= State_BackToMainMenuEvent;
+
         }
 
         #endregion
@@ -90,6 +95,13 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
         {
             PopState();
         }
+
+        private void State_CreditsEvent(object sender, EventArgs e)
+        {
+            ReplaceState(new Credits(this, _sceneManagerWrapper));
+        }
+
+
         protected virtual void State_PlayGameEvent(object sender, EventArgs e)
         {
             ReplaceState(new Play(this, _sceneManagerWrapper));
@@ -105,6 +117,12 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
             Application.Quit();
         }
+
+        protected virtual void State_BackToMainMenuEvent(object sender, EventArgs e)
+        {
+            ReplaceState(new Init(this, _sceneManagerWrapper));
+        }
+
 
         #endregion
 

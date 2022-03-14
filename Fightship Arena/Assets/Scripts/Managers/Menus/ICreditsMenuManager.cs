@@ -3,17 +3,13 @@ using System;
 
 namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
-    public interface IMainMenuManager
+    public interface ICreditsMenuManager
     {
-        event EventHandler StartGameEvent;
-        event EventHandler CreditsEvent;
-        event EventHandler QuitGameEvent;
+        event EventHandler BackEvent;
         event EventHandler<Sound> PlaySoundEvent;
 
         void OnStart();
         void OnAwake();
-        void StartGame();
-        void ShowCredits();
-        void QuitGame();
+        void BackToMainMenu();
     }
 }

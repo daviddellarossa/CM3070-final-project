@@ -40,18 +40,6 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
         public override void Execute()
         {
             StartCoroutine(DoExecute());
-            //ChangeState(OrchestrationState.Running);
-
-            //_enemyInstance = Instantiate(EnemyPrefab, SpawnPoint.transform.position, Quaternion.identity);
-            
-
-            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_enemyInstance, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
-            
-            //_core = _enemyInstance.GetComponent<EnemyController>().Core;
-            //_core.HasDied += HasDiedEventHandler;
-
-            //EnemySpawned?.Invoke(_enemyInstance);
-
         }
 
         private IEnumerator DoExecute()
@@ -70,15 +58,12 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
             _enemyInstance = Instantiate(EnemyPrefab, SpawnPoint.transform.position, Quaternion.identity);
 
-
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_enemyInstance, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
 
             _core = _enemyInstance.GetComponent<EnemyController>().Core;
             _core.HasDied += HasDiedEventHandler;
 
             EnemySpawned?.Invoke(_enemyInstance);
-
-
         }
 
         public override void CancelExecution()
