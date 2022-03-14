@@ -14,6 +14,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public event EventHandler StartGameEvent;
         public event EventHandler QuitGameEvent;
         public event EventHandler<Sound> PlaySoundEvent;
+        public event EventHandler CreditsEvent;
 
         public IMainMenuManager Core { get; protected set; }
 
@@ -39,6 +40,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 
             Core.QuitGameEvent += (sender, args) => QuitGameEvent?.Invoke(sender, args);
             Core.StartGameEvent += (sender, args) => StartGameEvent?.Invoke(sender, args);
+            Core.CreditsEvent += (sender, args) => CreditsEvent?.Invoke(sender, args);
         }
 
         public void StartGame()
@@ -54,6 +56,11 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);
+        }
+
+        public void ShowCredits()
+        {
+            Core.ShowCredits();
         }
     }
 }
