@@ -18,6 +18,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     public abstract class LevelManager : SceneManager, ILevelManager
     {
         public abstract event EventHandler<Sound> PlaySoundEvent;
+        public abstract event Action ReturnToMainEvent;
 
         public IPlayerControllerCore PlayerControllerCore { get; set; }
         public IScoreManager ScoreManager { get; set; }
@@ -48,5 +49,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         }
 
         public virtual void OnAwake() { }
+
+        public virtual void ReturnToMain() { }
     }
 }

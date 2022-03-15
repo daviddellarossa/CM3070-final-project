@@ -20,33 +20,20 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class Level_01Manager : LevelManager
     {
-
         public ILevelManagerCore Core { get; protected set; }
         private PlayerInput _playerInput;
 
         public override event EventHandler<Sound> PlaySoundEvent;
+        public override event Action ReturnToMainEvent;
 
         void Awake()
         {
             ScoreManager = GameObject.GetComponent<IScoreManager>();
             OrchestrationManager = GameObject.GetComponent<IOrchestrationManager>();
-            OrchestrationManager.SendScore += OrchestrationManager_SendScore;
-            OrchestrationManager.OrchestrationComplete += OrchestrationManager_OrchestrationComplete;
 
             Core = new Level_01ManagerCore(this);
 
             OnAwake();
-        }
-
-        private void OrchestrationManager_OrchestrationComplete()
-        {
-            Debug.Log("Orchestration complete");
-            ScoreManager.AddToHighScore();
-        }
-
-        private void OrchestrationManager_SendScore(int value)
-        {
-            ScoreManager.AddToScore(value);
         }
 
         void Start()
@@ -57,13 +44,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         public void OnStart()
         {
             base.OnStart();
-            this.PlayerControllerCore.ScoreMultiplierCollected += PlayerControllerCore_ScoreMultiplierCollected;
             Core.OnStart();
-        }
-
-        private void PlayerControllerCore_ScoreMultiplierCollected(int value)
-        {
-            ScoreManager.AddToMultiplier(value);
         }
 
         public void OnAwake()
@@ -75,12 +56,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         {
             Core.Move(context);
         }
-
         public override void DisablePlayerInput()
         {
             Core.DisablePlayerInput();
         }
-
         public override void EnablePlayerInput()
         {
             Core.EnablePlayerInput();
@@ -88,6 +67,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);
+        }
+        public override void ReturnToMain()
+        {
+            ReturnToMainEvent?.Invoke();
         }
     }
 }

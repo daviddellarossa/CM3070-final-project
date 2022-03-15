@@ -49,10 +49,13 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
             var enemyController = EnemyPrefab.GetComponent<EnemyController>();
             var spawnActivationEffect = enemyController.SpawnActivationEffect;
 
+
+            // Spawn activation effect
             var eeInstance = Instantiate(spawnActivationEffect, SpawnPoint.transform.position, Quaternion.identity);
             eeInstance.transform.SetParent(null);
 
             Destroy(eeInstance, 4);
+            // -- Spawn activation effect
 
             yield return new WaitForSeconds(1);
 

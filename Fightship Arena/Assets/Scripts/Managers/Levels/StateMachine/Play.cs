@@ -16,6 +16,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels.StateMachine
         {
             base.OnEnter();
 
+            Configuration.LevelManagerCore.EnablePlayerInput();
             if (Configuration.SpawnEnemiesEnabled)
             {
                 Configuration.OrchestrationManager.Run();
