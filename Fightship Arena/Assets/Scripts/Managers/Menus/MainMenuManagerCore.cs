@@ -10,6 +10,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public event EventHandler QuitGameEvent;
         public event EventHandler<Sound> PlaySoundEvent;
         public event EventHandler CreditsEvent;
+        public event EventHandler HelpEvent;
 
         public readonly IMyMonoBehaviour Parent;
 
@@ -37,6 +38,11 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public void ShowCredits()
         {
             CreditsEvent?.Invoke(this, new EventArgs());
+        }
+
+        public void ShowHelp()
+        {
+            HelpEvent?.Invoke(this, new EventArgs());
         }
     }
 }

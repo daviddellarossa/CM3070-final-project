@@ -17,6 +17,7 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler QuitGameEvent;
         public override event EventHandler CreditsEvent;
         public override event EventHandler BackToMainMenuEvent;
+        public override event EventHandler HelpEvent;
 
         public readonly string _sceneName = "CreditsMenu";
         protected ICreditsMenuManager _menuManager;

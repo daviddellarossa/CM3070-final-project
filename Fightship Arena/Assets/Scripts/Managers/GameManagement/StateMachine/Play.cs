@@ -11,14 +11,6 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Play : State
     {
-        public readonly string _sceneName = "Level_01";
-        protected ILevelManager _levelManager;
-
-        public Play(
-            IGameManager gameManager,
-            IUnitySceneManagerWrapper sceneManagerWrapper
-        ) : base(gameManager, sceneManagerWrapper) { }
-
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;
         public override event EventHandler PlayGameEvent;
@@ -26,6 +18,15 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler QuitGameEvent;
         public override event EventHandler CreditsEvent;
         public override event EventHandler BackToMainMenuEvent;
+        public override event EventHandler HelpEvent;
+
+        public readonly string _sceneName = "Level_01";
+        protected ILevelManager _levelManager;
+
+        public Play(
+            IGameManager gameManager,
+            IUnitySceneManagerWrapper sceneManagerWrapper
+        ) : base(gameManager, sceneManagerWrapper) { }
 
         public override void OnEnter()
         {

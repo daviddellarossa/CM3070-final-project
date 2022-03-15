@@ -11,14 +11,6 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Pause : State
     {
-        public readonly string _sceneName = "PauseMenu";
-        protected IPauseMenuManager _menuManager;
-
-        public Pause(
-            IGameManager gameManager,
-            IUnitySceneManagerWrapper sceneManagerWrapper
-        ) : base(gameManager, sceneManagerWrapper) { }
-
         public override event EventHandler PauseGameEvent;
         public override event EventHandler ResumeGameEvent;
         public override event EventHandler PlayGameEvent;
@@ -26,6 +18,15 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
         public override event EventHandler QuitGameEvent;
         public override event EventHandler CreditsEvent;
         public override event EventHandler BackToMainMenuEvent;
+        public override event EventHandler HelpEvent;
+
+        public readonly string _sceneName = "PauseMenu";
+        protected IPauseMenuManager _menuManager;
+
+        public Pause(
+            IGameManager gameManager,
+            IUnitySceneManagerWrapper sceneManagerWrapper
+        ) : base(gameManager, sceneManagerWrapper) { }
 
         private float _timeScale;
 
