@@ -1,4 +1,5 @@
 ﻿using FightShipArena.Assets.Scripts.Managers.SoundManagement;
+using System;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
@@ -8,7 +9,6 @@ namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
         void Start()
         {
             Debug.Log("Scene started");
-
         }
 
         public virtual void PlaySound(Sound sound) { }

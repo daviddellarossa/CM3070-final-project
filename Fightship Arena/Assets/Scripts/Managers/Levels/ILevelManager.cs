@@ -14,6 +14,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
     public interface ILevelManager : IMyMonoBehaviour
     {
         event EventHandler<Sound> PlaySoundEvent;
+        event Action ReturnToMainEvent;
 
         IPlayerControllerCore PlayerControllerCore { get; set; }
         IScoreManager ScoreManager { get; set; }
@@ -25,5 +26,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         void Move(InputAction.CallbackContext context);
         void DisablePlayerInput();
         void EnablePlayerInput();
+        void ReturnToMain();
+
     }
 }

@@ -34,6 +34,8 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
         {
             this.PlayerControllerCore = LevelManager.PlayerControllerCore;
             this.PlayerControllerCore.HealthManager.HasDied += PlayerHasDied;
+            this.PlayerControllerCore.ScoreMultiplierCollected += PlayerControllerCore_ScoreMultiplierCollected;
+
             Debug.Log($"Level started");
 
             this.PlayerControllerCore.HealthManager.Heal();
@@ -46,6 +48,11 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             );
 
             ChangeStateRequestEventHandler(this, new WaitForStart(_stateConfiguration));
+        }
+
+        private void PlayerControllerCore_ScoreMultiplierCollected(int value)
+        {
+            LevelManager.ScoreManager.AddToMultiplier(value);
         }
 
         /// <summary>
@@ -73,8 +80,25 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 
         public void OnAwake() 
         {
+            LevelManager.OrchestrationManager.SendScore += OrchestrationManager_SendScore;
+            LevelManager.OrchestrationManager.OrchestrationComplete += OrchestrationManager_OrchestrationComplete;
+
             _playerInput = LevelManager.GameObject.GetComponent<PlayerInput>();
         }
+
+        private void OrchestrationManager_OrchestrationComplete()
+        {
+            Debug.Log("Orchestration complete");
+            //LevelManager.ScoreManager.AddToHighScore();
+            ChangeStateRequestEventHandler(this, new Win(_stateConfiguration));
+
+        }
+
+        private void OrchestrationManager_SendScore(int value)
+        {
+            LevelManager.ScoreManager.AddToScore(value);
+        }
+
 
         public void Move(InputAction.CallbackContext context)
         {

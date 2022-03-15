@@ -70,7 +70,12 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             //Bind event handlers here
             _levelManager.PlaySoundEvent += LevelManager_PlaySoundEvent;
+            _levelManager.ReturnToMainEvent += LevelManager_ReturnToMain;
+        }
 
+        private void LevelManager_ReturnToMain()
+        {
+            QuitCurrentGameEvent?.Invoke(this, null);
         }
 
         private void LevelManager_PlaySoundEvent(object sender, Sound e)
