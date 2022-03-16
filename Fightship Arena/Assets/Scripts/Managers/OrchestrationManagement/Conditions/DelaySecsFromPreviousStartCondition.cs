@@ -8,6 +8,7 @@ using UnityEngine;
 namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement.Conditions
 {
     [CreateAssetMenu(fileName = "DelayFromPreviousStart", menuName = "Orchestration/Delay from previous start condition")]
+    [Serializable]
     public class DelaySecsFromPreviousStartCondition : ConditionBase
     {
         public float Delay;

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9205a8b773a16394b92d02328094239f, type: 3}
-  m_Name: W1-inf-003
+  m_Name: Infantry-TR
   m_EditorClassIdentifier: 
-  StartCondition: {fileID: 11400000, guid: 4e95e8e9ee131df4a9ddb3102e99a96f, type: 2}
+  StartCondition: {fileID: 11400000, guid: ea964d948a9501f42b72f5b17d04049c, type: 2}
   EnemyPrefab: {fileID: 2347523137725475495, guid: 73fcfaa91805ce64bbc3fe7dae1cede6, type: 3}
-  SpawnPoint: {fileID: 1593073689535937988, guid: b0fd19ec92caa0a4db340040960b5844, type: 3}
+  SpawnPoint: {fileID: 4575956578680084698, guid: e6703cbc85820414286d7a6225cee37c, type: 3}

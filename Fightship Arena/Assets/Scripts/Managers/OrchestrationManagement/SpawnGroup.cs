@@ -9,7 +9,6 @@ using UnityEngine;
 namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     [CreateAssetMenu(fileName = "New SpawnGroup", menuName = "Orchestration/SpawnGroup")]
-
     public class SpawnGroup : SpawnBase
     {
         public int CurrentIndex { get; private set; }

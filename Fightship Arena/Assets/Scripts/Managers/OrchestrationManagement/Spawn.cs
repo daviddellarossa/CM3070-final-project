@@ -12,7 +12,6 @@ using UnityEngine;
 namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     [CreateAssetMenu(fileName = "New Spawn", menuName = "Orchestration/Spawn")]
-
     public class Spawn : SpawnBase
     {
         
