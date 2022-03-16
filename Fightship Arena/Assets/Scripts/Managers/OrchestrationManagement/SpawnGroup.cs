@@ -57,6 +57,8 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
                 currentWave.Execute();
 
+                _lastEnd = float.PositiveInfinity; //Reset for the next spawn
+
                 if (State == OrchestrationState.Cancelled)
                 {
                     yield break;

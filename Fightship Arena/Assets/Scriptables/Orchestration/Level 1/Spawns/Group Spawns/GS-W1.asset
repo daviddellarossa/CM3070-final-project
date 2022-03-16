@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0034b8c86035a6048abde77fc883fbdc, type: 3}
-  m_Name: W1
+  m_Name: GS-W1
   m_EditorClassIdentifier: 
-  StartCondition: {fileID: 11400000, guid: ea964d948a9501f42b72f5b17d04049c, type: 2}
+  StartCondition: {fileID: 11400000, guid: 9f6b9bb870ac59b4aa3305ac4718c1a8, type: 2}
   Spawns:
-  - {fileID: 11400000, guid: 23743539f6dd9df4f8e72a70d1df0b95, type: 2}
+  - {fileID: 11400000, guid: 4350b55226c365141beb0565396bff67, type: 2}
+  - {fileID: 11400000, guid: 362e5cbc2c8596b4d92ae8c86fe15122, type: 2}

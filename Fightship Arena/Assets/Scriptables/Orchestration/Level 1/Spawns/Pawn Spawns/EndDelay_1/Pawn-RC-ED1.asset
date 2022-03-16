@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9205a8b773a16394b92d02328094239f, type: 3}
-  m_Name: Pawn-TL
+  m_Name: Pawn-RC-ED1
   m_EditorClassIdentifier: 
-  StartCondition: {fileID: 11400000, guid: ea964d948a9501f42b72f5b17d04049c, type: 2}
+  StartCondition: {fileID: 11400000, guid: 9f6b9bb870ac59b4aa3305ac4718c1a8, type: 2}
   EnemyPrefab: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
-  SpawnPoint: {fileID: 2662026672926222040, guid: 4bf2448790c3b1a46a195943605290d9, type: 3}
+  SpawnPoint: {fileID: 4575956578680084698, guid: 95f4150bcc0f1284d85ea63e64dbfc67, type: 3}
