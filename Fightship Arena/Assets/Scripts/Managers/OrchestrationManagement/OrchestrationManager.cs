@@ -77,9 +77,15 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
             SendScore?.Invoke(enemyCore.InitSettings.PlayerScoreWhenKilled);
 
-            Debug.Assert(Enemies.Contains(enemyCore), $"Enemy {enemyCore.Parent.GameObject.name} not found in EnemyManager's Enemies collection");
+            if (Enemies.Contains(enemyCore))
+            {
+                Enemies.Remove(enemyCore);
+            }
+            else
+            {
+                Debug.LogWarning($"Enemy {enemyCore.Parent.GameObject.name} not found in EnemyManager's Enemies collection");
+            }
 
-            Enemies.Remove(enemyCore);
         }
     }
 }

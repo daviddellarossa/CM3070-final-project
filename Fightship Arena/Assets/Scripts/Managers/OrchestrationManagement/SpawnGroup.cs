@@ -68,6 +68,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
             yield return new WaitUntil(() => Spawns.TrueForAll(x => x.State == OrchestrationState.Finished));
 
             this.State = OrchestrationState.Finished;
+            StateChanged?.Invoke(this, this.State);
         }
 
         private void StateChangedEventHandler(SpawnBase sender, OrchestrationState newState)
