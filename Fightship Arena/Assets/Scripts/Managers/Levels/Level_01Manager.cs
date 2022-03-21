@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
 using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
+using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
 using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using FightShipArena.Assets.Scripts.Player;
@@ -17,7 +18,6 @@ using UnityEngine.UI;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class Level_01Manager : LevelManager
     {
         public ILevelManagerCore Core { get; protected set; }

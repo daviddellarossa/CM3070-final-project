@@ -2535,8 +2535,8 @@ GameObject:
   - component: {fileID: 1455586404}
   - component: {fileID: 1455586403}
   - component: {fileID: 1455586406}
-  - component: {fileID: 1455586407}
   - component: {fileID: 1455586405}
+  - component: {fileID: 1455586408}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: SceneManager
@@ -2773,7 +2773,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   HighScores: {fileID: 11400000, guid: 652c9bcc6b14fe54887174de9a619460, type: 2}
---- !u!114 &1455586407
+--- !u!114 &1455586408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2782,10 +2782,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1455586401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0deadee27eaae7147812a46a10a6bdc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90b17cdf9533b1e42b2fb74bf8228c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawns: {fileID: 11400000, guid: f5e37ba6679b5ef458d0fcb3740760e6, type: 2}
+  Waves:
+  - EnemyTypes:
+    - Settings:
+        EnemyTypeEnum: 0
+        EnemyType: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
+        NumToSpawn: 20
+        MaxNumOfSimultaneousSpawns: 2
+    SpawnPoints:
+    - {fileID: 4575956578680084698, guid: 32f648dfe1fc026458d521499b8694bb, type: 3}
+    - {fileID: 2662026672926222040, guid: 4bf2448790c3b1a46a195943605290d9, type: 3}
+    - {fileID: 4575956578680084698, guid: e6703cbc85820414286d7a6225cee37c, type: 3}
+    MaxSimultaneousEnemiesSpawned: 2
+    DelayBetweenSpawns: 1
+    DelayBeforeStart: 0.5
+    DelayAfterEnd: 0.5
+    CurrentSimultaneousEnemiesSpawned: 0
+    TotEnemiesSpawned: 0
+    TotEnemiesToSpawn: 0
+    TotEnemiesKilled: 0
+  DelayBetweenWaves: 3
+  DelayBeforeStart: 2
+  DelayAfterEnd: 2
 --- !u!1 &1615786949
 GameObject:
   m_ObjectHideFlags: 0

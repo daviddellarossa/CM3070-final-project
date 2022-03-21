@@ -54,13 +54,12 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 
             _SoundManager.SceneManager = sceneManager;
 
-            var player = GameObject.FindGameObjectWithTag("Player");
-
-
             if (InitSettings == null)
             {
                 throw new NullReferenceException("InitSettings");
             }
+
+            var player = GameObject.FindGameObjectWithTag("Player");
 
             if (player == null)
             {
