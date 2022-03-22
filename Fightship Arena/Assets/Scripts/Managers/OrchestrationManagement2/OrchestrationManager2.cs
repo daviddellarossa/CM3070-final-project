@@ -42,6 +42,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
             yield return new WaitForSeconds(DelayBeforeStart);
             foreach(var wave in Waves)
             {
+                wave.SendScore += Wave_SendScore;
                 wave.Run(this);
 
                 yield return new WaitUntil(() => wave.Status == StatusEnum.Done);
@@ -53,6 +54,11 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
 
             Status = StatusEnum.Done;
             OrchestrationComplete?.Invoke();
+        }
+
+        private void Wave_SendScore(int obj)
+        {
+            this.SendScore?.Invoke(obj);
         }
 
         public class CancellationToken

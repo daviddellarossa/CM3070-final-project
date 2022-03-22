@@ -12,6 +12,8 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
     [Serializable]
     public class Wave
     {
+        public event Action<int> SendScore;
+
         public EnemyType[] EnemyTypes;
         public GameObject[] SpawnPoints;
         public int MaxSimultaneousEnemiesSpawned;
@@ -79,6 +81,8 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
 
         private void Enemy_HasDied(IEnemyControllerCore enemyControllerCore)
         {
+            SendScore?.Invoke(enemyControllerCore.InitSettings.PlayerScoreWhenKilled);
+
             enemyControllerCore.HasDied -= Enemy_HasDied;
             var enemyType = EnemyTypes.Single(x => x.Settings.EnemyTypeEnum == enemyControllerCore.Parent.InitSettings.EnemyType);
             enemyType.CurrentlySpawned--;
