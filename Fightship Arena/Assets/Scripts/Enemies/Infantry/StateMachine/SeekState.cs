@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using ICSharpCode.NRefactory.Ast;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
