@@ -1,5 +1,4 @@
 ﻿using System;
-using Codice.Client.GameUI.Explorer;
 using FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine;
 
 namespace FightShipArena.Assets.Scripts.Enemies

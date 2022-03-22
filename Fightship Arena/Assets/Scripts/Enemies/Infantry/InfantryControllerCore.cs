@@ -71,8 +71,15 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 
         public void OnStart()
         {
-            PlayerControllerCore.HealthManager.HasDied += Player_HasDied; 
-            ChangeState(_stateFactory.SeekState);
+            if(PlayerControllerCore != null)
+            {
+                PlayerControllerCore.HealthManager.HasDied += Player_HasDied;
+                ChangeState(_stateFactory.SeekState);
+            }
+            else
+            {
+                ChangeState(_stateFactory.IdleState);
+            }
         }
 
         protected void ChangeState(IInfantryState newState)

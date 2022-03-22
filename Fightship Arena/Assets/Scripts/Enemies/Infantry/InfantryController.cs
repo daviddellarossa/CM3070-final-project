@@ -39,13 +39,6 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         }
         void Start()
         {
-            var player = GameObject.FindGameObjectWithTag("Player");
-
-            if (player == null)
-            {
-                Debug.LogError("Player not found");
-            }
-
             var sceneManagerGO = GameObject.FindGameObjectWithTag("SceneManager");
             var sceneManager = sceneManagerGO?.GetComponent<LevelManager>();
 
@@ -63,11 +56,21 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 
             _SoundManager.SceneManager = sceneManager;
 
-            Core.PlayerControllerCore = player.GetComponent<PlayerController>().Core;
 
             if (InitSettings == null)
             {
                 throw new NullReferenceException("InitSettings");
+            }
+
+            var player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null)
+            {
+                Debug.Log("Player object not found");
+            }
+            else
+            {
+                Core.PlayerControllerCore = player.GetComponent<PlayerController>().Core;
             }
 
             Core.OnStart();

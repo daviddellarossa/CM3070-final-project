@@ -1,85 +1,76 @@
-﻿using System;
+﻿using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using FightShipArena.Assets.Scripts.Enemies;
-using FightShipArena.Assets.Scripts.Player;
-using PlasticPipe.PlasticProtocol.Messages;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     public class OrchestrationManager : MyMonoBehaviour, IOrchestrationManager
     {
-        public SpawnGroup Spawns;
+        public Wave[] Waves;
+        private CancellationToken RunCancellationToken;
+
         public event Action<int> SendScore;
         public event Action OrchestrationComplete;
-        public List<IEnemyControllerCore> Enemies { get; set; }
 
-        void Awake()
-        {
-            Enemies = new List<IEnemyControllerCore>();
-        }
+        public float DelayBetweenWaves = 1.0f;
+        public float DelayBeforeStart = 1.0f;
+        public float DelayAfterEnd = 1.0f;
+
+
+        public StatusEnum Status { get; private set; } = StatusEnum.NotStarted;
 
         public void Run()
         {
-            if (Spawns == null)
-            {
-                Debug.Log("Spawns is empty");
-                return;
-            }
-
-            StartCoroutine(RunCoroutine());
+            RunCancellationToken = new CancellationToken();
+            StartCoroutine(CoRun(RunCancellationToken));
         }
 
         public void Stop()
         {
-            Spawns.CancelExecution();
+            RunCancellationToken.Cancel = true; ;
         }
 
-        IEnumerator RunCoroutine()
+        public IEnumerator CoRun(CancellationToken cancellationToken)
         {
-            Spawns.EnemyKilled += EnemyKilledEventHandler;
-            Spawns.EnemySpawned += EnemySpawnedEventHandler;
-            Spawns.StateChanged += StateChangedEventHandler;
+            Status = StatusEnum.Running;
 
-            Spawns.Execute();
+            yield return new WaitForSeconds(DelayBeforeStart);
+            foreach(var wave in Waves)
+            {
+                wave.SendScore += Wave_SendScore;
+                wave.Run(this);
 
-            yield return new WaitUntil(() => Spawns.State == OrchestrationState.Finished);
+                yield return new WaitUntil(() => wave.Status == StatusEnum.Done);
 
-            Spawns.EnemyKilled -= EnemyKilledEventHandler;
-            Spawns.EnemySpawned -= EnemySpawnedEventHandler;
+                yield return new WaitForSeconds(DelayBetweenWaves);
+            }
 
+            yield return new WaitForSeconds(DelayAfterEnd);
+
+            Status = StatusEnum.Done;
             OrchestrationComplete?.Invoke();
         }
 
-        private void StateChangedEventHandler(SpawnBase sender, OrchestrationState newState)
+        private void Wave_SendScore(int obj)
         {
-            switch (newState)
-            {
-                case OrchestrationState.Finished:
-                    sender.EnemyKilled -= EnemyKilledEventHandler;
-                    sender.EnemySpawned -= EnemySpawnedEventHandler;
-                    sender.StateChanged -= StateChangedEventHandler;
-                    break;
-            }
+            this.SendScore?.Invoke(obj);
         }
 
-        private void EnemySpawnedEventHandler(GameObject obj)
+        public class CancellationToken
         {
-            var enemyCore = obj.GetComponent<EnemyController>().Core;
-            Enemies.Add(enemyCore);
+            public bool Cancel = false;
         }
 
-        private void EnemyKilledEventHandler(GameObject obj)
+        public enum StatusEnum
         {
-            var enemyCore = obj.GetComponent<EnemyController>().Core;
-
-            SendScore?.Invoke(enemyCore.InitSettings.PlayerScoreWhenKilled);
-
-            Debug.Assert(Enemies.Contains(enemyCore), $"Enemy {enemyCore.Parent.GameObject.name} not found in EnemyManager's Enemies collection");
-
-            Enemies.Remove(enemyCore);
+            NotStarted,
+            Running,
+            Done
         }
     }
 }

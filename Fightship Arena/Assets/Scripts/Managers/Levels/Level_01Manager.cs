@@ -17,7 +17,6 @@ using UnityEngine.UI;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
-    [RequireComponent(typeof(OrchestrationManagement.OrchestrationManager))]
     public class Level_01Manager : LevelManager
     {
         public ILevelManagerCore Core { get; protected set; }
