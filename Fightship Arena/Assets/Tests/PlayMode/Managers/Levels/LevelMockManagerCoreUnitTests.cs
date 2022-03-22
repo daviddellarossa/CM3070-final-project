@@ -21,7 +21,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Managers.Levels
             //arrange
             var gameObject = new GameObject();
             var playerInput = gameObject.AddComponent<PlayerInput>();
-            var levelManager = gameObject.AddComponent<LevelMockManager>();
+            var levelManager = gameObject.AddComponent<Level_01Manager>();
             var levelManagerCore = levelManager.Core;
             Assert.That(playerInput.enabled, Is.True);
 
@@ -40,7 +40,7 @@ namespace FightshipArena.Assets.Tests.PlayMode.Managers.Levels
             //arrange
             var gameObject = new GameObject();
             var playerInput = gameObject.AddComponent<PlayerInput>();
-            var levelManager = gameObject.AddComponent<LevelMockManager>();
+            var levelManager = gameObject.AddComponent<Level_01Manager>();
             var levelManagerCore = levelManager.Core;
             playerInput.enabled = false;
 

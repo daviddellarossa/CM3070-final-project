@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FightShipArena.Assets.Scripts.Managers.Menus;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 {
     public class Pause : State
     {
+        public override event EventHandler PauseGameEvent;
+        public override event EventHandler ResumeGameEvent;
+        public override event EventHandler PlayGameEvent;
+        public override event EventHandler QuitCurrentGameEvent;
+        public override event EventHandler QuitGameEvent;
+        public override event EventHandler CreditsEvent;
+        public override event EventHandler BackToMainMenuEvent;
+        public override event EventHandler HelpEvent;
+
         public readonly string _sceneName = "PauseMenu";
         protected IPauseMenuManager _menuManager;
 
@@ -18,17 +28,18 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             IUnitySceneManagerWrapper sceneManagerWrapper
         ) : base(gameManager, sceneManagerWrapper) { }
 
-        public override event EventHandler PauseGameEvent;
-        public override event EventHandler ResumeGameEvent;
-        public override event EventHandler PlayGameEvent;
-        public override event EventHandler QuitCurrentGameEvent;
-        public override event EventHandler QuitGameEvent;
+        private float _timeScale;
 
         public override void OnEnter()
         {
             base.OnEnter();
 
+            _timeScale = Time.timeScale;
+            SetTimeScale();
+
             SceneManagerWrapper.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
+            GameManager.SoundManager.PlayMusic(GameManager.SoundManager.MenuMusic);
+
         }
 
         public override void OnExit()
@@ -36,6 +47,8 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
             base.OnExit();
 
             SceneManagerWrapper.UnloadSceneAsync(_sceneName);
+
+            ResetTimeScale();
         }
 
         public override void SceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -47,8 +60,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             base.SceneLoaded(scene, loadSceneMode);
 
+            _menuManager.PlaySoundEvent += MenuManager_PlaySoundEvent;
             _menuManager.ResumeGameEvent += ResumeGameEventHandler;
             _menuManager.QuitCurrentGameEvent += QuitCurrentGameEventHandler;
+        }
+
+        private void MenuManager_PlaySoundEvent(object sender, SoundManagement.Sound e)
+        {
+            GameManager.SoundManager.PlaySound(e);
         }
 
         //This method is non-testable because it accesses Scene's methods and GameObject's methods, which are not mockable.
@@ -80,5 +99,14 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine
 
             ResumeGameEvent?.Invoke(this, new EventArgs());
         }
+        private void SetTimeScale()
+        {
+            Time.timeScale = 0;
+        }
+        private void ResetTimeScale()
+        {
+            Time.timeScale = _timeScale;
+        }
+
     }
 }

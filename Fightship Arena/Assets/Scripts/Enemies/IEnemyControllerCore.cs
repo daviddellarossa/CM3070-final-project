@@ -14,12 +14,16 @@ namespace FightShipArena.Assets.Scripts.Enemies
         event Action<IEnemyControllerCore> HasDied;
 
         IPlayerControllerCore PlayerControllerCore { get; set; }
-        IMyMonoBehaviour Parent { get; }
-        Transform Transform { get; } 
+        IEnemyController Parent { get; }
+        Transform Transform { get; }
+        Rigidbody2D Rigidbody { get; }
         EnemySettings InitSettings { get; }
         public IHealthManager HealthManager { get; }
 
+        void OnStart();
         void Move();
+        //void LookAtPlayer();
+
         void HandleCollisionWithPlayer();
     }
 }

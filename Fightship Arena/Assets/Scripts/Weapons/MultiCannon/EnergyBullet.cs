@@ -1,4 +1,5 @@
 using FightShipArena.Assets.Scripts.Enemies;
+using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Weapons.MultiCannon
@@ -25,6 +26,11 @@ namespace FightShipArena.Assets.Scripts.Weapons.MultiCannon
             {
                 var enemy = col.gameObject.GetComponent<EnemyController>();
                 enemy.HealthManager.Damage(InitSettings.Damage);
+            }
+            else if (col.gameObject.tag == "Player")
+            {
+                var obj = col.gameObject.GetComponent<PlayerController>();
+                obj.HealthManager.Damage(InitSettings.Damage);
             }
 
             IsDestroyed = true;

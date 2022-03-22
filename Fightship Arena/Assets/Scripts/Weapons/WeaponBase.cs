@@ -11,6 +11,7 @@ namespace FightShipArena.Assets.Scripts.Weapons
         public WeaponSettings InitSettings;
         public GameObject Bullet;
         private Coroutine _fireCoroutine;
+        private WeaponSoundManager _soundManager;
 
         public int Ammo;
         void Awake()
@@ -40,6 +41,13 @@ namespace FightShipArena.Assets.Scripts.Weapons
             }
             Ammo = InitSettings.Ammo;
 
+            _soundManager = gameObject.GetComponentInChildren<WeaponSoundManager>();
+
+            if(_soundManager == null)
+            {
+                throw new Exception("SoundManager not found");
+            }
+
         }
 
         public virtual void StartFiring()
@@ -66,6 +74,9 @@ namespace FightShipArena.Assets.Scripts.Weapons
             while (Ammo > 0)
             {
                 var bulletGo = GameObject.Instantiate(this.Bullet, this.transform);
+                _soundManager.PlayFireSound();
+                //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(bulletGo, UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
+
                 bulletGo.transform.parent = null;
                 Ammo--;
 

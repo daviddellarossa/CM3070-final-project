@@ -1,19 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
-using FightShipArena.Assets.Scripts.Managers.Levels;
-using FightShipArena.Assets.Scripts.Managers.Menus;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
     public class GameManager : MyMonoBehaviour, IGameManager
     {
         public IGameManager Core { get; protected set; }
+
+        [SerializeField]
+        private SoundManager _SoundManager;
+        public ISoundManager SoundManager => _SoundManager;
 
         #region MonoBehaviour methods
 

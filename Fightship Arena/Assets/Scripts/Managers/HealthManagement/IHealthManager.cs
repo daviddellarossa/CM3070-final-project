@@ -4,12 +4,14 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
 {
     public interface IHealthManager
     {
-        event Action<int> HealthLevelChanged;
+        event Action<int, int> HealthLevelChanged;
         event Action HasDied;
 
         int MaxHealth { get; set; }
         int Health { get; set; }
         bool IsInvulnerable { get; set; }
+        //TODO: Add a property IsAlive or IsDead
+        bool IsDead { get;}
         void Heal(int byValue);
         void Heal();
         void Damage(int byValue);

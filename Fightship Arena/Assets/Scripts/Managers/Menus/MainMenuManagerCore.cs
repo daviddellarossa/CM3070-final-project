@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FightShipArena.Assets.Scripts.Managers.SoundManagement;
+using System;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.Menus
@@ -11,6 +8,9 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
     {
         public event EventHandler StartGameEvent;
         public event EventHandler QuitGameEvent;
+        public event EventHandler<Sound> PlaySoundEvent;
+        public event EventHandler CreditsEvent;
+        public event EventHandler HelpEvent;
 
         public readonly IMyMonoBehaviour Parent;
 
@@ -33,6 +33,16 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         public void QuitGame()
         {
             QuitGameEvent?.Invoke(this, new EventArgs());
+        }
+
+        public void ShowCredits()
+        {
+            CreditsEvent?.Invoke(this, new EventArgs());
+        }
+
+        public void ShowHelp()
+        {
+            HelpEvent?.Invoke(this, new EventArgs());
         }
     }
 }

@@ -17,7 +17,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Levels
         public void OnAwake_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<ILevelMockManagerCore>();
+            var coreMock = new Mock<ILevelManagerCore>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("LevelManager");
@@ -35,7 +35,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Levels
         public void OnStart_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<ILevelMockManagerCore>();
+            var coreMock = new Mock<ILevelManagerCore>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("LevelManager");
@@ -53,7 +53,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Levels
         public void Move_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<ILevelMockManagerCore>();
+            var coreMock = new Mock<ILevelManagerCore>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("LevelManager");
@@ -72,7 +72,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Levels
         public void DisablePlayerInput_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<ILevelMockManagerCore>();
+            var coreMock = new Mock<ILevelManagerCore>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("LevelManager");
@@ -91,7 +91,7 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Levels
         public void EnablePlayerInput_pass_through_to_Core()
         {
             //arrange
-            var coreMock = new Mock<ILevelMockManagerCore>();
+            var coreMock = new Mock<ILevelManagerCore>();
             var core = coreMock.Object;
 
             var gameObject = new GameObject("LevelManager");
@@ -107,9 +107,9 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.Levels
         }
 
     }
-    public class LevelMockManagerMock : LevelMockManager
+    public class LevelMockManagerMock : Level_01Manager
     {
-        public void SetCore(ILevelMockManagerCore core)
+        public void SetCore(ILevelManagerCore core)
         {
             this.Core = core;
         }

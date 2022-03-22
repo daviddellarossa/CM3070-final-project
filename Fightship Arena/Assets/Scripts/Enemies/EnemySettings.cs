@@ -22,5 +22,10 @@ namespace FightShipArena.Assets.Scripts.Enemies
         public float InvulnerableAtStartForSeconds;
         public List<EnemyPowerUp> Powerups;
         public int PlayerScoreWhenKilled;
+        public float StopFiringIntervalLength;
+        public float FiringIntervalLength;
+
     }
+
+
 }

@@ -3,46 +3,72 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
 {
     public class HealthManager : IHealthManager
     {
-        public event Action<int> HealthLevelChanged;
+        public event Action<int, int> HealthLevelChanged;
         public event Action HasDied;
 
         public int MaxHealth { get; set; }
-        public int Health { get; set; }
+        private int _health;
+
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                //if (value == _health)
+                //{
+                //    return;
+                //}
+
+                _health = value;
+
+                HealthLevelChanged?.Invoke(_health, MaxHealth);
+
+                if (_health <= 0)
+                {
+                    HasDied?.Invoke();
+                }
+            }
+        }
         public bool IsInvulnerable { get; set; }
+        public bool IsDead { get; protected set;
+        }
 
         public void Heal(int byValue)
         {
-            Health += byValue;
-            if (Health > MaxHealth)
+            var newHealthValue =  Health + byValue;
+            if (newHealthValue > MaxHealth)
             {
-                Health = MaxHealth;
+                newHealthValue = MaxHealth;
             }
-            HealthLevelChanged?.Invoke(Health);
+
+            Health = newHealthValue;
+
         }
 
         public void Heal()
         {
-            Health = MaxHealth;
+            Heal(MaxHealth);
+            IsDead = false;
         }
 
         public void Damage(int byValue)
         {
             if (IsInvulnerable) return;
 
-            Health -= byValue;
-
-            HealthLevelChanged?.Invoke(Health);
-
-            if (Health <= 0)
+            var newHealthValue = Health - byValue;
+            if (newHealthValue < 0)
             {
-                HasDied?.Invoke();
+                newHealthValue = 0;
             }
+
+            Health = newHealthValue;
         }
 
         public void Kill()
