@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
+namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     [Serializable]
     public class EnemyType

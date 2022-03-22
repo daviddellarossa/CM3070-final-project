@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
+namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 {
     [Serializable]
     public class Wave
@@ -25,13 +25,13 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
         [HideInInspector] public int TotEnemiesToSpawn;
         [HideInInspector] public int TotEnemiesKilled;
 
-        private OrchestrationManager2.CancellationToken RunCancellationToken;
-        public OrchestrationManager2.StatusEnum Status { get; private set; } = OrchestrationManager2.StatusEnum.NotStarted;
+        private OrchestrationManager.CancellationToken RunCancellationToken;
+        public OrchestrationManager.StatusEnum Status { get; private set; } = OrchestrationManager.StatusEnum.NotStarted;
 
 
-        public void Run(OrchestrationManager2 manager)
+        public void Run(OrchestrationManager manager)
         {
-            RunCancellationToken = new OrchestrationManager2.CancellationToken();
+            RunCancellationToken = new OrchestrationManager.CancellationToken();
             manager.StartCoroutine(CoRun(manager, RunCancellationToken));
         }
 
@@ -41,9 +41,9 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
 
         }
 
-        public IEnumerator CoRun(OrchestrationManager2 manager, OrchestrationManager2.CancellationToken cancellationToken)
+        public IEnumerator CoRun(OrchestrationManager manager, OrchestrationManager.CancellationToken cancellationToken)
         {
-            Status = OrchestrationManager2.StatusEnum.Running;
+            Status = OrchestrationManager.StatusEnum.Running;
             TotEnemiesToSpawn = EnemyTypes.Sum(x => x.Settings.NumToSpawn);
 
             yield return new WaitForSeconds(DelayBeforeStart);
@@ -76,7 +76,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement2
 
             yield return new WaitUntil(() => TotEnemiesKilled == TotEnemiesToSpawn);
 
-            Status = OrchestrationManager2.StatusEnum.Done;
+            Status = OrchestrationManager.StatusEnum.Done;
         }
 
         private void Enemy_HasDied(IEnemyControllerCore enemyControllerCore)
