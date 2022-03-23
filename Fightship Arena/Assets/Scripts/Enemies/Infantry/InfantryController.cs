@@ -7,11 +7,22 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Infantry
 {
+    /// <summary>
+    /// Specialization of a EnemyController for an Infantry enemy type
+    /// </summary>
     public class InfantryController : EnemyController
     {
+        /// <summary>
+        /// Event handler for a HealthLevelChanged event from the HealthManager
+        /// </summary>
+        /// <param name="value">New health level</param>
+        /// <param name="maxValue">Max value of health</param>
         private void HealthManager_HealthLevelChanged(int value, int maxValue)
         {
         }
+        /// <summary>
+        /// Event handler for a HasDied event from the HealthManager
+        /// </summary>
         private void HealthManager_HasDied()
         {
             Debug.Log($"Destroying object {this.gameObject.name}");
@@ -26,6 +37,10 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
+        
+        /// <summary>
+        /// Invoked on Awake
+        /// </summary>
         void Awake()
         {
             HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
@@ -37,6 +52,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             Core = new InfantryControllerCore(this, HealthManager, InitSettings);
 
         }
+        
+        /// <summary>
+        /// Invoked on Start
+        /// </summary>
+        /// <exception cref="NullReferenceException"></exception>
         void Start()
         {
             var sceneManagerGO = GameObject.FindGameObjectWithTag("SceneManager");
