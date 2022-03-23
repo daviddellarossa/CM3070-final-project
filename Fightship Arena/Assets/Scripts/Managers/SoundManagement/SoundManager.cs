@@ -14,25 +14,25 @@ namespace FightShipArena.Assets.Scripts.Managers.SoundManagement
         public AudioClip MenuMusic => _MenuMusic;
         public AudioClip GameMusic => _GameMusic;
 
-        private AudioSource MusicSource;
+        private AudioSource _MusicSource;
 
         private AudioSourcePool _AudioSourcePool;
 
         [SerializeField]
-        private int AudioSourcePoolSize = 10;
+        private int _AudioSourcePoolSize = 10;
 
         void Awake()
         {
-            _AudioSourcePool = new AudioSourcePool(this, AudioSourcePoolSize);
+            _AudioSourcePool = new AudioSourcePool(this, _AudioSourcePoolSize);
 
-            MusicSource = gameObject.AddComponent<AudioSource>();
-            MusicSource.loop = true;
+            _MusicSource = gameObject.AddComponent<AudioSource>();
+            _MusicSource.loop = true;
         }
         public void PlayMusic(AudioClip audioClip)
         {
-            MusicSource.clip = audioClip;
-            MusicSource.volume = 0.1f;
-            MusicSource.Play();
+            _MusicSource.clip = audioClip;
+            _MusicSource.volume = 0.1f;
+            _MusicSource.Play();
         }
 
         public void PlaySound(AudioClip audioClip)

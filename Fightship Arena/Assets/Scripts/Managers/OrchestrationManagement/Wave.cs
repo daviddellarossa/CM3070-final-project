@@ -54,6 +54,11 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
 
                 yield return new WaitUntil(() => CurrentSimultaneousEnemiesSpawned < MaxSimultaneousEnemiesSpawned);
 
+                if(cancellationToken?.Cancel == true)
+                {
+                    yield break;
+                }
+
                 var nextEnemy = EnemyTypes.Where(x=>x.CurrentlySpawned < x.Settings.MaxNumOfSimultaneousSpawns).OrderBy(x => x.TotalSpawned / (float)x.Settings.NumToSpawn).SingleOrDefault();
 
                 if (nextEnemy == null)

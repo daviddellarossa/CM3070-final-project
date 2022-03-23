@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
 using FightShipArena.Assets.Scripts.Managers.Levels.StateMachine;
 using FightShipArena.Assets.Scripts.Player;
 using UnityEngine;

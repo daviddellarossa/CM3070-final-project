@@ -21,7 +21,6 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
         public float DelayBeforeStart = 1.0f;
         public float DelayAfterEnd = 1.0f;
 
-
         public StatusEnum Status { get; private set; } = StatusEnum.NotStarted;
 
         public void Run()

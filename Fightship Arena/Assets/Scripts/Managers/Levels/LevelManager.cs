@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
 using FightShipArena.Assets.Scripts.Managers.HudManagement;
 using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.SceneManagement;

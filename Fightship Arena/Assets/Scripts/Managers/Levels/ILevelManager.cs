@@ -1,5 +1,4 @@
-﻿using FightShipArena.Assets.Scripts.Managers.EnemyManagement;
-using FightShipArena.Assets.Scripts.Managers.HudManagement;
+﻿using FightShipArena.Assets.Scripts.Managers.HudManagement;
 using FightShipArena.Assets.Scripts.Managers.OrchestrationManagement;
 using FightShipArena.Assets.Scripts.Managers.ScoreManagement;
 using FightShipArena.Assets.Scripts.Managers.SoundManagement;
