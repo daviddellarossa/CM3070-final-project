@@ -16,20 +16,34 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     public abstract class LevelManager : SceneManager, ILevelManager
     {
+        /// <inheritdoc/>
         public abstract event EventHandler<Sound> PlaySoundEvent;
+
+        /// <inheritdoc/>
         public abstract event Action ReturnToMainEvent;
 
+        /// <inheritdoc/>
         public IPlayerControllerCore PlayerControllerCore { get; set; }
+
+        /// <inheritdoc/>
         public IScoreManager ScoreManager { get; set; }
+
+        /// <inheritdoc/>
         public IOrchestrationManager OrchestrationManager { get; set; }
+
+        /// <inheritdoc/>
         public IHudManager HudManager { get; set; }
 
+        /// <inheritdoc/>
         public virtual void Move(InputAction.CallbackContext context){}
 
+        /// <inheritdoc/>
         public virtual void DisablePlayerInput(){}
 
+        /// <inheritdoc/>
         public virtual void EnablePlayerInput(){}
 
+        /// <inheritdoc/>
         public virtual void OnStart() 
         {
             var player = GameObject.FindWithTag("Player");
@@ -47,8 +61,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             }
         }
 
+        /// <inheritdoc/>
         public virtual void OnAwake() { }
 
+        /// <inheritdoc/>
         public virtual void ReturnToMain() { }
     }
 }

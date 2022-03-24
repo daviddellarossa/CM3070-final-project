@@ -17,27 +17,33 @@ namespace FightShipArena.Assets.Scripts.Managers.HudManagement
         [SerializeField] private TextMeshProUGUI Central;
 
         [SerializeField] private Gradient HealthGradient;
+
+        /// <inheritdoc/>
         public void SetHiScore(int value)
         {
             HiScore.text = value.ToString();
         }
 
+        /// <inheritdoc/>
         public void SetScore(int value)
         {
             Score.text = value.ToString();
         }
 
+        /// <inheritdoc/>
         public void SetMultiplier(int value)
         {
             Multiplier.text = value.ToString();
         }
 
+        /// <inheritdoc/>
         public void SetHealth(int value, int maxValue)
         {
             Health.text = value.ToString();
             Health.color = HealthGradient.Evaluate(value / (float)maxValue);
         }
 
+        /// <inheritdoc/>
         public void SetCentralText(string text)
         {
             Central.text = text;
