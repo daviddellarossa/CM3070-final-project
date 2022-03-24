@@ -12,17 +12,35 @@ using UnityEngine.Video;
 
 namespace FightShipArena.Assets.Scripts.Player
 {
+    /// <summary>
+    /// Controller for the player.
+    /// Implements the Core pattern. The core logic of the Controller is actually contained in the Core instance.
+    /// </summary>
     public class PlayerController : MyMonoBehaviour, IPlayerController
     {
+        /// <summary>
+        /// Event raised when the player's health level changes
+        /// </summary>
         public UnityEvent<int, int> PlayerHealthLevelChanged;
+
+        /// <summary>
+        /// Event raised when the player dies
+        /// </summary>
         public UnityEvent PlayerHasDied;
 
+        /// <summary>
+        /// Reference to the SoundManager instance
+        /// </summary>
         protected PlayerSoundManager _SoundManager;
 
+        /// <inheritdoc/>
         public IPlayerControllerCore Core { get; set; }
+        /// <inheritdoc/>
         public IHealthManager HealthManager { get; protected set; }
+        /// <inheritdoc/>
         public PlayerSettings InitSettings => initSettings;
 
+        /// <inheritdoc/>
         public WeaponBase[] Weapons { get; protected set; }
 
         [SerializeField]
@@ -31,9 +49,7 @@ namespace FightShipArena.Assets.Scripts.Player
         [SerializeField]
         private PlayerSettings initSettings;
 
-        /// <summary>
-        ///  
-        /// </summary>
+        /// <inheritdoc/>
         /// For testing <see cref="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Testing.html"/>
         /// <param name="context"></param>
         public void OnMove(InputAction.CallbackContext context)
@@ -53,9 +69,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc/>
         /// For testing <see cref="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Testing.html"/>
         /// <param name="context"></param>
         public void OnFire(InputAction.CallbackContext context)
@@ -73,9 +87,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc/>
         /// For testing <see cref="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Testing.html"/>
         /// <param name="context"></param>
         public void OnFireAlt(InputAction.CallbackContext context)
@@ -92,9 +104,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc/>
         /// For testing <see cref="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Testing.html"/>
         /// <param name="context"></param>
         public void OnOpenSelectionMenu(InputAction.CallbackContext context)
@@ -111,6 +121,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        /// <inheritdoc/>
         public void OnTurnLeft(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -123,6 +134,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        /// <inheritdoc/>
         public void OnTurnRight(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -135,6 +147,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        /// <inheritdoc/>
         public void OnTurnUp(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -147,6 +160,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        /// <inheritdoc/>
         public void OnTurnDown(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -159,6 +173,7 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        #region Unity methods
         void Awake()
         {
             HealthManager = new HealthManager(initSettings.InitHealth, initSettings.InitHealth, false);
@@ -168,27 +183,6 @@ namespace FightShipArena.Assets.Scripts.Player
             CheckWeaponsConfiguration();
 
             Core = new PlayerControllerCore(this);
-        }
-
-        private void CheckWeaponsConfiguration()
-        {
-            Weapons = this.GameObject.GetComponentsInChildren<WeaponBase>();
-            foreach (var weapon in Weapons)
-            {
-                //Check if there is a new settings for the current weapon. If there is, assign.
-                var weaponSettings =
-                    initSettings.WeaponSettings.SingleOrDefault(x => x.WeaponType == weapon.WeaponType);
-                if (weaponSettings != null)
-                {
-                    weapon.InitSettings = weaponSettings;
-                }
-
-                //If the current weapon has no configuration, throw.
-                if (weapon.InitSettings == null)
-                {
-                    throw new Exception($"No settings for weapon {weapon.WeaponType}");
-                }
-            }
         }
 
         void Start()
@@ -244,11 +238,47 @@ namespace FightShipArena.Assets.Scripts.Player
         {
             Core.Move();
         }
+
+        #endregion
+
+        /// <summary>
+        /// Check that all available weapons are properly configured
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        private void CheckWeaponsConfiguration()
+        {
+            Weapons = this.GameObject.GetComponentsInChildren<WeaponBase>();
+            foreach (var weapon in Weapons)
+            {
+                //Check if there is a new settings for the current weapon. If there is, assign.
+                var weaponSettings =
+                    initSettings.WeaponSettings.SingleOrDefault(x => x.WeaponType == weapon.WeaponType);
+                if (weaponSettings != null)
+                {
+                    weapon.InitSettings = weaponSettings;
+                }
+
+                //If the current weapon has no configuration, throw.
+                if (weapon.InitSettings == null)
+                {
+                    throw new Exception($"No settings for weapon {weapon.WeaponType}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// EventHandler for a HealthLevelChanged event raised by the HealthManager
+        /// </summary>
+        /// <param name="value">New health level</param>
+        /// <param name="maxValue">Max health level</param>
         private void HealthManager_HealthLevelChanged(int value, int maxValue)
         {
             PlayerHealthLevelChanged?.Invoke(value, maxValue);
         }
 
+        /// <summary>
+        /// EventHandler for a HasDied event raised by the HealthManager
+        /// </summary>
         private void HealthManager_HasDied()
         {
             PlayerHasDied?.Invoke();
@@ -265,6 +295,5 @@ namespace FightShipArena.Assets.Scripts.Player
             Destroy(this.gameObject);
 
         }
-
     }
 }

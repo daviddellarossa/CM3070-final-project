@@ -8,7 +8,7 @@ using UnityEngine;
 namespace FightShipArena.Assets.Scripts.Enemies
 {
     /// <summary>
-    /// Instance of configuration for the enemy type
+    /// Configuration for the enemy type
     /// </summary>
     [CreateAssetMenu(fileName = "New Enemy InitSettings", menuName = "Enemy/Enemy InitSettings")]
     public class EnemySettings : ScriptableObject

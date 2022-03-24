@@ -10,7 +10,7 @@ using UnityEngine;
 namespace FightShipArena.Assets.Scripts.Enemies
 {
     /// <summary>
-    /// Class that manages the sounds consumed by an enemy
+    /// Class that manages the sounds produced by an enemy
     /// </summary>
     public class EnemySoundManager : MyMonoBehaviour
     {

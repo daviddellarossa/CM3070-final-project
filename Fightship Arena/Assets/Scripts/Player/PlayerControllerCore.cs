@@ -13,17 +13,37 @@ namespace FightShipArena.Assets.Scripts.Player
 {
     public class PlayerControllerCore : IPlayerControllerCore
     {
+        /// <inheritdoc/>
         public event Action<int> ScoreMultiplierCollected;
 
+        /// <inheritdoc/>
         public IPlayerController Parent { get; protected set; }
+
+        /// <inheritdoc/>
         public Transform Transform { get; protected set; }
+
+        /// <inheritdoc/>
         public Rigidbody2D RigidBody { get; protected set; }
+
+        /// <inheritdoc/>
         public PlayerSettings InitSettings { get; set; }
+
+        /// <inheritdoc/>
         public IHealthManager HealthManager { get; }
+
+        /// <inheritdoc/>
         public WeaponBase[] Weapons { get; }
+
+        /// <inheritdoc/>
         public Vector2 PlayerInput { get; set; }
+
+        /// <inheritdoc/>
         public WeaponBase CurrentWeapon { get; set; }
 
+        /// <summary>
+        /// Create a new instance of the PlayerController Core
+        /// </summary>
+        /// <param name="parent">Reference to the IPlayerController parent instance</param>
         public PlayerControllerCore(IPlayerController parent)
         {
             Parent = parent;
@@ -37,18 +57,28 @@ namespace FightShipArena.Assets.Scripts.Player
             CurrentWeapon = Weapons[0];
         }
 
+        /// <summary>
+        /// EventHandler for the HealthLevelChanged event of the HealthManager
+        /// </summary>
+        /// <param name="value">The new health level</param>
+        /// <param name="maxValue">The maximum health level</param>
         private void HealthManager_HealthLevelChanged(int value, int maxValue) { }
 
+        /// <summary>
+        /// EventHandler for the HasDied event of the HealthManager
+        /// </summary>
         private void HealthManager_HasDied()
         {
 
         }
 
+        /// <inheritdoc/>
         public void SetPlayerInput(Vector2 playerInput)
         {
             PlayerInput = playerInput;
         }
 
+        /// <inheritdoc/>
         public void Move()
         {
             RigidBody.AddForce(PlayerInput * InitSettings.ForceMultiplier, ForceMode2D.Impulse);
@@ -67,56 +97,70 @@ namespace FightShipArena.Assets.Scripts.Player
             }
         }
 
+        /// <inheritdoc/>
         public void StartFiring()
         {
             CurrentWeapon.StartFiring();
         }
 
+        /// <inheritdoc/>
         public void StopFiring()
         {
             CurrentWeapon.StopFiring();
         }
 
+        /// <inheritdoc/>
         public void FireAlt()
         {
 
         }
 
+        /// <inheritdoc/>
         public void OpenSelectionMenu()
         {
 
         }
 
+        /// <inheritdoc/>
         public void HandleCollisionWithEnemy(IEnemyControllerCore enemyController)
         {
             var damage = enemyController.InitSettings.DamageAppliedOnCollision;
             HealthManager.Damage(damage);
         }
 
+        /// <inheritdoc/>
         public void TurnLeft()
         {
             var rotation = Quaternion.Euler(0, 0, 90);
             ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
+        /// <inheritdoc/>
         public void TurnRight()
         {
             var rotation = Quaternion.Euler(0, 0, -90);
             ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
+        /// <inheritdoc/>
         public void TurnUp()
         {
             var rotation = Quaternion.Euler(0, 0, 0);
             ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
+        /// <inheritdoc/>
         public void TurnDown()
         {
             var rotation = Quaternion.Euler(0, 0, 180);
             ((MonoBehaviour)Parent).StartCoroutine(DoRotatePlayer(rotation));
         }
 
+        /// <summary>
+        /// Execute a Rotate action on the player object, spanned on multiple frames
+        /// </summary>
+        /// <param name="quaternion">Rotation</param>
+        /// <returns></returns>
         private IEnumerator DoRotatePlayer(Quaternion quaternion)
         {
             float tolerance = 0.95f;
@@ -131,11 +175,16 @@ namespace FightShipArena.Assets.Scripts.Player
             Transform.rotation = quaternion;
         }
 
+        /// <inheritdoc/>
         public void AddMultiplier(int multiplier)
         {
             ScoreMultiplierCollected?.Invoke(multiplier);
         }
 
+        /// <summary>
+        /// EventHandler invoked when the player collides with a power-up
+        /// </summary>
+        /// <param name="powerUp">Power-up which the player is colliding with</param>
         public void HandleCollisionWithPowerUp(PowerUps.PowerUpBase powerUp)
         {
 
