@@ -5,7 +5,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
     public class CreditsMenuManager : MenuManager, ICreditsMenuManager
     {
+        /// <inheritdoc/>
         public event EventHandler BackEvent;
+
+        /// <inheritdoc/>
         public event EventHandler<Sound> PlaySoundEvent;
 
         public ICreditsMenuManager Core { get; protected set; }
@@ -22,21 +25,26 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
             OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnAwake()
         {
             Core.OnAwake();
             Core.BackEvent += (sender, args) => BackEvent?.Invoke(sender, args);
         }
 
+        /// <inheritdoc/>
         public void OnStart()
         {
             Core.OnStart();
         }
 
+        /// <inheritdoc/>
         public void BackToMainMenu()
         {
             BackEvent?.Invoke(this, new EventArgs());
         }
+
+        /// <inheritdoc/>
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);

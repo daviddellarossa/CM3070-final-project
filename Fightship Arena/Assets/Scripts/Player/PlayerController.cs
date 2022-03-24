@@ -35,8 +35,10 @@ namespace FightShipArena.Assets.Scripts.Player
 
         /// <inheritdoc/>
         public IPlayerControllerCore Core { get; set; }
+
         /// <inheritdoc/>
         public IHealthManager HealthManager { get; protected set; }
+
         /// <inheritdoc/>
         public PlayerSettings InitSettings => initSettings;
 

@@ -18,10 +18,14 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
 {
     public class Level_01Manager : LevelManager
     {
+        /// <inheritdoc/>
         public ILevelManagerCore Core { get; protected set; }
         private PlayerInput _playerInput;
 
+        /// <inheritdoc/>
         public override event EventHandler<Sound> PlaySoundEvent;
+
+        /// <inheritdoc/>
         public override event Action ReturnToMainEvent;
 
         void Awake()
@@ -39,33 +43,44 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels
             OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnStart()
         {
             base.OnStart();
             Core.OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnAwake()
         {
             Core.OnAwake();
         }
 
+        /// <inheritdoc/>
         public override void Move(InputAction.CallbackContext context)
         {
             Core.Move(context);
         }
+
+        /// <inheritdoc/>
         public override void DisablePlayerInput()
         {
             Core.DisablePlayerInput();
         }
+
+        /// <inheritdoc/>
         public override void EnablePlayerInput()
         {
             Core.EnablePlayerInput();
         }
+
+        /// <inheritdoc/>
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);
         }
+
+        /// <inheritdoc/>
         public override void ReturnToMain()
         {
             ReturnToMainEvent?.Invoke();

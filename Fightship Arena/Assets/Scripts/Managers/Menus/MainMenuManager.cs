@@ -11,12 +11,22 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
     public class MainMenuManager : MenuManager, IMainMenuManager
     {
+        /// <inheritdoc/>
         public event EventHandler StartGameEvent;
+
+        /// <inheritdoc/>
         public event EventHandler QuitGameEvent;
+
+        /// <inheritdoc/>
         public event EventHandler<Sound> PlaySoundEvent;
+
+        /// <inheritdoc/>
         public event EventHandler CreditsEvent;
+
+        /// <inheritdoc/>
         public event EventHandler HelpEvent;
 
+        /// <inheritdoc/>
         public IMainMenuManager Core { get; protected set; }
 
         void Awake()
@@ -30,11 +40,13 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
             OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnStart()
         {
             Core.OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnAwake()
         {
             Core.OnAwake();
@@ -45,26 +57,31 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
             Core.HelpEvent += (sender, args) => HelpEvent?.Invoke(sender, args);
         }
 
+        /// <inheritdoc/>
         public void StartGame()
         {
             Core.StartGame();
         }
 
+        /// <inheritdoc/>
         public void QuitGame()
         { 
             Core.QuitGame();
         }
 
+        /// <inheritdoc/>
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);
         }
 
+        /// <inheritdoc/>
         public void ShowCredits()
         {
             Core.ShowCredits();
         }
 
+        /// <inheritdoc/>
         public void ShowHelp()
         {
             Core.ShowHelp();

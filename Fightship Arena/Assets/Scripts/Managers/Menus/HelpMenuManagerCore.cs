@@ -10,7 +10,10 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
     public class HelpMenuManagerCore : IHelpMenuManager
     {
+        /// <inheritdoc/>
         public event EventHandler BackEvent;
+
+        /// <inheritdoc/>
         public event EventHandler<Sound> PlaySoundEvent;
 
         public readonly IMyMonoBehaviour Parent;
@@ -19,13 +22,17 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         {
             Parent = parent;
         }
+
+        /// <inheritdoc/>
         public void BackToMainMenu()
         {
             BackEvent?.Invoke(this, new EventArgs());
         }
 
+        /// <inheritdoc/>
         public void OnAwake() { }
 
+        /// <inheritdoc/>
         public void OnStart()
         {
             Debug.Log($"Credits menu opened");
