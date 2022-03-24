@@ -22,7 +22,7 @@ namespace FightShipArena.Assets.Scripts.Enemies
         IPlayerControllerCore PlayerControllerCore { get; set; }
 
         /// <summary>
-        /// Reference to the EnemyController parent
+        /// Reference to the IEnemyController parent
         /// </summary>
         IEnemyController Parent { get; }
 
@@ -37,12 +37,12 @@ namespace FightShipArena.Assets.Scripts.Enemies
         Rigidbody2D Rigidbody { get; }
 
         /// <summary>
-        /// Settings for the Enemy
+        /// Initial settings for the Enemy
         /// </summary>
         EnemySettings InitSettings { get; }
 
         /// <summary>
-        /// Instance of the HealthManager for the enemy
+        /// Reference to the instance of the HealthManager for the enemy
         /// </summary>
         public IHealthManager HealthManager { get; }
 

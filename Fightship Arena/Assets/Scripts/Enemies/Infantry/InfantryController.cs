@@ -13,15 +13,16 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
     public class InfantryController : EnemyController
     {
         /// <summary>
-        /// Event handler for a HealthLevelChanged event from the HealthManager
+        /// Event handler for a HealthLevelChanged event from the HealthManager. Invoked when the enemy loses energy.
         /// </summary>
         /// <param name="value">New health level</param>
         /// <param name="maxValue">Max value of health</param>
         private void HealthManager_HealthLevelChanged(int value, int maxValue)
         {
         }
+
         /// <summary>
-        /// Event handler for a HasDied event from the HealthManager
+        /// Event handler for a HasDied event from the HealthManager. Invoked when the enemy dies.
         /// </summary>
         private void HealthManager_HasDied()
         {
@@ -37,10 +38,10 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
-        
-        /// <summary>
-        /// Invoked on Awake
-        /// </summary>
+
+
+        #region Unity methods
+
         void Awake()
         {
             HealthManager = new HealthManager(InitSettings.InitHealth, InitSettings.InitHealth, false);
@@ -52,11 +53,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
             Core = new InfantryControllerCore(this, HealthManager, InitSettings);
 
         }
-        
-        /// <summary>
-        /// Invoked on Start
-        /// </summary>
-        /// <exception cref="NullReferenceException"></exception>
+
         void Start()
         {
             var sceneManagerGO = GameObject.FindGameObjectWithTag("SceneManager");
@@ -116,11 +113,18 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
                 }
             }
         }
+
         private void FixedUpdate()
         {
             Core?.Move();
         }
 
+        #endregion
+
+        /// <summary>
+        /// Checks that the weapon configuration is available for each weapon
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private void CheckWeaponsConfiguration()
         {
             Weapons = this.GameObject.GetComponentsInChildren<WeaponBase>();

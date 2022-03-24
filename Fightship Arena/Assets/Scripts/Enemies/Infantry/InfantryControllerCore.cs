@@ -15,39 +15,25 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
     /// </summary>
     public class InfantryControllerCore : IEnemyControllerCore
     {
-        /// <summary>
-        /// Event invoked when the enemy has died
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<IEnemyControllerCore> HasDied;
 
-        /// <summary>
-        /// Reference of the Player Controller Core instance
-        /// </summary>
+        /// <inheritdoc/>
         public IPlayerControllerCore PlayerControllerCore { get; set; }
 
-        /// <summary>
-        /// Reference to the IEnemyController parent
-        /// </summary>
+        /// <inheritdoc/>
         public IEnemyController Parent { get; protected set; }
 
-        /// <summary>
-        /// Quick reference to the GameObject transform
-        /// </summary>
+        /// <inheritdoc/>
         public Transform Transform { get; protected set; }
 
-        /// <summary>
-        /// Quick referene to the GameObject Rigidbody
-        /// </summary>
+        /// <inheritdoc/>
         public Rigidbody2D Rigidbody { get; protected set; }
 
-        /// <summary>
-        /// Initial settings for the enemy
-        /// </summary>
+        /// <inheritdoc/>
         public EnemySettings InitSettings { get; protected set; }
 
-        /// <summary>
-        /// Reference to the HealthManager instance
-        /// </summary>
+        /// <inheritdoc/>
         public IHealthManager HealthManager { get; }
 
         /// <summary>
@@ -74,7 +60,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         /// Create an instance of the class
         /// </summary>
         /// <param name="parent">The IEnemyControlle parent</param>
-        /// <param name="healthManager">The healthManager</param>
+        /// <param name="healthManager">The healthManager instance</param>
         /// <param name="settings">The initial settings</param>
         public InfantryControllerCore(IEnemyController parent, IHealthManager healthManager, EnemySettings settings)
         {
@@ -136,7 +122,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry
         }
 
         /// <summary>
-        /// Invoked on Start
+        /// Invoked on Start by the parent MonoBehaviour
         /// </summary>
         public void OnStart()
         {
