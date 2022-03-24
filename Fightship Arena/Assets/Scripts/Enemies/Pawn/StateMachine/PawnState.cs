@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
+namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
 {
     /// <summary>
-    /// Abstract State for an Infantry enemy
+    /// Abstract State for a Pawn enemy
     /// </summary>
-    public abstract class InfantryState : IInfantryState{
+    public abstract class PawnState : IPawnState
+    {
         /// <inheritdoc/>
         public virtual void Move() { }
 
@@ -15,7 +16,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 
         /// <inheritdoc/>
         public virtual void OnEnter()
-        {             
+        {
             Debug.Log($"State {this.GetType().Name}: OnEnter");
         }
 
@@ -26,10 +27,10 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
         }
 
         /// <inheritdoc/>
-        public abstract event Action<IInfantryState> ChangeState;
+        public abstract event Action<IPawnState> ChangeState;
 
         /// <inheritdoc/>
-        public InfantryControllerCore Parent { get; set; }
+        public PawnControllerCore Parent { get; set; }
 
         /// <inheritdoc/>
         public StateFactory Factory { get; set; }
