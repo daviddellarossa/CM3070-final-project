@@ -8,10 +8,14 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
 {
+    /// <summary>
+    /// Attack state for a Pawn enemy
+    /// </summary>
     public class AttackState : PawnState
     {
         private Coroutine _seekPlayerCoroutine;
 
+        /// <inheritdoc/>
         public override void Move()
         {
             if (Parent.PlayerControllerCore == null || Parent.PlayerControllerCore.Transform == null) return;
@@ -34,13 +38,20 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
             Parent.Rigidbody.velocity = Vector2.ClampMagnitude(Parent.Rigidbody.velocity, Parent.InitSettings.MaxSpeed);
         }
 
+        /// <inheritdoc/>
         public override void Rotate() { }
 
+        /// <inheritdoc/>
         public override void OnEnter()
         {
             base.OnEnter();
             _seekPlayerCoroutine = Parent.Parent.StartCoroutine(SeekPlayer());
         }
+        
+        /// <summary>
+        /// Check that the player is alive or dead and if dead, invoke a state change
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator SeekPlayer()
         {
             while (true)
@@ -52,18 +63,25 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
             }
         }
 
+        /// <inheritdoc/>
         public override void OnExit()
         {
             base.OnExit();
             Parent.Parent.StopCoroutine(_seekPlayerCoroutine);
         }
 
+        /// <summary>
+        /// Create an instance of Attack state
+        /// </summary>
+        /// <param name="parent">Instance of <see cref="PawnControllerCore"/></param>
+        /// <param name="factory">Instance of <see cref="StateFactory"/></param>
         public AttackState(PawnControllerCore parent, StateFactory factory)
         {
             Parent = parent;
             Factory = factory;
         }
 
+        /// <inheritdoc/>
         public override event Action<IPawnState> ChangeState;
     }
 }

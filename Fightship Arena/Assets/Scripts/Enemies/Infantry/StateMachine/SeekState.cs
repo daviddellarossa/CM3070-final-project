@@ -4,10 +4,15 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 {
+    /// <summary>
+    /// Seek state for an Infantry enemy
+    /// </summary>
     public class SeekState : InfantryState
     {
+        /// <inheritdoc/>
         public override event Action<IInfantryState> ChangeState;
 
+        /// <inheritdoc/>
         public override void Move()
         {
             var mag = UnityEngine.Random.value * Parent.InitSettings.MaxMovementMagnitude;
@@ -16,19 +21,24 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             Parent.Rigidbody.AddForce(impulse);
         }
 
-
+        /// <inheritdoc/>
         public override void OnEnter()
         {
             base.OnEnter();
             Parent.Parent.StartCoroutine(SeekPlayer());
         }
 
+        /// <inheritdoc/>
         public override void OnExit()
         {
             base.OnExit();
             Parent.Parent.StopCoroutine(SeekPlayer());
         }
 
+        /// <summary>
+        /// Check that the player is alive or dead and if alive, invoke a state change
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator SeekPlayer()
         {
             while (true)
@@ -40,6 +50,11 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             }
         }
 
+        /// <summary>
+        /// Create an instance of Seek state
+        /// </summary>
+        /// <param name="parent">Instance of <see cref="InfantryControllerCore"/></param>
+        /// <param name="factory">Instance of <see cref="StateFactory"/></param>
         public SeekState(InfantryControllerCore parent, StateFactory factory)
         {
             Parent = parent;
