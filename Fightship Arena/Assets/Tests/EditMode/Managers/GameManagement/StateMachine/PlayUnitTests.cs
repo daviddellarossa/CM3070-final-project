@@ -1,6 +1,7 @@
 ﻿using FightShipArena.Assets.Scripts.Managers.GameManagement;
 using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
 using FightShipArena.Assets.Scripts.Managers.Levels;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using Moq;
 using NUnit.Framework;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnEnter_calls_LoadSceneAsync_on_SceneManagerWrapper()
         {
             //arrange
+            var soundManagerMock = new Mock<ISoundManager>();
+
             var gameManagerCoreMock = new Mock<IGameManager>();
+            gameManagerCoreMock.Setup(x => x.SoundManager).Returns(soundManagerMock.Object);
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
@@ -58,7 +62,10 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnActivate_calls_EnablePlayerInput_on_LevelManager()
         {
             //arrange
+            var soundManagerMock = new Mock<ISoundManager>();
+
             var gameManagerCoreMock = new Mock<IGameManager>();
+            gameManagerCoreMock.Setup(x => x.SoundManager).Returns(soundManagerMock.Object);
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();
