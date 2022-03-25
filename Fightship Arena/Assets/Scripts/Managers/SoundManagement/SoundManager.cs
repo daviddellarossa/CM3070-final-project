@@ -5,19 +5,39 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.SoundManagement
 {
+    /// <summary>
+    /// Implementation of a sound manager.
+    /// It manages a sound pool as an implementation of the Pool pattern.
+    /// The sound pool caches and reuse a number of AudioSource for the game sounds.
+    /// When a sound has to be played, an instance of audioSource is requested from the pool.
+    /// </summary>
     public class SoundManager : MyMonoBehaviour, ISoundManager
     {
         [SerializeField]
         private AudioClip _MenuMusic;
         [SerializeField]
         private AudioClip _GameMusic;
+
+        /// <summary>
+        /// Audio clip for the menu music
+        /// </summary>
         public AudioClip MenuMusic => _MenuMusic;
+
+        /// <summary>
+        /// Audio clip for the game music
+        /// </summary>
         public AudioClip GameMusic => _GameMusic;
 
         private AudioSource _MusicSource;
 
+        /// <summary>
+        /// Audio source pool
+        /// </summary>
         private AudioSourcePool _AudioSourcePool;
 
+        /// <summary>
+        /// Size of the pool
+        /// </summary>
         [SerializeField]
         private int _AudioSourcePoolSize = 10;
 
@@ -28,6 +48,11 @@ namespace FightShipArena.Assets.Scripts.Managers.SoundManagement
             _MusicSource = gameObject.AddComponent<AudioSource>();
             _MusicSource.loop = true;
         }
+        
+        /// <summary>
+        /// Play an audioclip for music
+        /// </summary>
+        /// <param name="audioClip"></param>
         public void PlayMusic(AudioClip audioClip)
         {
             _MusicSource.clip = audioClip;
@@ -35,6 +60,10 @@ namespace FightShipArena.Assets.Scripts.Managers.SoundManagement
             _MusicSource.Play();
         }
 
+        /// <summary>
+        /// Play a sound
+        /// </summary>
+        /// <param name="audioClip">Audio clip to play</param>
         public void PlaySound(AudioClip audioClip)
         {
             var audioSource = _AudioSourcePool.GetAudioSource();
@@ -42,6 +71,10 @@ namespace FightShipArena.Assets.Scripts.Managers.SoundManagement
             audioSource.Play();
         }
 
+        /// <summary>
+        /// play a sound
+        /// </summary>
+        /// <param name="sound">Sound to play</param>
         public void PlaySound(Sound sound)
         {
             var audioSource = _AudioSourcePool.GetAudioSource();
