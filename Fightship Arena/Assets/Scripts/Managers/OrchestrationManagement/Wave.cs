@@ -123,7 +123,7 @@ namespace FightShipArena.Assets.Scripts.Managers.OrchestrationManagement
                     yield break;
                 }
 
-                var nextEnemy = EnemyTypes.Where(x=>x.CurrentlySpawned < x.Settings.MaxNumOfSimultaneousSpawns).OrderBy(x => x.TotalSpawned / (float)x.Settings.NumToSpawn).SingleOrDefault();
+                var nextEnemy = EnemyTypes.Where(x=>x.CurrentlySpawned < x.Settings.MaxNumOfSimultaneousSpawns).OrderBy(x => x.TotalSpawned / (float)x.Settings.NumToSpawn).FirstOrDefault();
 
                 if (nextEnemy == null)
                     continue;
