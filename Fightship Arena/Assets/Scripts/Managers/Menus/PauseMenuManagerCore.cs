@@ -10,8 +10,13 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
     public class PauseMenuManagerCore : IPauseMenuManager
     {
+        /// <inheritdoc/>
         public event EventHandler ResumeGameEvent;
+
+        /// <inheritdoc/>
         public event EventHandler QuitCurrentGameEvent;
+
+        /// <inheritdoc/>
         public event EventHandler<Sound> PlaySoundEvent;
 
         public readonly IMyMonoBehaviour Parent;
@@ -20,18 +25,23 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
         {
             Parent = parent;
         }
+
+        /// <inheritdoc/>
         public void OnStart()
         {
             Debug.Log($"Pause menu opened");
         }
 
+        /// <inheritdoc/>
         public void OnAwake() { }
 
+        /// <inheritdoc/>
         public void ResumeGame()
         {
             ResumeGameEvent?.Invoke(this, new EventArgs());
         }
 
+        /// <inheritdoc/>
         public void QuitCurrentGame()
         {
             QuitCurrentGameEvent?.Invoke(this, new EventArgs());

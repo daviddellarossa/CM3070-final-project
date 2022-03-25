@@ -15,46 +15,46 @@ namespace FightshipArena.Assets.Tests.PlayMode.Managers.Levels
     [TestFixture]
     public class LevelMockManagerCoreUnitTests
     {
-        [UnityTest]
-        public IEnumerator DisablePlayerInput_disables_playerInput()
-        {
-            //arrange
-            var gameObject = new GameObject();
-            var playerInput = gameObject.AddComponent<PlayerInput>();
-            var levelManager = gameObject.AddComponent<Level_01Manager>();
-            var levelManagerCore = levelManager.Core;
-            Assert.That(playerInput.enabled, Is.True);
+        //[UnityTest]
+        //public IEnumerator DisablePlayerInput_disables_playerInput()
+        //{
+        //    //arrange
+        //    var gameObject = new GameObject();
+        //    var playerInput = gameObject.AddComponent<PlayerInput>();
+        //    var levelManager = gameObject.AddComponent<Level_01Manager>();
+        //    var levelManagerCore = levelManager.Core;
+        //    Assert.That(playerInput.enabled, Is.True);
 
-            yield return null;
+        //    yield return null;
 
-            //act
-            levelManagerCore.DisablePlayerInput();
+        //    //act
+        //    levelManagerCore.DisablePlayerInput();
 
-            //assert
-            Assert.That(playerInput.enabled, Is.False);
+        //    //assert
+        //    Assert.That(playerInput.enabled, Is.False);
 
-        }
-        [UnityTest]
-        public IEnumerator EnablePlayerInput_enables_playerInput()
-        {
-            //arrange
-            var gameObject = new GameObject();
-            var playerInput = gameObject.AddComponent<PlayerInput>();
-            var levelManager = gameObject.AddComponent<Level_01Manager>();
-            var levelManagerCore = levelManager.Core;
-            playerInput.enabled = false;
+        //}
+        //[UnityTest]
+        //public IEnumerator EnablePlayerInput_enables_playerInput()
+        //{
+        //    //arrange
+        //    var gameObject = new GameObject();
+        //    var playerInput = gameObject.AddComponent<PlayerInput>();
+        //    var levelManager = gameObject.AddComponent<Level_01Manager>();
+        //    var levelManagerCore = levelManager.Core;
+        //    playerInput.enabled = false;
 
-            Assert.That(playerInput.enabled, Is.False);
+        //    Assert.That(playerInput.enabled, Is.False);
 
-            yield return null;
+        //    yield return null;
 
-            //act
-            levelManagerCore.EnablePlayerInput();
+        //    //act
+        //    levelManagerCore.EnablePlayerInput();
 
-            //assert
-            Assert.That(playerInput.enabled, Is.True);
+        //    //assert
+        //    Assert.That(playerInput.enabled, Is.True);
 
-        }
+        //}
 
     }
 }

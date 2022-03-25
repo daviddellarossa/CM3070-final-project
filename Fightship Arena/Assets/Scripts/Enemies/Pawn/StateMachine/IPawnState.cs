@@ -1,32 +1,18 @@
-﻿using System;
-using UnityEngine;
-
-namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
+﻿namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
 {
+    /// <summary>
+    /// Specialization of a IEnemyState interface into one specific for Pawn enemy type
+    /// </summary>
     public interface IPawnState : IEnemyState<IPawnState>
     {
+        /// <summary>
+        /// Reference to the PawnControllerCore Parent object
+        /// </summary>
         PawnControllerCore Parent { get; set; }
+
+        /// <summary>
+        /// Reference to the State Factory
+        /// </summary>
         StateFactory Factory { get; set; }
-    }
-
-    public abstract class PawnState : IPawnState
-    {
-        public virtual void Move() { }
-
-        public virtual void Rotate() { }
-
-        public virtual void OnEnter()
-        {
-            Debug.Log($"State {this.GetType().Name}: OnEnter");
-        }
-
-        public virtual void OnExit()
-        {
-            Debug.Log($"State {this.GetType().Name}: OnExit");
-        }
-
-        public abstract event Action<IPawnState> ChangeState;
-        public PawnControllerCore Parent { get; set; }
-        public StateFactory Factory { get; set; }
     }
 }

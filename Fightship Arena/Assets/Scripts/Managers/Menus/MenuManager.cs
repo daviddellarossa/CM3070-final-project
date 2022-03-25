@@ -7,6 +7,9 @@ using FightShipArena.Assets.Scripts.Managers.SceneManagement;
 
 namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
+    /// <summary>
+    /// Base class for a generic MenuManager class
+    /// </summary>
     public class MenuManager : SceneManager
     {
     }

@@ -10,8 +10,13 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
 {
     public class PauseMenuManager : MenuManager, IPauseMenuManager
     {
+        /// <inheritdoc/>
         public event EventHandler ResumeGameEvent;
+
+        /// <inheritdoc/>
         public event EventHandler QuitCurrentGameEvent;
+
+        /// <inheritdoc/>
         public event EventHandler<Sound> PlaySoundEvent;
 
         public IPauseMenuManager Core { get; protected set; }
@@ -28,11 +33,13 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
             OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnStart()
         {
             Core.OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnAwake()
         {
             Core.OnAwake();
@@ -41,16 +48,19 @@ namespace FightShipArena.Assets.Scripts.Managers.Menus
             Core.QuitCurrentGameEvent += (sender, args) => QuitCurrentGameEvent?.Invoke(sender, args);
         }
 
+        /// <inheritdoc/>
         public void ResumeGame()
         {
             Core.ResumeGame();
         }
 
+        /// <inheritdoc/>
         public void QuitCurrentGame()
         {
             Core.QuitCurrentGame();
         }
 
+        /// <inheritdoc/>
         public override void PlaySound(Sound sound)
         {
             PlaySoundEvent?.Invoke(this, sound);

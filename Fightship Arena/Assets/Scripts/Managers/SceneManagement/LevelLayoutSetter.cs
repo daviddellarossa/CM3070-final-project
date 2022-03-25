@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
 {
+    /// <summary>
+    /// Sets the size and position of the level layout's element.
+    /// Optimized for 1920x1080
+    /// </summary>
     public class LevelLayoutSetter : MyMonoBehaviour, IMyMonoBehaviour
     {
         public Vector3 BorderLocalScale;
@@ -15,11 +19,13 @@ namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
 
         public Vector2 SpawnPointsMargin = Vector2.one;
             
+        //Elements of the interface
         public RectTransform LeftHudPanel;
         public RectTransform RightHudPanel;
 
         public Camera MainCamera;
 
+        //References to the elements of the level layout
         public GameObject TopLeft;
         public GameObject TopRight;
         public GameObject BottomLeft;
@@ -44,6 +50,10 @@ namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
             SetArenaLayout(currentSize);
         }
 
+        /// <summary>
+        /// Resize and position the elements of the Arena layout (walls, edges,...)
+        /// </summary>
+        /// <param name="size"></param>
         private void SetArenaLayout(Vector3 size)
         {
             var newSize = new Vector3(size.y * ArenaAspect, size.y, 0);
@@ -93,6 +103,10 @@ namespace FightShipArena.Assets.Scripts.Managers.SceneManagement
 
         }
 
+        /// <summary>
+        /// Resize and position the Hud panels.
+        /// </summary>
+        /// <param name="size"></param>
         private void SetHudPanels(Vector3 size)
         {
             var halfBorder = TopLeft.transform.localScale.x / 2;

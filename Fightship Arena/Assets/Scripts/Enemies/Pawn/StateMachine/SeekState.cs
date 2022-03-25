@@ -8,8 +8,12 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
 {
+    /// <summary>
+    /// Seek state for a Pawn enemy
+    /// </summary>
     public class SeekState : PawnState
     {
+        /// <inheritdoc/>
         public override void Move()
         {
             var mag = UnityEngine.Random.value * Parent.InitSettings.MaxMovementMagnitude;
@@ -18,18 +22,24 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
             Parent.Rigidbody.AddForce(impulse);
         }
 
+        /// <inheritdoc/>
         public override void OnEnter()
         {
             base.OnEnter();
             Parent.Parent.StartCoroutine(SeekPlayer());
         }
 
+        /// <inheritdoc/>
         public override void OnExit()
         {
             base.OnExit();
             Parent.Parent.StopCoroutine(SeekPlayer());
         }
 
+        /// <summary>
+        /// Check that the player is alive or dead and if alive, invoke a state change
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator SeekPlayer()
         {
             while (true)
@@ -41,13 +51,18 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn.StateMachine
             }
         }
 
-
+        /// <summary>
+        /// Create an instance of Seek state
+        /// </summary>
+        /// <param name="parent">Instance of <see cref="PawnControllerCore"/></param>
+        /// <param name="factory">Instance of <see cref="StateFactory"/></param>
         public SeekState(PawnControllerCore parent, StateFactory factory)
         {
             Parent = parent;
             Factory = factory;
         }
 
+        /// <inheritdoc/>
         public override event Action<IPawnState> ChangeState;
     }
 }

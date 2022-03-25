@@ -6,17 +6,41 @@ using UnityEngine.Events;
 
 namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
 {
+    /// <summary>
+    /// Implementation of a ScoreManager
+    /// </summary>
     public class ScoreManager : MyMonoBehaviour, IScoreManager
     {
+        /// <summary>
+        /// Event raised when the current score changes
+        /// </summary>
         public UnityEvent<int> ScoreChanged;
+
+        /// <summary>
+        /// Event raised when the current multiplier changes
+        /// </summary>
         public UnityEvent<int> MultiplierChanged;
+
+        /// <summary>
+        /// Event raised when the current hi-score changes
+        /// </summary>
         public UnityEvent<int> HiScoreChanged;
 
+        /// <summary>
+        /// The current score
+        /// </summary>
         private Score CurrentScore;
 
+        /// <summary>
+        /// The list of High Scores
+        /// </summary>
         public HighScoreRecorder HighScores;
 
         private int _multiplier;
+        
+        /// <summary>
+        /// The current Multiplier score
+        /// </summary>
         public int Multiplier
         {
             get => _multiplier;
@@ -63,6 +87,7 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
             MultiplierChanged?.Invoke(Multiplier);
         }
 
+        /// <inheritdoc/>
         public void AddToHighScore()
         {
             if (CurrentScore.Value == 0)
@@ -75,6 +100,7 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
             NotifyHighScoreValueChange();
         }
 
+        /// <inheritdoc/>
         public void AddToScore(int score)
         {
             var totScore = score * Multiplier;
@@ -83,16 +109,19 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
             NotifyScoreValueChange();
         }
 
+        /// <inheritdoc/>
         public void AddToMultiplier(int multiplier)
         {
             Multiplier += multiplier;
         }
 
+        /// <inheritdoc/>
         public void ResetMultiplier()
         {
             Multiplier = 1;
         }
 
+        /// <inheritdoc/>
         public void ResetCurrentScore()
         {
             CurrentScore = new Score();
@@ -100,6 +129,7 @@ namespace FightShipArena.Assets.Scripts.Managers.ScoreManagement
 
         }
 
+        /// <inheritdoc/>
         public void ResetHighScore()
         {
             HighScores.HighScores.Clear();

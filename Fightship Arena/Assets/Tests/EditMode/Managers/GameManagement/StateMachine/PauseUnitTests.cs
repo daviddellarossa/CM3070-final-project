@@ -2,6 +2,7 @@
 using FightShipArena.Assets.Scripts.Managers.GameManagement;
 using FightShipArena.Assets.Scripts.Managers.GameManagement.StateMachine;
 using FightShipArena.Assets.Scripts.Managers.Menus;
+using FightShipArena.Assets.Scripts.Managers.SoundManagement;
 using Moq;
 using Moq.Protected;
 using NUnit.Framework;
@@ -16,7 +17,11 @@ namespace FightshipArena.Assets.Tests.EditMode.Managers.GameManagement.StateMach
         public void OnEnter_calls_LoadSceneAsync_on_SceneManagerWrapper()
         {
             //arrange
+            var soundManagerMock = new Mock<ISoundManager>();
+
             var gameManagerCoreMock = new Mock<IGameManager>();
+            gameManagerCoreMock.Setup(x => x.SoundManager).Returns(soundManagerMock.Object);
+
             var gameManagerCore = gameManagerCoreMock.Object;
 
             var sceneManagerWrapperMock = new Mock<IUnitySceneManagerWrapper>();

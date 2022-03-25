@@ -6,13 +6,24 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 {
+    /// <summary>
+    /// Specialization of a EnemyController for a Pawn enemy type
+    /// </summary>
     public class PawnController : EnemyController
     {
 
+        /// <summary>
+        /// Event handler for a HealthLevelChanged event from the HealthManager. Invoked when the enemy loses energy.
+        /// </summary>
+        /// <param name="value">New health level</param>
+        /// <param name="maxValue">Max value of health</param>
         private void HealthManager_HealthLevelChanged(int value, int maxValue)
         {
         }
 
+        /// <summary>
+        /// Event handler for a HasDied event from the HealthManager. Invoked when the enemy dies.
+        /// </summary>
         private void HealthManager_HasDied()
         {
             Debug.Log($"Destroying object {this.gameObject.name}");
@@ -25,6 +36,8 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
             GameObject.Destroy(this.gameObject);
             ReleasePowerUp();
         }
+
+        #region Unity methods
 
         void Awake()
         {
@@ -100,5 +113,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Pawn
 
             Core.Move();
         }
+
+        #endregion
     }
 }
