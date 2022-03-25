@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MenuMusic: {fileID: 8300000, guid: 610276358c522fe43b4ca072b46ded2c, type: 3}
   _GameMusic: {fileID: 8300000, guid: 8d8b14f1e6544754e933a07433b0dc28, type: 3}
-  AudioSourcePoolSize: 20
+  _AudioSourcePoolSize: 10
 --- !u!1 &1643175216
 GameObject:
   m_ObjectHideFlags: 0

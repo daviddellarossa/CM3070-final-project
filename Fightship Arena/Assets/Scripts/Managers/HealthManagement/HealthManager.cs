@@ -10,12 +10,19 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
 {
     public class HealthManager : IHealthManager
     {
+        /// <inheritdoc/>
         public event Action<int, int> HealthLevelChanged;
+
+        /// <inheritdoc/>
         public event Action HasDied;
 
+        /// <inheritdoc/>
         public int MaxHealth { get; set; }
+
+        /// <inheritdoc/>
         private int _health;
 
+        /// <inheritdoc/>
         public int Health
         {
             get => _health;
@@ -36,10 +43,15 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
                 }
             }
         }
+        
+        /// <inheritdoc/>
         public bool IsInvulnerable { get; set; }
+        
+        /// <inheritdoc/>
         public bool IsDead { get; protected set;
         }
 
+        /// <inheritdoc/>
         public void Heal(int byValue)
         {
             var newHealthValue =  Health + byValue;
@@ -52,12 +64,14 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
 
         }
 
+        /// <inheritdoc/>
         public void Heal()
         {
             Heal(MaxHealth);
             IsDead = false;
         }
 
+        /// <inheritdoc/>
         public void Damage(int byValue)
         {
             if (IsInvulnerable) return;
@@ -71,11 +85,18 @@ namespace FightShipArena.Assets.Scripts.Managers.HealthManagement
             Health = newHealthValue;
         }
 
+        /// <inheritdoc/>
         public void Kill()
         {
             Damage(Health);
         }
 
+        /// <summary>
+        /// Create an instance of the class
+        /// </summary>
+        /// <param name="health">Initial health level</param>
+        /// <param name="maxHealth">Maximum health level</param>
+        /// <param name="isInvulnerable">It is invulnerable at start</param>
         public HealthManager(int health, int maxHealth, bool isInvulnerable)
         {
             this.Health = health;

@@ -5,14 +5,35 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Weapons
 {
+    /// <summary>
+    /// Base class for a Weapon
+    /// </summary>
     public abstract class WeaponBase : MyMonoBehaviour
     {
+        /// <summary>
+        /// Weapon Type
+        /// </summary>
         public WeaponType WeaponType;
+
+        /// <summary>
+        /// Initial settings for the weapon
+        /// </summary>
         public WeaponSettings InitSettings;
+
+        /// <summary>
+        /// Reference to the GameObject used as a bullet
+        /// </summary>
         public GameObject Bullet;
         private Coroutine _fireCoroutine;
+
+        /// <summary>
+        /// Reference to the WeaponSoundManager instance
+        /// </summary>
         private WeaponSoundManager _soundManager;
 
+        /// <summary>
+        /// Ammo in the magazine
+        /// </summary>
         public int Ammo;
         void Awake()
         {
@@ -50,11 +71,17 @@ namespace FightShipArena.Assets.Scripts.Weapons
 
         }
 
+        /// <summary>
+        /// Start a Firing action spanned across multiple frames
+        /// </summary>
         public virtual void StartFiring()
         {
             _fireCoroutine = StartCoroutine(Fire());
         }
 
+        /// <summary>
+        /// Stop a firing action spanned across multiple frames
+        /// </summary>
         public virtual void StopFiring()
         {
             if (_fireCoroutine != null)
@@ -65,6 +92,10 @@ namespace FightShipArena.Assets.Scripts.Weapons
             _fireCoroutine = null;
         }
 
+        /// <summary>
+        /// Coroutine managing the fire action
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator Fire()
         {
             bool onlyOnce = InitSettings.RateOfFire == 0;

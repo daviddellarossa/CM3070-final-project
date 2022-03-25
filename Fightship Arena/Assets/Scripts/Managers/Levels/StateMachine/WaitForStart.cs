@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels.StateMachine
 {
+    /// <summary>
+    /// State that manages the phase before the games start
+    /// </summary>
     public class WaitForStart : State
     {
         public WaitForStart(StateConfiguration configuration) : base(configuration)
@@ -15,6 +18,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels.StateMachine
             ChangeStateDelay = 2;
         }
 
+        /// <inheritdoc/>
         public override event EventHandler<State> ChangeStateRequestEvent;
 
         /// <inheritdoc/>

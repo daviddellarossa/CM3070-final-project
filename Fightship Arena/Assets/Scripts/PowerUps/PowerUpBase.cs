@@ -6,11 +6,20 @@ using Time = UnityEngine.Time;
 
 namespace FightShipArena.Assets.Scripts.PowerUps
 {
+    /// <summary>
+    /// Abstract class for a generic power-up
+    /// </summary>
     public abstract class PowerUpBase : MyMonoBehaviour
     {
+        /// <summary>
+        /// Power-up type
+        /// </summary>
         public PowerUpType PowerUpType;
-        public PowerUpSettings InitSettings;
 
+        /// <summary>
+        /// Power-up initial settings
+        /// </summary>
+        public PowerUpSettings InitSettings;
 
         void Awake()
         {
@@ -29,6 +38,10 @@ namespace FightShipArena.Assets.Scripts.PowerUps
             StartCoroutine(StartCountdown());
         }
 
+        /// <summary>
+        /// Countdown before the Power-up destruction
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator StartCountdown()
         {
             yield return new WaitForSeconds(InitSettings.Duration);
@@ -36,6 +49,10 @@ namespace FightShipArena.Assets.Scripts.PowerUps
             GameObject.Destroy(this.gameObject);
         }
 
+        /// <summary>
+        /// Control how the power-up moves around during its lifetime.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator FloatAround()
         {
             var scaleIn = 5;

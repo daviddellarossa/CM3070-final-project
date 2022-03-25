@@ -2808,14 +2808,18 @@ MonoBehaviour:
     - Settings:
         EnemyTypeEnum: 0
         EnemyType: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
-        NumToSpawn: 40
-        MaxNumOfSimultaneousSpawns: 4
+        NumToSpawn: 20
+        MaxNumOfSimultaneousSpawns: 2
+    - Settings:
+        EnemyTypeEnum: 1
+        EnemyType: {fileID: 2347523137725475495, guid: 73fcfaa91805ce64bbc3fe7dae1cede6, type: 3}
+        NumToSpawn: 7
+        MaxNumOfSimultaneousSpawns: 2
     SpawnPoints:
-    - {fileID: 1593073689535937988, guid: b0fd19ec92caa0a4db340040960b5844, type: 3}
     - {fileID: 2662026672926222040, guid: 4bf2448790c3b1a46a195943605290d9, type: 3}
     - {fileID: 4575956578680084698, guid: e6703cbc85820414286d7a6225cee37c, type: 3}
-    - {fileID: 7643936114121142821, guid: 8a767bdee5417b942bdbd32fcd298f28, type: 3}
-    MaxSimultaneousEnemiesSpawned: 4
+    - {fileID: 4575956578680084698, guid: 32f648dfe1fc026458d521499b8694bb, type: 3}
+    MaxSimultaneousEnemiesSpawned: 3
     DelayBetweenSpawns: 1
     DelayBeforeStart: 0.5
     DelayAfterEnd: 0.5
@@ -2827,7 +2831,7 @@ MonoBehaviour:
     - Settings:
         EnemyTypeEnum: 0
         EnemyType: {fileID: 2771088272159019403, guid: b7db7948c325d1848a540e1186b8a87c, type: 3}
-        NumToSpawn: 40
+        NumToSpawn: 20
         MaxNumOfSimultaneousSpawns: 3
     - Settings:
         EnemyTypeEnum: 1

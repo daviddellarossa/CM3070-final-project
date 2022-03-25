@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace FightShipArena.Assets.Scripts.Managers.Levels.StateMachine
 {
+    /// <summary>
+    /// State that manages the Play phase
+    /// </summary>
     public class Play : State
     {
+        /// <summary>
+        /// Create an instance of the class
+        /// </summary>
+        /// <param name="configuration">State configuration</param>
         public Play(StateConfiguration configuration) : base(configuration)
         {
         }
 
+        /// <inheritdoc/>
         public override void OnEnter()
         {
             base.OnEnter();
@@ -24,6 +32,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels.StateMachine
 
         }
 
+        /// <inheritdoc/>
         public override void OnExit()
         {
             base.OnExit();
@@ -31,6 +40,7 @@ namespace FightShipArena.Assets.Scripts.Managers.Levels.StateMachine
             Configuration.OrchestrationManager.Stop();
         }
 
+        /// <inheritdoc/>
         public override event EventHandler<State> ChangeStateRequestEvent;
     }
 }

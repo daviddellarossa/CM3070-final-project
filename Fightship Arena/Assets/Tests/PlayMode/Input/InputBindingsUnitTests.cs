@@ -46,310 +46,310 @@ namespace FightshipArena.Assets.Tests.PlayMode.Input
             return InputSystem.AddDevice<Keyboard>();
         }
 
-        [UnityTest]
-        public IEnumerator Key_W_assigns_movement_to_Core()
-        {
-            ////arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
-            Assert.Fail("Needs review");
-            //InputTestFixture input = new InputTestFixture();
+        //[UnityTest, Ignore("Needs review")]
+        //public IEnumerator Key_W_assigns_movement_to_Core()
+        //{
+        //    ////arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
+        //    Assert.Fail("Needs review");
+        //    //InputTestFixture input = new InputTestFixture();
 
-            //var keyboard = ResetAndReturnKeyboard();
+        //    //var keyboard = ResetAndReturnKeyboard();
 
-            //var player = GameObject.FindGameObjectWithTag("Player");
+        //    //var player = GameObject.FindGameObjectWithTag("Player");
 
-            //var playerController = player.GetComponent<PlayerController>();
+        //    //var playerController = player.GetComponent<PlayerController>();
 
-            //var playerInput = player.GetComponent<PlayerInput>();
+        //    //var playerInput = player.GetComponent<PlayerInput>();
 
-            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            //var playerActionAsset = new PlayerActionAsset();
+        //    ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+        //    //var playerActionAsset = new PlayerActionAsset();
 
-            //var processor = playerActionAsset.Player.Move.processors;
+        //    //var processor = playerActionAsset.Player.Move.processors;
 
-            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            //var match = Regex.Match(processor, regex);
+        //    //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+        //    //var match = Regex.Match(processor, regex);
 
-            //var value = float.Parse(match.Groups[1].Value);
-            ////-------------------------------------------------------------------------------
+        //    //var value = float.Parse(match.Groups[1].Value);
+        //    ////-------------------------------------------------------------------------------
 
-            //Vector3 firstValue = new Vector3(0f, value, 0f);
-            //var secondValue = Vector3.zero;
+        //    //Vector3 firstValue = new Vector3(0f, value, 0f);
+        //    //var secondValue = Vector3.zero;
 
-            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
 
 
-            //var playerControllerCore = playerControllerCoreMock.Object;
-            //playerController.Core = playerControllerCore;
+        //    //var playerControllerCore = playerControllerCoreMock.Object;
+        //    //playerController.Core = playerControllerCore;
 
-            ////act
-            //input.Press((ButtonControl)keyboard["w"]);
+        //    ////act
+        //    //input.Press((ButtonControl)keyboard["w"]);
 
-            //yield return null;
+        //    //yield return null;
 
-            ////assert
-            //playerControllerCoreMock.VerifyAll();
+        //    ////assert
+        //    //playerControllerCoreMock.VerifyAll();
 
-        }
+        //}
 
-        [UnityTest]
-        public IEnumerator Key_A_assigns_movement_to_Core()
-        {
-            //arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
-            Assert.Fail("Needs review");
+        //[UnityTest, Ignore("Needs review")]
+        //public IEnumerator Key_A_assigns_movement_to_Core()
+        //{
+        //    //arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
+        //    Assert.Fail("Needs review");
 
-            //InputTestFixture input = new InputTestFixture();
+        //    //InputTestFixture input = new InputTestFixture();
 
-            //var keyboard = ResetAndReturnKeyboard();
+        //    //var keyboard = ResetAndReturnKeyboard();
 
-            //var player = GameObject.FindGameObjectWithTag("Player");
+        //    //var player = GameObject.FindGameObjectWithTag("Player");
 
-            //var playerController = player.GetComponent<PlayerController>();
+        //    //var playerController = player.GetComponent<PlayerController>();
 
-            //var playerInput = player.GetComponent<PlayerInput>();
+        //    //var playerInput = player.GetComponent<PlayerInput>();
 
 
-            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            //var playerActionAsset = new PlayerActionAsset();
+        //    ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+        //    //var playerActionAsset = new PlayerActionAsset();
 
-            //var processor = playerActionAsset.Player.Move.processors;
+        //    //var processor = playerActionAsset.Player.Move.processors;
 
-            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            //var match = Regex.Match(processor, regex);
+        //    //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+        //    //var match = Regex.Match(processor, regex);
 
-            //var value = float.Parse(match.Groups[1].Value);
-            ////-------------------------------------------------------------------------------
+        //    //var value = float.Parse(match.Groups[1].Value);
+        //    ////-------------------------------------------------------------------------------
 
-            //Vector3 firstValue = new Vector3(-value, 0f, 0f);
-            //var secondValue = Vector3.zero;
+        //    //Vector3 firstValue = new Vector3(-value, 0f, 0f);
+        //    //var secondValue = Vector3.zero;
 
-            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
 
 
-            //var playerControllerCore = playerControllerCoreMock.Object;
-            //playerController.Core = playerControllerCore;
+        //    //var playerControllerCore = playerControllerCoreMock.Object;
+        //    //playerController.Core = playerControllerCore;
 
-            ////act
-            //input.Press((ButtonControl)keyboard["a"]);
+        //    ////act
+        //    //input.Press((ButtonControl)keyboard["a"]);
 
-            //yield return null;
+        //    //yield return null;
 
-            ////assert
-            //playerControllerCoreMock.VerifyAll();
+        //    ////assert
+        //    //playerControllerCoreMock.VerifyAll();
 
-        }
+        //}
 
-        [UnityTest]
-        public IEnumerator Key_S_assigns_movement_to_Core()
-        {
-            //arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
-            Assert.Fail("Needs review");
+        //[UnityTest, Ignore("Needs review")]
+        //public IEnumerator Key_S_assigns_movement_to_Core()
+        //{
+        //    //arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
+        //    Assert.Fail("Needs review");
 
-            //InputTestFixture input = new InputTestFixture();
+        //    //InputTestFixture input = new InputTestFixture();
 
-            //var keyboard = ResetAndReturnKeyboard();
+        //    //var keyboard = ResetAndReturnKeyboard();
 
-            //var player = GameObject.FindGameObjectWithTag("Player");
+        //    //var player = GameObject.FindGameObjectWithTag("Player");
 
-            //var playerController = player.GetComponent<PlayerController>();
+        //    //var playerController = player.GetComponent<PlayerController>();
 
-            //var playerInput = player.GetComponent<PlayerInput>();
+        //    //var playerInput = player.GetComponent<PlayerInput>();
 
 
-            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            //var playerActionAsset = new PlayerActionAsset();
+        //    ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+        //    //var playerActionAsset = new PlayerActionAsset();
 
-            //var processor = playerActionAsset.Player.Move.processors;
+        //    //var processor = playerActionAsset.Player.Move.processors;
 
-            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            //var match = Regex.Match(processor, regex);
+        //    //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+        //    //var match = Regex.Match(processor, regex);
 
-            //var value = float.Parse(match.Groups[1].Value);
-            ////-------------------------------------------------------------------------------
+        //    //var value = float.Parse(match.Groups[1].Value);
+        //    ////-------------------------------------------------------------------------------
 
-            //Vector3 firstValue = new Vector3(0f, -value, 0f);
-            //var secondValue = Vector3.zero;
+        //    //Vector3 firstValue = new Vector3(0f, -value, 0f);
+        //    //var secondValue = Vector3.zero;
 
-            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
 
 
-            //var playerControllerCore = playerControllerCoreMock.Object;
-            //playerController.Core = playerControllerCore;
+        //    //var playerControllerCore = playerControllerCoreMock.Object;
+        //    //playerController.Core = playerControllerCore;
 
-            ////act
-            //input.Press((ButtonControl)keyboard["s"]);
+        //    ////act
+        //    //input.Press((ButtonControl)keyboard["s"]);
 
-            //yield return null;
+        //    //yield return null;
 
-            ////assert
-            //playerControllerCoreMock.VerifyAll();
+        //    ////assert
+        //    //playerControllerCoreMock.VerifyAll();
 
-        }
+        //}
 
-        [UnityTest]
-        public IEnumerator Key_D_assigns_movement_to_Core()
-        {
-            //arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
-            Assert.Fail("Needs review");
+        //[UnityTest, Ignore("Needs review")]
+        //public IEnumerator Key_D_assigns_movement_to_Core()
+        //{
+        //    //arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
+        //    Assert.Fail("Needs review");
 
-            //InputTestFixture input = new InputTestFixture();
+        //    //InputTestFixture input = new InputTestFixture();
 
-            //var keyboard = ResetAndReturnKeyboard();
+        //    //var keyboard = ResetAndReturnKeyboard();
 
-            //var player = GameObject.FindGameObjectWithTag("Player");
+        //    //var player = GameObject.FindGameObjectWithTag("Player");
 
-            //var playerController = player.GetComponent<PlayerController>();
+        //    //var playerController = player.GetComponent<PlayerController>();
 
-            //var playerInput = player.GetComponent<PlayerInput>();
+        //    //var playerInput = player.GetComponent<PlayerInput>();
 
 
-            ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
-            //var playerActionAsset = new PlayerActionAsset();
+        //    ////WARNING: This part is subject to break if the Processor structure attached to the action changes.
+        //    //var playerActionAsset = new PlayerActionAsset();
 
-            //var processor = playerActionAsset.Player.Move.processors;
+        //    //var processor = playerActionAsset.Player.Move.processors;
 
-            //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
-            //var match = Regex.Match(processor, regex);
+        //    //var regex = @"InputScaler\(ScaleFactor=?([0-9]+\.?[0-9]*|\.[0-9]+)\)";
+        //    //var match = Regex.Match(processor, regex);
 
-            //var value = float.Parse(match.Groups[1].Value);
-            ////-------------------------------------------------------------------------------
+        //    //var value = float.Parse(match.Groups[1].Value);
+        //    ////-------------------------------------------------------------------------------
 
-            //Vector3 firstValue = new Vector3(-value, 0f, 0f);
-            //var secondValue = Vector3.zero;
+        //    //Vector3 firstValue = new Vector3(-value, 0f, 0f);
+        //    //var secondValue = Vector3.zero;
 
-            //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    //var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
-            //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, firstValue);
+        //    //playerControllerCoreMock.SetupProperty(x => x.PlayerInput, Vector3.zero);
 
 
-            //var playerControllerCore = playerControllerCoreMock.Object;
-            //playerController.Core = playerControllerCore;
+        //    //var playerControllerCore = playerControllerCoreMock.Object;
+        //    //playerController.Core = playerControllerCore;
 
-            ////act
-            //input.Press((ButtonControl)keyboard["d"]);
+        //    ////act
+        //    //input.Press((ButtonControl)keyboard["d"]);
 
-            //yield return null;
+        //    //yield return null;
 
-            ////assert
-            //playerControllerCoreMock.VerifyAll();
-        }
+        //    ////assert
+        //    //playerControllerCoreMock.VerifyAll();
+        //}
 
-        [UnityTest, Ignore("Needs review after refactoring")]
-        public IEnumerator Key_J_assigns_movement_to_Core()
-        {
-            //arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
+        //[UnityTest, Ignore("Needs review after refactoring")]
+        //public IEnumerator Key_J_assigns_movement_to_Core()
+        //{
+        //    //arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
 
-            InputTestFixture input = new InputTestFixture();
+        //    InputTestFixture input = new InputTestFixture();
 
-            var keyboard = ResetAndReturnKeyboard();
+        //    var keyboard = ResetAndReturnKeyboard();
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+        //    var player = GameObject.FindGameObjectWithTag("Player");
 
-            var playerController = player.GetComponent<PlayerController>();
+        //    var playerController = player.GetComponent<PlayerController>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
+        //    var playerInput = player.GetComponent<PlayerInput>();
 
-            var playerActionAsset = new PlayerActionAsset();
+        //    var playerActionAsset = new PlayerActionAsset();
 
-            var processor = playerActionAsset.Player.Fire.processors;
+        //    var processor = playerActionAsset.Player.Fire.processors;
 
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+        //    var playerControllerCore = playerControllerCoreMock.Object;
+        //    playerController.Core = playerControllerCore;
 
-            //act
-            input.Press((ButtonControl)keyboard["j"]);
+        //    //act
+        //    input.Press((ButtonControl)keyboard["j"]);
 
-            yield return null;
+        //    yield return null;
 
-            //assert
-            //playerControllerCoreMock.Verify(x => x.Fire(), Times.Once);
-            Assert.Fail("Needs review after refactoring");
+        //    //assert
+        //    //playerControllerCoreMock.Verify(x => x.Fire(), Times.Once);
+        //    Assert.Fail("Needs review after refactoring");
 
-        }
+        //}
 
-        [UnityTest]
-        public IEnumerator Key_K_assigns_movement_to_Core()
-        {
-            //arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
+        //[UnityTest, Ignore("Needs review")]
+        //public IEnumerator Key_K_assigns_movement_to_Core()
+        //{
+        //    //arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
 
-            InputTestFixture input = new InputTestFixture();
+        //    InputTestFixture input = new InputTestFixture();
 
-            var keyboard = ResetAndReturnKeyboard();
+        //    var keyboard = ResetAndReturnKeyboard();
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+        //    var player = GameObject.FindGameObjectWithTag("Player");
 
-            var playerController = player.GetComponent<PlayerController>();
+        //    var playerController = player.GetComponent<PlayerController>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
+        //    var playerInput = player.GetComponent<PlayerInput>();
 
-            var playerActionAsset = new PlayerActionAsset();
+        //    var playerActionAsset = new PlayerActionAsset();
 
-            var processor = playerActionAsset.Player.FireAlt.processors;
+        //    var processor = playerActionAsset.Player.FireAlt.processors;
 
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+        //    var playerControllerCore = playerControllerCoreMock.Object;
+        //    playerController.Core = playerControllerCore;
 
-            //act
-            input.Press((ButtonControl)keyboard["k"]);
+        //    //act
+        //    input.Press((ButtonControl)keyboard["k"]);
 
-            yield return null;
+        //    yield return null;
 
-            //assert
-            playerControllerCoreMock.Verify(x => x.FireAlt(), Times.Once);
-        }
+        //    //assert
+        //    playerControllerCoreMock.Verify(x => x.FireAlt(), Times.Once);
+        //}
 
-        [UnityTest]
-        public IEnumerator Key_L_assigns_movement_to_Core()
-        {
-            //arrange
-            yield return new WaitWhile(() => sceneLoaded == false);
+        //[UnityTest, Ignore("Needs review")]
+        //public IEnumerator Key_L_assigns_movement_to_Core()
+        //{
+        //    //arrange
+        //    yield return new WaitWhile(() => sceneLoaded == false);
 
-            InputTestFixture input = new InputTestFixture();
+        //    InputTestFixture input = new InputTestFixture();
 
-            var keyboard = ResetAndReturnKeyboard();
+        //    var keyboard = ResetAndReturnKeyboard();
 
-            var player = GameObject.FindGameObjectWithTag("Player");
+        //    var player = GameObject.FindGameObjectWithTag("Player");
 
-            var playerController = player.GetComponent<PlayerController>();
+        //    var playerController = player.GetComponent<PlayerController>();
 
-            var playerInput = player.GetComponent<PlayerInput>();
+        //    var playerInput = player.GetComponent<PlayerInput>();
 
-            var playerActionAsset = new PlayerActionAsset();
+        //    var playerActionAsset = new PlayerActionAsset();
 
-            var processor = playerActionAsset.Player.OpenSelectionMenu.processors;
+        //    var processor = playerActionAsset.Player.OpenSelectionMenu.processors;
 
-            var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
+        //    var playerControllerCoreMock = new Mock<IPlayerControllerCore>();
 
-            var playerControllerCore = playerControllerCoreMock.Object;
-            playerController.Core = playerControllerCore;
+        //    var playerControllerCore = playerControllerCoreMock.Object;
+        //    playerController.Core = playerControllerCore;
 
-            //act
-            input.Press((ButtonControl)keyboard["l"]);
+        //    //act
+        //    input.Press((ButtonControl)keyboard["l"]);
 
-            yield return null;
+        //    yield return null;
 
-            //assert
-            playerControllerCoreMock.Verify(x => x.OpenSelectionMenu(), Times.Once);
+        //    //assert
+        //    playerControllerCoreMock.Verify(x => x.OpenSelectionMenu(), Times.Once);
 
-        }
+        //}
     }
 }

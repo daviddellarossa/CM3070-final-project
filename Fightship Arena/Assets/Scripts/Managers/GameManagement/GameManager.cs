@@ -4,12 +4,20 @@ using UnityEngine.InputSystem;
 
 namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 {
+    /// <summary>
+    /// Game manager. Coordinates the game and its components.
+    /// </summary>
     public class GameManager : MyMonoBehaviour, IGameManager
     {
+        /// <summary>
+        /// Reference to the GameManager core instance
+        /// </summary>
         public IGameManager Core { get; protected set; }
 
         [SerializeField]
         private SoundManager _SoundManager;
+
+        /// <inheritdoc/>
         public ISoundManager SoundManager => _SoundManager;
 
         #region MonoBehaviour methods
@@ -26,7 +34,6 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         #endregion
 
-
         #region Input Event Handlers
 
         /// <summary>
@@ -41,17 +48,24 @@ namespace FightShipArena.Assets.Scripts.Managers.GameManagement
 
         #endregion
 
+        /// <summary>
+        /// Invoked on Awake
+        /// </summary>
         public void OnAwake()
         {
             Core = new GameManagerCore(this);
             Core.OnAwake();
         }
 
+        /// <summary>
+        /// Invoked on Start
+        /// </summary>
         public void OnStart()
         {
             Core.OnStart();
         }
 
+        /// <inheritdoc/>
         public void OnPauseResumeGame(InputAction.CallbackContext context)
         {
             Core.OnPauseResumeGame(context);

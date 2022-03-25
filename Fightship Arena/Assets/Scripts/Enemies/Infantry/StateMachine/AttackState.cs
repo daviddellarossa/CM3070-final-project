@@ -4,11 +4,17 @@ using UnityEngine;
 
 namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 {
+    /// <summary>
+    /// Attack state for an Infantry enemy
+    /// </summary>
     public class AttackState : InfantryState
     {
         private Coroutine _fireCoroutine;
         private Coroutine _seekPlayerCoroutine;
         private bool fireCondition = false;
+
+
+        /// <inheritdoc/>
         public override void Move()
         {
             var mag = UnityEngine.Random.value * Parent.InitSettings.MaxMovementMagnitude;
@@ -17,12 +23,13 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             Parent.Rigidbody.AddForce(impulse);
         }
 
-            
+        /// <inheritdoc/>
         public override void Rotate()
         {
             LookAtPlayer();
         }
 
+        /// <inheritdoc/>
         public override void OnEnter()
         {
             base.OnEnter();
@@ -31,6 +38,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             _fireCoroutine = Parent.Parent.StartCoroutine(Fire());
         }
 
+        /// <inheritdoc/>
         public override void OnExit()
         {
             base.OnExit();
@@ -41,6 +49,9 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 
         }
 
+        /// <summary>
+        /// Rotate the enemy object so as to face the player object
+        /// </summary>
         protected void LookAtPlayer()
         {
             if (Parent.PlayerControllerCore.Transform == null )
@@ -62,6 +73,7 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
 
         }
 
+        /// <inheritdoc/>
         public IEnumerator Fire()
         {
             var stopFiringInterval = 1.0f;
@@ -80,6 +92,10 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             }
         }
 
+        /// <summary>
+        /// Check that the player is alive or dead and if dead, invoke a state change
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator SeekPlayer()
         {
             while (true)
@@ -91,9 +107,14 @@ namespace FightShipArena.Assets.Scripts.Enemies.Infantry.StateMachine
             }
         }
 
-
+        /// <inheritdoc/>
         public override event Action<IInfantryState> ChangeState;
 
+        /// <summary>
+        /// Create an instance of Attack state
+        /// </summary>
+        /// <param name="parent">Instance of <see cref="InfantryControllerCore"/></param>
+        /// <param name="factory">Instance of <see cref="StateFactory"/></param>
         public AttackState(InfantryControllerCore parent, StateFactory factory)
         {
             Parent = parent;
